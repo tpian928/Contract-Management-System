@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>注册</title>
+<link rel="stylesheet" type="text/css" href="css/cm.css">
+<script type="text/javascript" src="js/framework7.min.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+</head>
+<body>
+
+<div class="notTop">
+    <form method="post" class="basic-grey">
+        <h1>登录<a id="loginBtn" href="register.html">注册</a></h1>
+
+        <label>
+            <span>用户名：</span>
+            <input id="name" type="text" name="name"/>
+        </label>
+            
+        <label>
+            <span>密码：</span>
+            <input id="pw" type="password" name="pw"/>
+        </label>         
+        <label>
+            <input type="button" id="login" class="buttonGreen" value="注册" />                 
+        </label> 
+
+    </form>
+
+    <script type="text/javascript">
+
+        var $$ = Dom7;
+
+        $$('#login').on('click', function () {
+            o("login");
+            var name = $$('#name').val();
+            var pw = $$('#pw').val();
+            
+            if (inputIsEmpty(name,pw)) {
+                //post到后端
+                $$.post('login', {name: name,pw:pw}, function (data) {
+                    
+                });
+            }
+            else{
+                alert("您填写的登录信息不对");
+            }
+
+        });
+
+        // 判断是否为空   
+        function inputIsEmpty(a,b) {
+            var reg= /^[A-Za-z]+$/;
+            if (a.length>=4&&b.length>=6) {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+    </script>
+
+</div>
+
+
+
+
+</body>
+</html>
