@@ -10,7 +10,7 @@
 </head>
 <body>
 <%
-User m = UserJDBCAction.isMyUser("d", "2");
+User m = UserJDBCAction.addUser("sb", "iamsb");
 out.print(m.getAccess_taken());
 %>
 </body>

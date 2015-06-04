@@ -37,6 +37,7 @@ public class UserJDBCAction {
 	 * @return 是否成功添加到User表
 	 */
 	public static User addUser(String name,String password) {
+		
 		String idstr = "";
 		Connection conn = getUserConnection(); // 同样先要获取连接，即连接到数据库
 		String access_taken = Security.RandomString(15);

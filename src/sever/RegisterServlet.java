@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import obj.User;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONStringer;
@@ -33,31 +35,18 @@ public class RegisterServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
-		String idString = UserJDBCAction.isMyUser(name, password);
+		
+		//TODO判断是否有这个用户名
+		
+		User m = UserJDBCAction.addUser(name, password);
 		
 		//result
-		//0-成功注册
 		JSONObject jsonObject = new JSONObject(); 
-		
-		if (idString.length()==0) {
-			try {
-				UserJDBCAction.addUser(name, password);
-				idString = UserJDBCAction.isMyUser(name, password);
-				jsonObject.put("id", idString);
-			} catch (Exception e) {
-				try {
-					jsonObject.put("id", "-1");
-				} catch (JSONException e1) {
-					e1.printStackTrace();
-				}			
-			}
-		}
-		else{
-			try {
-				jsonObject.put("id", "-2");
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
+		try {
+			jsonObject.put("id", m.getId());
+			jsonObject.put("access_taken", m.getAccess_taken());
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
 		
 		//返回
