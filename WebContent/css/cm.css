@@ -27,11 +27,32 @@ p
 	margin-top: 30px;
 }
 
+
+
 #loginBtn
 {
 	position: relative;
 	left: 160px;
 	color: #E27575;
+}
+
+.leftBtn
+{
+	position: relative;
+	left: -50px;
+	color: #E27575;
+}
+.rightBtn
+{
+	position: relative;
+	right: -100px;
+	color: #E27575;
+}
+
+.line
+{
+	width: 100%;
+	height: 50px;
 }
 
 /*来自互联网*/
@@ -145,6 +166,21 @@ p
 	border-radius: 3px;
 	text-shadow: 1px 1px 1px #9E3F3F;
 	cursor: pointer;
+}
+
+.basic-grey  .pickBtn
+{
+	background: #878787;
+	border: none;
+	padding: 2px 5px 2px 5px;
+	color: #FFF;
+	box-shadow: 1px 1px 5px #B6B6B6;
+	border-radius: 3px;
+	text-shadow: 1px 1px 1px #9E3F3F;
+	cursor: pointer;
+	position: relative;
+	right: -85px;
+	top: 7px;
 }
 
 .basic-grey .button:hover {
