@@ -13,3 +13,4 @@ function idIsValue(id,value){
 function o (str) {
 	console.log(str);
 }
+
