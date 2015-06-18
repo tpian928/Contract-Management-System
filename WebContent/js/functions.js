@@ -14,3 +14,18 @@ function o (str) {
 	console.log(str);
 }
 
+
+function isEmpty (str) {
+	if (str!=""&&str!=null&&str!="undefine") {
+		return true;
+	}
+	else{
+		return false;
+	}
+
+}
+
+function a (str) {
+	alert(str);
+}
+

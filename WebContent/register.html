@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -45,6 +45,17 @@
             if (inputIsEmpty(name,pw,cpw)) {
                 //post到后端
                 $$.post('register', {name: name,pw:pw}, function (data) {
+                    var obj=eval('('+data+')');
+                    var id = obj.id;
+
+                    if (isEmpty(id)) {
+                        o(id)
+                        localStorage.id=id;
+                        localStorage.access_taken=obj.access_taken;
+                    }
+                    else{
+                        a("注册失败");
+                    }
                     
                 });
             }
