@@ -14,7 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONStringer;
 
-import jdbc.UserJDBCAction;
+import jdbc.User;
 
 
 public class RegisterServlet extends HttpServlet {
@@ -38,7 +38,7 @@ public class RegisterServlet extends HttpServlet {
 		
 		//TODO判断是否有这个用户名
 		
-		User m = UserJDBCAction.addUser(name, password);
+		User m = User.addUser(name, password);
 		
 		//result
 		JSONObject jsonObject = new JSONObject(); 

@@ -12,7 +12,7 @@ import obj.User;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import jdbc.UserJDBCAction;
+import jdbc.User;
 
 
 public class LoginServlet extends HttpServlet {
@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		
-		User m = UserJDBCAction.isMyUser(name, password);
+		User m = User.isMyUser(name, password);
 		
 		JSONObject jsonObject = new JSONObject(); 
 		try {
