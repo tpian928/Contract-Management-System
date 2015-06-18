@@ -28,16 +28,7 @@ public class AddFunc extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//判断是否有这个权限
-		request.setCharacterEncoding("UTF-8");
-		String name = request.getParameter("name");
-		String desc = request.getParameter("desc");
-		String funcStr = request.getParameter("funcStr");
-		String access_taken = request.getParameter("access_taken");
-		String id = request.getParameter("id");
-		User mUser = new User(id, access_taken);
-		
-		
+
 		
 	}
 

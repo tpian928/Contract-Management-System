@@ -17,7 +17,7 @@ function initHtml () {
 
         if (isEmpty(name)==false&&isEmpty(desc)==false&&isEmpty(funcStr)==false&&isEmpty(localStorage.access_taken)==false) {
             o("checked");
-    	    $$.post('addFunc', {name: name,desc:desc,funcStr:funcStr,access_taken:localStorage.access_taken,id:localStorage.id}, function (data) {
+    	    $$.post('addRole', {name: name,desc:desc,funcStr:funcStr,access_taken:localStorage.access_taken,id:localStorage.id}, function (data) {
                 o(data);
             });   
         }
@@ -28,6 +28,4 @@ function initHtml () {
 	});
 }
 
-function cheackIt () {
-    
-}
+

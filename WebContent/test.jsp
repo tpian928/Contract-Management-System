@@ -12,7 +12,7 @@
 </head>
 <body>
 <%
-Role mRole = new Role("miye8eth2rarimu");
+Role mRole = new Role();
 ArrayList<Integer> funcArr = new ArrayList<Integer>();
 funcArr.add(1);
 
