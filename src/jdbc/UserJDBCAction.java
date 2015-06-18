@@ -96,4 +96,11 @@ public class UserJDBCAction {
 		return new User(id, access_taken);
 	}
 	
+	public static boolean hasFunc() {
+		
+		
+		
+		return false;
+	}
+	
 }

@@ -21,4 +21,14 @@ public class User {
 	public void setAccess_taken(String access_taken) {
 		this.access_taken = access_taken;
 	}
+	
+	/**
+	 * 判断用户是否有某项功能
+	 * @param func_id
+	 * @return
+	 */
+	public boolean hasFunc(int func_id) {
+		
+		return false;
+	}
 }

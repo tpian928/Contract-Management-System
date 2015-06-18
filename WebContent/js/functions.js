@@ -17,10 +17,10 @@ function o (str) {
 
 function isEmpty (str) {
 	if (str!=""&&str!=null&&str!="undefine") {
-		return true;
+		return false;
 	}
 	else{
-		return false;
+		return true;
 	}
 
 }

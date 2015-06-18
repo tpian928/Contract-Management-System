@@ -15,7 +15,7 @@ function initHtml () {
         );
 
         if (cheackIt) {
-    	    $$.post('addFunc', {name: name,desc:desc,}, function (data) {
+    	    $$.post('addFunc', {name: name,desc:desc,funcStr:funcStr}, function (data) {
                 
             });   
         };
