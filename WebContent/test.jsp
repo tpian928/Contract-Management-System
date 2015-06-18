@@ -1,3 +1,4 @@
+<%@page import="jdbc.Role"%>
 <%@page import="obj.User"%>
 <%@page import="jdbc.UserJDBCAction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,8 +11,8 @@
 </head>
 <body>
 <%
-User m = UserJDBCAction.addUser("sb", "iamsb");
-out.print(m.getAccess_taken());
+Role mRole = new Role("miye8eth2rarimu");
+mRole.add("sdsd", "sbb");
 %>
 </body>
 </html>

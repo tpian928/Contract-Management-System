@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet {
 	    response.getOutputStream().write(jsonObject.toString().getBytes("UTF-8"));  
 	    response.setContentType("text/json; charset=UTF-8"); 
 		
+	    
 	}
 
 }

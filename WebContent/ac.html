@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>分配合同</title>
+<link rel="stylesheet" href="css/cm.css">
+<link rel="stylesheet" href="css/framework7.min.css">
+
+</head>
+<body>
+
+<div class="notTop">
+    <form class="basic-grey">
+        <h1>分配合同</h1>
+
+        <label>
+            <h2>合同名称：Apple合同</h2>
+        </label>
+
+
+        <div class="cui-tab">
+             <input checked="checked" type="radio" name="radio" id="name">
+             <input type="radio" name="radio" id="name2">
+            <input type="radio" name="radio" id="name3">
+            <label for="name">会签人</label>
+            <label for="name2">审批人</label>
+            <label for="name3">待分配人员</label>
+        </div>          
+
+        <div id="parentview"></div>
+
+            <div class="leftview">
+            <div class="content-block-title">待分配</div>
+            <div class="list-block">
+              <ul>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title">Item title</div>
+                  </div>
+                </li>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title">Item with badge</div>
+                  </div>
+                </li>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title">Another item</div>
+                  </div>
+                </li>
+              </ul>
+            </div> 
+            </div>
+            <div class="rightview">
+            <div class="content-block-title">待分配</div>
+            <div class="list-block">
+              <ul>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title">Item title</div>
+                  </div>
+                </li>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title">Item with badge</div>
+                  </div>
+                </li>
+                <li class="item-content">
+                  <div class="item-inner">
+                    <div class="item-title">Another item</div>
+                  </div>
+                </li>
+              </ul>
+            </div> 
+            </div>
+    </form>
+
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript">
+
+        var $$ = Dom7;
+
+        $$('#draft').on('click', function () {
+
+            var picker1 = $input1.pickadate( 'picker' );
+            var picker2 = $input2.pickadate( 'picker' );
+
+            o("date is "+picker1.get('select', 'yyyy-mm-dd'));
+
+        });
+
+        
+    </script>
+
+</div>
+
+
+
+
+</body>
+</html>
