@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class Role {
 
@@ -76,7 +77,7 @@ public class Role {
 	 * @param function_id 功能id
 	 * @param role_id 角色id
 	 */
-	public boolean addFuncToRole(int function_id,int role_id) {
+	private boolean addFuncToRole(int function_id,int role_id) {
 		boolean theresult = false;	
 		if (hasRights) {
 			Connection conn = getRoleConnection(); 
@@ -102,11 +103,41 @@ public class Role {
 			}
 		}
 		
-		System.out.println("add user result is "+theresult);
-		
 		return theresult;
 	}
 
+	/**
+	 * 删除一个角色的所有功能记录
+	 * @param role_id
+	 */
+	private void deleteRoleFunc(int role_id) {
+		if (hasRights) {
+			Connection conn = getRoleConnection(); 
+			try {
+				
+				String sql = "delete from role_has_function where role_id='"+role_id+"'";
+				st = (Statement) conn.createStatement();
+				st.executeUpdate(sql);
+				conn.close(); // 关闭数据库连接
+
+			} catch (SQLException e) {
+				System.out.println("错误");
+				System.err.println(e);
+			}
+		}
+	}
+	
+	/**
+	 * 重设一个角色的功能
+	 * @return
+	 */
+	public void resetRolesFunc(int role_id,ArrayList<Integer> funcArr) {
+		deleteRoleFunc(role_id);
+		
+		for(Integer tmp:funcArr){
+			addFuncToRole(tmp, role_id);
+		}
+	}
 	
 	
 }

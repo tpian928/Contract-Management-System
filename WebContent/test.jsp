@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="jdbc.Role"%>
 <%@page import="obj.User"%>
 <%@page import="jdbc.UserJDBCAction"%>
@@ -12,7 +13,9 @@
 <body>
 <%
 Role mRole = new Role("miye8eth2rarimu");
-mRole.addFuncToRole(1, 1);
+ArrayList<Integer> funcArr = new ArrayList<Integer>();
+funcArr.add(1);
+mRole.resetRolesFunc(1, funcArr);
 %>
 </body>
 </html>
