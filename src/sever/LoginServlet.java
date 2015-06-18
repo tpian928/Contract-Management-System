@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
-		String password = request.getParameter("password");
+		String password = request.getParameter("pw");
 		
 		User m = UserJDBCAction.isMyUser(name, password);
 		

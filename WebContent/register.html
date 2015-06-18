@@ -48,7 +48,7 @@
                     var obj=eval('('+data+')');
                     var id = obj.id;
 
-                    if (isEmpty(id)) {
+                    if (isEmpty(id)==false) {
                         o(id)
                         localStorage.id=id;
                         localStorage.access_taken=obj.access_taken;

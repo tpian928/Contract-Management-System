@@ -34,8 +34,7 @@ public class RegisterServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
-		String password = request.getParameter("password");
-		
+		String password = request.getParameter("pw");
 		//TODO判断是否有这个用户名
 		
 		User m = UserJDBCAction.addUser(name, password);
