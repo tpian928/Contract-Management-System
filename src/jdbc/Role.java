@@ -34,7 +34,12 @@ public class Role {
 		return con; // 返回所建立的数据库连接
 	}
 	
-	
+	/**
+	 * 添加角色
+	 * @param name 角色名称
+	 * @param desc 角色描述
+	 * @return
+	 */
 	public boolean add(String name,String desc) {
 		boolean theresult = false;	
 		if (hasRights) {
@@ -61,11 +66,47 @@ public class Role {
 			}
 		}
 		
-		System.out.println("add user result is "+theresult);	
+		System.out.println("add user result is "+theresult);
+		
 		return theresult;
 	}
 	
-	
+	/**
+	 * 给角色添加功能
+	 * @param function_id 功能id
+	 * @param role_id 角色id
+	 */
+	public boolean addFuncToRole(int function_id,int role_id) {
+		boolean theresult = false;	
+		if (hasRights) {
+			Connection conn = getRoleConnection(); 
+			try {
+				
+				String sql = "insert into role_has_function (function_id,role_id) values('"+function_id+"','"+role_id+"') ";
+				st = (Statement) conn.createStatement();
+				int resultnum = st.executeUpdate(sql);
+				
+				if(resultnum==1){
+					theresult=true;
+				}
+				else{
+					theresult=false;
+				}
+
+				conn.close(); // 关闭数据库连接
+
+			} catch (SQLException e) {
+				theresult=false;
+				System.out.println("查询数据失败");
+				System.err.println(e);
+			}
+		}
+		
+		System.out.println("add user result is "+theresult);
+		
+		return theresult;
+	}
+
 	
 	
 }

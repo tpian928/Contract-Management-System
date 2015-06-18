@@ -12,7 +12,7 @@
 <body>
 <%
 Role mRole = new Role("miye8eth2rarimu");
-mRole.add("sdsd", "sbb");
+mRole.addFuncToRole(1, 1);
 %>
 </body>
 </html>
