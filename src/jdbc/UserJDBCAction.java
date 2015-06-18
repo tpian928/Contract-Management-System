@@ -11,7 +11,7 @@ import func.Security;
 
 
 
-public class User {
+public class UserJDBCAction {
 
 	static Statement st;
 	
@@ -95,7 +95,5 @@ public class User {
 		
 		return new User(id, access_taken);
 	}
-	
-	
 	
 }
