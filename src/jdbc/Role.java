@@ -2,6 +2,7 @@ package jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -138,6 +139,32 @@ public class Role {
 			addFuncToRole(tmp, role_id);
 		}
 	}
+	
+	/**
+	 * 返回某个角色的的功能ID数组
+	 * @param role_id 角色ID
+	 * @return
+	 */
+	private ArrayList<Integer> getAllFunc(int role_id) {
+		ArrayList<Integer> funcArr = new ArrayList<Integer>();
+		Connection conn = getRoleConnection(); // 同样先要获取连接，即连接到数据库
+		try {
+			String sql = "select function_id from role_has_function where role_id='"+role_id+"'";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				funcArr.add(rs.getInt("function_id"));
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("查询数据失败");
+			System.err.println(e);
+		}
+		return funcArr;
+	}
+	
+	
+	
 	
 	
 }

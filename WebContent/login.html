@@ -23,7 +23,7 @@
             <input id="pw" type="password" name="pw"/>
         </label>         
         <label>
-            <input type="button" id="login" class="buttonGreen" value="注册" />                 
+            <input type="button" id="login" class="buttonGreen" value="登录" />                 
         </label> 
 
     </form>
@@ -40,7 +40,17 @@
             if (inputIsEmpty(name,pw)) {
                 //post到后端
                 $$.post('login', {name: name,pw:pw}, function (data) {
-                    
+                    var obj=eval('('+data+')');
+                    var id = obj.id;
+
+                    if (isEmpty(id)) {
+                        o(id)
+                        localStorage.id=id;
+                        localStorage.access_taken=obj.access_taken;
+                    }
+                    else{
+                        a("登录失败");
+                    }
                 });
             }
             else{

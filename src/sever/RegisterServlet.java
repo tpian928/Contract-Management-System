@@ -54,5 +54,7 @@ public class RegisterServlet extends HttpServlet {
 	    response.setContentType("text/json; charset=UTF-8"); 
 		
 	}
+	
+	
 
 }
