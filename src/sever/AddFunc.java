@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jdbc.Role;
 import obj.User;
 
 
@@ -29,9 +30,15 @@ public class AddFunc extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//判断是否有这个权限
 		request.setCharacterEncoding("UTF-8");
+		String name = request.getParameter("name");
+		String desc = request.getParameter("desc");
 		String funcStr = request.getParameter("funcStr");
-		String password = request.getParameter("password");
-		//User mUser = new User(id, access_taken);
+		String access_taken = request.getParameter("access_taken");
+		String id = request.getParameter("id");
+		User mUser = new User(id, access_taken);
+		
+		
+		
 	}
 
 }

@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Role {
 
@@ -147,7 +149,7 @@ public class Role {
 	 */
 	private ArrayList<Integer> getAllFunc(int role_id) {
 		ArrayList<Integer> funcArr = new ArrayList<Integer>();
-		Connection conn = getRoleConnection(); // 同样先要获取连接，即连接到数据库
+		Connection conn = getRoleConnection(); 
 		try {
 			String sql = "select function_id from role_has_function where role_id='"+role_id+"'";
 			st = (Statement) conn.createStatement(); 
@@ -163,8 +165,37 @@ public class Role {
 		return funcArr;
 	}
 	
+	/**
+	 * 获取用户拥有的功能
+	 * @param uid
+	 * @return
+	 */
+	public static Set<Integer> getUserFunc(String uid) {
+		
+		Set<Integer> funcArr = new HashSet<>();
+		
+		Connection conn = getRoleConnection(); 
+		try {
+			String sql = "select function_id from role_has_function where role_id in (select role_id from user_has_role where user_id = '"+uid+"')";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				funcArr.add(rs.getInt("function_id"));
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("查询数据失败");
+			System.err.println(e);
+		}
+		
+		return funcArr;
+	}
 	
-	
+	public static boolean hasThisFunc(String uid,int func_id) {
+		
+		Set<Integer> funcArr = getUserFunc(uid);
+		return funcArr.contains(func_id);
+	}
 	
 	
 }

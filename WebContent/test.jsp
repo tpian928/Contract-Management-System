@@ -15,7 +15,8 @@
 Role mRole = new Role("miye8eth2rarimu");
 ArrayList<Integer> funcArr = new ArrayList<Integer>();
 funcArr.add(1);
-mRole.resetRolesFunc(1, funcArr);
+
+System.out.println(Role.hasThisFunc("10008", 29));
 %>
 </body>
 </html>

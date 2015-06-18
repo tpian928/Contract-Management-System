@@ -1,5 +1,7 @@
 package obj;
 
+import jdbc.Role;
+
 public class User {
 	private String id;
 	private String access_taken;
@@ -28,7 +30,6 @@ public class User {
 	 * @return
 	 */
 	public boolean hasFunc(int func_id) {
-		
-		return false;
+		return Role.hasThisFunc(id, func_id);
 	}
 }
