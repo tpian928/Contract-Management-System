@@ -55,7 +55,6 @@ p
 	position: relative;
 	right: -100px;
 	color: #E27575;
-	background-color: #d67f7a;
 }
 
 .line
@@ -204,7 +203,6 @@ p
 	text-shadow: 1px 1px 1px #9E3F3F;
 	cursor: pointer;
 }
-
 
 .basic-grey  .pickBtn
 {
