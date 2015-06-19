@@ -1,3 +1,4 @@
+<%@page import="java.util.Set"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="jdbc.Role"%>
 <%@page import="obj.User"%>
@@ -13,10 +14,13 @@
 <body>
 <%
 Role mRole = new Role();
-ArrayList<Integer> funcArr = new ArrayList<Integer>();
-funcArr.add(1);
+Set<User> userSet = Role.getUsers("");
+for(User tmp:userSet){
+	System.out.println(tmp.getRoleNameSet());
+}
 
-System.out.println(Role.hasThisFunc("10008", 29));
+
+
 %>
 </body>
 </html>

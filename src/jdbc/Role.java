@@ -14,6 +14,7 @@ import obj.User;
 public class Role {
 
 	static Statement st;
+	static Statement st2;
 	
 	
 	public static Connection getRoleConnection() {
@@ -247,6 +248,43 @@ public class Role {
 		
 		Set<Integer> funcArr = getUserFunc(uid);
 		return funcArr.contains(func_id);
+	}
+	
+	public static Set<User> getUsers(String username) {
+		
+		if (username==null) {
+			username="";
+		}
+		
+		Set<User> userSet = new HashSet<User>();
+		
+		Connection conn = getRoleConnection(); 
+		try {
+			String sql = "select id,name from user where name like '%"+username+"%'";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				User mUser = new User();
+				int theid = rs.getInt("id");
+				mUser.setId(theid+"");
+				mUser.setName(rs.getString("name"));
+				String sql2 = "select name from role where id in (select role_id from user_has_role where user_id = '"+theid+"')";
+				st2 = (Statement) conn.createStatement(); 
+				ResultSet rs2 = st2.executeQuery(sql2); 
+				Set<String> roleNameSet = new HashSet<String>();
+				while (rs2.next()) {
+					roleNameSet.add(rs2.getString("name"));
+				}
+				mUser.setRoleNameSet(roleNameSet);
+				userSet.add(mUser);
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("失败");
+			System.err.println(e);
+		}
+		
+		return userSet;
 	}
 	
 	
