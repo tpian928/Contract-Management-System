@@ -22,7 +22,7 @@ function initHtml () {
                 var myApp = new Framework7();
                 if (obj.result) {
                     myApp.alert('添加成功', '', function () {
-                        location.reload();
+                        location.herf="admin.html";
                     });
                 }
                 else{
@@ -36,6 +36,12 @@ function initHtml () {
         }
 
 	});
+
+    $$('#clear').on('click', function () {
+        location.reload();
+    });
+    
+
 }
 
 
