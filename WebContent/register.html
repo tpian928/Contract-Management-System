@@ -45,18 +45,14 @@
             if (inputIsEmpty(name,pw,cpw)) {
                 //post到后端
                 $$.post('register', {name: name,pw:pw}, function (data) {
+                    o(data);
                     var obj=eval('('+data+')');
-                    var id = obj.id;
-
-                    if (isEmpty(id)==false) {
-                        o(id)
-                        localStorage.id=id;
-                        localStorage.access_taken=obj.access_taken;
+                    if (obj.result==true) {
+                        a("注册成功");
                     }
                     else{
                         a("注册失败");
                     }
-                    
                 });
             }
             else{

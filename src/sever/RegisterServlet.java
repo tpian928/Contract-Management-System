@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import obj.Func;
 import obj.User;
 
 import org.json.JSONException;
@@ -39,15 +40,23 @@ public class RegisterServlet extends HttpServlet {
 		
 		User m = UserJDBCAction.addUser(name, password);
 		
-		//result
-		JSONObject jsonObject = new JSONObject(); 
-		try {
-			jsonObject.put("id", m.getId());
-			jsonObject.put("access_taken", m.getAccess_taken());
-		} catch (JSONException e) {
-			e.printStackTrace();
+		JSONObject jsonObject = new JSONObject();
+		if (Func.isEmpty(m.getId())==false) {
+			request.getSession().setAttribute("access_taken", m.getAccess_taken());
+			request.getSession().setAttribute("id", m.getId());
+			try {
+				jsonObject.put("result", true);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 		}
-		
+		else {
+			try {
+				jsonObject.put("result", false);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}			
+		}
 		//返回
 	    response.getOutputStream().write(jsonObject.toString().getBytes("UTF-8"));  
 	    response.setContentType("text/json; charset=UTF-8"); 

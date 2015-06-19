@@ -2,14 +2,15 @@ package obj;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import jdbc.Role;
+
 
 public class User {
 	private String id;
 	private String access_taken;
 	private Set<String> roleNameSet;
 	private String name;
+
 	
 	public User(String id,String access_taken) {
 		this.id=id;
