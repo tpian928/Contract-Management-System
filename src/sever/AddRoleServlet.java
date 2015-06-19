@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import jdbc.Role;
 import obj.User;
 
@@ -48,6 +51,8 @@ public class AddRoleServlet extends HttpServlet {
 		String id = request.getParameter("id");
 		User mUser = new User(id, access_taken);
 		
+		boolean exeres = false;
+		
 		if (mUser.hasFunc(16)||mUser.hasFunc(17)) {
 			Role mRole = new Role();
 			
@@ -59,9 +64,19 @@ public class AddRoleServlet extends HttpServlet {
 				intArr.add(Integer.parseInt(i));
 			}
 			
-			mRole.add(name, desc, intArr);
+			exeres = mRole.add(name, desc, intArr);
 			
 		}
+		
+		JSONObject object = new JSONObject();
+		try {
+			object.put("result", exeres);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+	    response.getOutputStream().write(object.toString().getBytes("UTF-8"));  
+	    response.setContentType("text/json; charset=UTF-8"); 
 		
 	}
 

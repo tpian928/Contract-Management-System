@@ -18,7 +18,17 @@ function initHtml () {
         if (isEmpty(name)==false&&isEmpty(desc)==false&&isEmpty(funcStr)==false&&isEmpty(localStorage.access_taken)==false) {
             o("checked");
     	    $$.post('addRole', {name: name,desc:desc,funcStr:funcStr,access_taken:localStorage.access_taken,id:localStorage.id}, function (data) {
-                o(data);
+                var obj=eval('('+data+')');
+                var myApp = new Framework7();
+                if (obj.result) {
+                    myApp.alert('添加成功', '', function () {
+                        location.reload();
+                    });
+                }
+                else{
+                    myApp.alert('添加失败','');
+                }
+
             });   
         }
         else{
