@@ -32,18 +32,16 @@ public class ShowUserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		System.out.println("get");
 		request.setCharacterEncoding("UTF-8");
-		
-		
-		
 		if (request.getSession()!=null) {
 			
 			String access_taken = request.getSession().getAttribute("access_taken").toString();
 			String id = request.getSession().getAttribute("id").toString();
 			
 			String username = "";
-			if (request.getParameter("username")!=null) {
-				username = request.getParameter("username");
+			if (request.getParameter("name")!=null) {
+				username = request.getParameter("name");
 			}
 			else{
 				username="";
@@ -82,7 +80,7 @@ public class ShowUserServlet extends HttpServlet {
 
 		}
 		else{
-			System.out.println("zzzzzzz");
+			response.sendRedirect("login.html");
 		}
 		
 		

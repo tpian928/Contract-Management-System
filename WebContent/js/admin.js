@@ -3,13 +3,17 @@ window.onload = initHtml;
 function initHtml () {
 	var $$ = Dom7;
 
-	$$.post('showuser', {access_taken:localStorage.access_taken,id:localStorage.id}, function (data) {
-		o(data);
-    });  
-
 	$$('#addRole').on('click', function () {
 		location.href="addRole.html"
 	});
+
+	$$('#searchBtn').on('click', function () {
+		o("searchBtn Click");
+		var name = $$('#name').val();
+		$$.get('showuser', {name:name}, function (data) {
+			x(data);
+		});  
+	});	
 
 
 }
