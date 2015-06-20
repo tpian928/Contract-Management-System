@@ -13,8 +13,9 @@ function initHtml () {
 	});	
 
 	$$('a').on('click', function () {
-		o($$(this).attr('id'));
-		
+		var grantid = $$(this).attr('id');
+		localStorage.grantid=grantid;
+		location.href="/CM/grant"		
 	});	
 
 }

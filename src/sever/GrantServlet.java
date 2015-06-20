@@ -3,6 +3,8 @@ package sever;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -32,7 +34,7 @@ public class GrantServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		if (request.getSession().getAttribute("access_taken")!=null) {
-			
+			//request.getSession().setAttribute("grantid", request.getParameter("grantid").toString());
 			String access_taken = request.getSession().getAttribute("access_taken").toString();
 			String id = request.getSession().getAttribute("id").toString();
 			
@@ -43,7 +45,7 @@ public class GrantServlet extends HttpServlet {
 			
 			String htmlContext="";
 			User mUser = new User(id, access_taken);
-			if (mUser.hasFunc(14)) {
+			if (mUser.hasFunc(18)) {
 
 				//展示有哪些角色
 				Role mRole = new Role();
@@ -69,7 +71,42 @@ public class GrantServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		System.out.println("post");
+		
+		boolean exeres = false;
+		request.setCharacterEncoding("UTF-8");
+		if (request.getSession().getAttribute("access_taken")!=null) {
+			
+			String access_taken = request.getSession().getAttribute("access_taken").toString();
+			String id = request.getSession().getAttribute("id").toString();
+			
+			String grantid = request.getParameter("grantid");
+			String roleStr = request.getParameter("roleStr");
+			
+			User mUser = new User(id, access_taken);
+			if (mUser.hasFunc(13)) {
+				//判断授权
+				roleStr = roleStr.substring(1);
+				String[] roleArr = roleStr.split("-");
+				Set<Integer> roleSet = new HashSet<Integer>();
+				for(String tmp:roleArr){
+					roleSet.add(Integer.parseInt(tmp));
+				}
+				User grantUser = new User();
+				grantUser.resetUsersRole(Integer.parseInt(grantid), roleSet);
+				exeres=true;
+			}
+			else{
+				exeres=false;
+				Func.log("没有权限");
+			}
+			
+		}
+		else{
+			response.sendRedirect("login.html");
+		}
+		
+		
 	}
 
 	
