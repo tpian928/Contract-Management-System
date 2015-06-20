@@ -1,6 +1,9 @@
 window.onload = initHtml;
 
+
+
 function initHtml () {
+	
 	var $$ = Dom7;
 
 	$$('#addRole').on('click', function () {
@@ -8,12 +11,16 @@ function initHtml () {
 	});
 
 	$$('#searchBtn').on('click', function () {
-		o("searchBtn Click");
-		var name = $$('#name').val();
-		$$.get('showuser', {name:name}, function (data) {
-			x(data);
-		});  
+		submit();
 	});	
 
+}
 
+function submit () {
+	o("searchBtn Click");
+	var $$ = Dom7;
+	var name = $$('#name').val();
+	$$.get('showuser', {name:name}, function (data) {
+		x(data);
+	});  
 }
