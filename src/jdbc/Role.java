@@ -16,6 +16,8 @@ public class Role {
 	static Statement st;
 	static Statement st2;
 	
+	private String roleid;
+	private String rolename;
 	
 	public static Connection getRoleConnection() {
 		Connection con = null; // 创建用于连接数据库的Connection对象
@@ -285,6 +287,49 @@ public class Role {
 		}
 		
 		return userSet;
+	}
+	
+	/**
+	 * 得到数据库中的所有角色
+	 * @return
+	 */
+	public Set<Role> getRoles() {
+		Set<Role> roleSet = new HashSet<Role>();
+		
+		Connection conn = getRoleConnection(); 
+		try {
+			String sql = "select *from role";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				Role mRole = new Role();
+				mRole.setRoleid(rs.getInt("id")+"");
+				mRole.setRolename(rs.getString("name"));
+				roleSet.add(mRole);
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("查询角色失败");
+			System.err.println(e);
+		}
+		
+		return roleSet;
+	}
+
+	public String getRoleid() {
+		return roleid;
+	}
+
+	public void setRoleid(String roleid) {
+		this.roleid = roleid;
+	}
+
+	public String getRolename() {
+		return rolename;
+	}
+
+	public void setRolename(String rolename) {
+		this.rolename = rolename;
 	}
 	
 	
