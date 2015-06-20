@@ -1,7 +1,5 @@
 window.onload = initHtml;
 
-
-
 function initHtml () {
 	
 	var $$ = Dom7;
@@ -12,6 +10,11 @@ function initHtml () {
 
 	$$('#searchBtn').on('click', function () {
 		submit();
+	});	
+
+	$$('a').on('click', function () {
+		o($$(this).attr('id'));
+		
 	});	
 
 }

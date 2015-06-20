@@ -32,7 +32,6 @@ public class ShowUserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("get");
 		request.setCharacterEncoding("UTF-8");
 		if (request.getSession().getAttribute("access_taken")!=null) {
 			
@@ -83,13 +82,10 @@ public class ShowUserServlet extends HttpServlet {
 			response.sendRedirect("login.html");
 		}
 		
-		
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		
 	}
 	
