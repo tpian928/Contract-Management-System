@@ -47,8 +47,8 @@ public class AddRoleServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String desc = request.getParameter("desc");
 		String funcStr = request.getParameter("funcStr");
-		String access_taken = request.getParameter("access_taken");
-		String id = request.getParameter("id");
+		String access_taken = request.getSession().getAttribute("access_taken").toString();
+		String id = request.getSession().getAttribute("id").toString();
 		User mUser = new User(id, access_taken);
 		
 		boolean exeres = false;
@@ -63,7 +63,6 @@ public class AddRoleServlet extends HttpServlet {
 			for(String i:funcArr){
 				intArr.add(Integer.parseInt(i));
 			}
-			
 			exeres = mRole.add(name, desc, intArr);
 			
 		}

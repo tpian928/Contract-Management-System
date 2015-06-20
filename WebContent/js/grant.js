@@ -4,27 +4,25 @@ function initHtml () {
 	
 	var $$ = Dom7;
 
-	$$('#submit').on('click', function () {
-		o("submit")
-		submit();
+	$$('#grantBtn').on('click', function () {
+		o("there")
+		var roleStr = ""; 
+		var grantid = localStorage.grantid
+		$$('input[type="checkbox"]:checked').each(
+		    function() {
+		        roleStr=roleStr+"-"+$$(this).prop('id');   
+		    }
+		);
+
+		if (isEmpty(roleStr)==false){
+			$$.post('grant', {roleStr:roleStr,grantid:grantid}, function (data) {
+				x(data);
+			}); 
+		}
+		else{
+			a("没勾选");
+		}
 	});	
 
 }
 
-function submit () {
-	
-	var $$ = Dom7;
-
-	var roleStr = ""; 
-	$$('input[type="checkbox"]:checked').each(
-	    function() {
-	        roleStr=roleStr+"-"+$$(this).prop('id');   
-	    }
-	);
-
-	if (isEmpty(roleStr)==false){
-				
-	}
-
-
-}

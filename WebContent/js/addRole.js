@@ -15,7 +15,7 @@ function initHtml () {
             }
         );
 
-        if (isEmpty(name)==false&&isEmpty(desc)==false&&isEmpty(funcStr)==false&&isEmpty(localStorage.access_taken)==false) {
+        if (isEmpty(name)==false&&isEmpty(desc)==false&&isEmpty(funcStr)==false) {
             o("checked");
     	    $$.post('addRole', {name: name,desc:desc,funcStr:funcStr,access_taken:localStorage.access_taken,id:localStorage.id}, function (data) {
                 var obj=eval('('+data+')');
