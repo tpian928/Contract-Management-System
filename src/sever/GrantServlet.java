@@ -19,6 +19,8 @@ import obj.Hwriter;
 import obj.User;
 
 import org.apache.commons.io.FileUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 @WebServlet("/grant")
@@ -106,6 +108,16 @@ public class GrantServlet extends HttpServlet {
 			response.sendRedirect("login.html");
 		}
 		
+		
+		JSONObject object = new JSONObject();
+		try {
+			object.put("result", exeres);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+	    response.getOutputStream().write(object.toString().getBytes("UTF-8"));  
+	    response.setContentType("text/json; charset=UTF-8"); 
 		
 	}
 

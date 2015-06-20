@@ -16,7 +16,16 @@ function initHtml () {
 
 		if (isEmpty(roleStr)==false){
 			$$.post('grant', {roleStr:roleStr,grantid:grantid}, function (data) {
-				x(data);
+				var obj=eval('('+data+')');
+                var myApp = new Framework7();
+                if (obj.result) {
+                    myApp.alert('添加成功', '', function () {
+                        location.herf="/CM/showuser";
+                    });
+                }
+                else{
+                    myApp.alert('添加失败','');
+                }
 			}); 
 		}
 		else{
