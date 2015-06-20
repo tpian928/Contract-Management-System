@@ -14,12 +14,12 @@
 <body>
 <%
 Role mRole = new Role();
-
-
-
-for(Role tmp:mRole.getRoles()){
-	System.out.println(tmp.getRolename());
+Set<User> userSet = Role.getUsers("");
+for(User tmp:userSet){
+	System.out.println(tmp.getRoleNameSet());
 }
+
+
 
 %>
 </body>

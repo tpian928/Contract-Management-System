@@ -45,6 +45,7 @@ public class ShowUserServlet extends HttpServlet {
 			else{
 				username="";
 			}
+			System.out.println("name = "+username);
 			ServletContext context = getServletContext();
 			String fullPath = context.getRealPath("/admin.html");
 			File htmlTemplateFile = new File(fullPath);

@@ -13,9 +13,8 @@ function initHtml () {
 	});	
 
 	$$('a').on('click', function () {
-		var grantid = $$(this).attr('id');
-		localStorage.grantid=grantid;
-		location.href="/CM/grant"		
+		o($$(this).attr('id'));
+		
 	});	
 
 }

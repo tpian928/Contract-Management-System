@@ -2,9 +2,7 @@ package obj;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import jdbc.Role;
-import jdbc.UserJDBCAction;
 
 
 public class User {
@@ -47,6 +45,7 @@ public class User {
 	
 	public Set<Integer> getRoleIds() {
 		Set<Integer> rold_idSet = new HashSet<Integer>();
+		
 		return rold_idSet;
 	}
 
@@ -66,9 +65,5 @@ public class User {
 		this.name = name;
 	}
 	
-	public void resetUsersRole(int userid,Set<Integer> roleidSet) {
-		UserJDBCAction mAction = new UserJDBCAction();
-		mAction.resetUsersRole(userid, roleidSet);
-	}
 	
 }

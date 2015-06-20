@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Set;
-
 import obj.User;
 import func.Security;
 
@@ -96,47 +94,6 @@ public class UserJDBCAction {
 		}
 		
 		return new User(id, access_taken);
-	}
-	
-	private void deleteAllRole(int userid) {
-
-		Connection deleteconn = getUserConnection(); 
-		try {
-			
-			String sql = "delete from user_has_role where user_id='"+userid+"'";
-			st = (Statement) deleteconn.createStatement();
-			st.executeUpdate(sql);
-			deleteconn.close(); // 关闭数据库连接
-
-		} catch (SQLException e) {
-			System.out.println("错误");
-			System.err.println(e);
-		}
-	}
-	
-	private void addRoleToUser(int userid,int roleid){
-		Connection addconn = getUserConnection(); 
-		try {
-			
-			String sql = "insert into user_has_role (user_id,role_id) values('"+userid+"','"+roleid+"')";
-			st = (Statement) addconn.createStatement();
-			st.executeUpdate(sql);
-			addconn.close(); // 关闭数据库连接
-
-		} catch (SQLException e) {
-			System.out.println("插入user_has_role错误");
-			System.err.println(e);
-		}		
-	}
-	
-	public void resetUsersRole(int userid,Set<Integer> roleidSet) {
-		
-		deleteAllRole(userid);
-		
-		for(Integer tmp:roleidSet){
-			addRoleToUser(userid, tmp);
-		}
-		
 	}
 		
 	

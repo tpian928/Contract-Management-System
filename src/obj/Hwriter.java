@@ -13,12 +13,4 @@ public class Hwriter {
 		return builder.toString();
 	}
 	
-	public static String wirteRoles(String roleid,String rolename) {
-		StringBuilder builder = new StringBuilder();
-		builder.append("<div class=\"ltitle\">");
-		builder.append("<input id=\""+roleid+"\" type=\"checkbox\"/>"+rolename+"&nbsp&nbsp&nbsp&nbsp");
-		builder.append("</div>");
-		return builder.toString();
-	}
-	
 }
