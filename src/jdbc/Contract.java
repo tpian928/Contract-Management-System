@@ -38,6 +38,7 @@ public class Contract {
 	private String etime;
 	private String content;
 	private String draftmanname;
+	private String drafttime;
 	
 	/**
 	 * 初始构造方法
@@ -118,6 +119,9 @@ public class Contract {
 		
 	}
 	
+	public Contract() {
+		
+	}
 	
 	/**
 	 * 设置进程
@@ -187,7 +191,7 @@ public class Contract {
 		//必须是要提及的user
 		Connection conn = getConnection(); 
 		try {
-			String sql = "select contract_state where type = '"+state+"'";
+			String sql = "select * from contract where id = (select cid from contract_state where type='"+state+"')";
 			st = (Statement) conn.createStatement(); 
 			ResultSet rs = st.executeQuery(sql); 
 			while (rs.next()) { 
@@ -200,6 +204,8 @@ public class Contract {
 				mContract.btime= new SimpleDateFormat("yyyy-MM-dd").format(beginTime);
 				Timestamp endTime = rs.getTimestamp("endTime");
 				mContract.etime= new SimpleDateFormat("yyyy-MM-dd").format(endTime);
+				Timestamp draftTime = rs.getTimestamp("drafttime");
+				mContract.drafttime= new SimpleDateFormat("yyyy-MM-dd").format(draftTime);
 				mContract.draftmanname=rs.getString("username");
 				contractSet.add(mContract);
 			}
@@ -287,6 +293,14 @@ public class Contract {
 	}
 	public void setDraftmanname(String draftmanname) {
 		this.draftmanname = draftmanname;
+	}
+
+	public String getDrafttime() {
+		return drafttime;
+	}
+
+	public void setDrafttime(String drafttime) {
+		this.drafttime = drafttime;
 	}
 	
 	

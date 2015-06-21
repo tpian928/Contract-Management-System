@@ -1,11 +1,7 @@
 package sever;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import obj.User;
 
-import org.apache.catalina.connector.Request;
-import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -74,9 +68,9 @@ public class ActionServlet extends HttpServlet {
 		    response.getOutputStream().write(object.toString().getBytes("UTF-8"));  
 		    response.setContentType("text/json; charset=UTF-8"); 
 			
-			
 		}
 		else{
+			
 			response.sendRedirect("login.html");		
 		}
 
