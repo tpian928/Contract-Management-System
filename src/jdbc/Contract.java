@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 public class Contract {
 	
@@ -90,8 +92,26 @@ public class Contract {
 	public Contract(int cid) {
 		this.cid = cid;
 		
-		
-		
+		Connection conn = getConnection(); 
+		try {
+			String sql = "select *from contract where id = '"+cid+"'";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				this.cname=rs.getString("name");
+				this.customer=rs.getString("customer");
+				this.content=rs.getString("content");
+				Timestamp beginTime = rs.getTimestamp("beginTime");
+				this.btime= new SimpleDateFormat("yyyy-MM-dd").format(beginTime);
+				Timestamp endTime = rs.getTimestamp("endTime");
+				this.etime= new SimpleDateFormat("yyyy-MM-dd").format(endTime);
+				this.draftmanname=rs.getString("username");
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("查询role_id失败");
+			System.err.println(e);
+		}
 		
 	}
 	

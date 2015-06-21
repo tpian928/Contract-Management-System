@@ -1,3 +1,4 @@
+<%@page import="jdbc.Contract"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="jdbc.Role"%>
@@ -13,13 +14,8 @@
 </head>
 <body>
 <%
-Role mRole = new Role();
-
-
-
-for(Role tmp:mRole.getRoles()){
-	System.out.println(tmp.getRolename());
-}
+Contract mContract = new Contract(10000);
+System.out.println(mContract.getEtime());
 
 %>
 </body>
