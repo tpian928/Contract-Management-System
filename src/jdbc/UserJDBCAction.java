@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
 import java.util.Set;
 
 import obj.User;
@@ -137,6 +138,61 @@ public class UserJDBCAction {
 			addRoleToUser(userid, tmp);
 		}
 		
+	}
+	
+	public static Set<User> getUserByName(String name) {
+		Set<User> userSet = new HashSet<User>();
+		Connection conn2 = getUserConnection(); 
+		try {
+			
+			String sql = "select * from user where name like '%"+name+"%'";
+			
+			st = (Statement) conn2.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			
+			while (rs.next()) { 
+				User mUser = new User();
+				mUser.setAccess_taken(rs.getString("access_taken"));
+				mUser.setId(rs.getInt("id")+"");
+				mUser.setName(name);
+				userSet.add(mUser);
+			}
+
+			conn2.close(); 
+
+		} catch (SQLException e) {
+
+			System.out.println("查询数据失败");
+			System.err.println(e);
+		}
+		return userSet;
+	}
+	
+	public static User getUserById(String id) {
+		User mUser = new User();
+		Connection conn2 = getUserConnection(); 
+		try {
+			
+			String sql = "select * from user where id = '"+id+"'";
+			
+			st = (Statement) conn2.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			
+			while (rs.next()) { 
+				
+				mUser.setAccess_taken(rs.getString("access_taken"));
+				mUser.setId(rs.getInt("id")+"");
+				mUser.setName(rs.getString("name"));
+			}
+			
+			conn2.close(); 
+			
+		} catch (SQLException e) {
+			
+			System.out.println("查询数据失败");
+			System.err.println(e);
+		}
+		return mUser;
 	}
 		
 	

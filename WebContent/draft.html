@@ -63,7 +63,7 @@
         </label>
 
         <label>
-            <input type="button" id="submit" class="buttonGreen leftBtn" value="提交" />
+            <input type="button" id="draft" class="buttonGreen leftBtn" value="提交" />
             <input type="button" id="clear" class="button rightBtn" value="重置" />                 
         </label> 
 
@@ -75,39 +75,8 @@
     <script src="js/picker.js"></script>
     <script src="js/picker.date.js"></script>
     <script src="js/legacy.js"></script>
+    <script src="js/draft.js"></script>
 
-    <script type="text/javascript">
-
-        var $$ = Dom7;
-
-        var $input1 = $( '#input_01' ).pickadate({
-            formatSubmit: 'yyyy/mm/dd',
-            container: '#container',
-            closeOnSelect: false,
-            closeOnClear: false,
-        })
-        var $input2 = $( '#input_02' ).pickadate({
-            formatSubmit: 'yyyy/mm/dd',
-            container: '#container',
-            closeOnSelect: false,
-            closeOnClear: false,
-        })
-
-
-
-        $$('#draft').on('click', function () {
-
-            var picker1 = $input1.pickadate( 'picker' );
-            var picker2 = $input2.pickadate( 'picker' );
-
-            o("date is "+picker1.get('select', 'yyyy-mm-dd'));
-
-        });
-
-        
-        
-
-    </script>
 
 </div>
 

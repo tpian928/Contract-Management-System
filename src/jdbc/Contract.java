@@ -51,7 +51,7 @@ public class Contract {
 	 */
 	public Contract(String cname, String customer, String btime,
 			String etime, String content, String draftmanname) {
-
+		System.out.println(btime);
 		this.cname = cname;
 		this.customer = customer;
 		this.btime = btime;
