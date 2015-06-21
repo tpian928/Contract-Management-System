@@ -21,4 +21,20 @@ public class Hwriter {
 		return builder.toString();
 	}
 	
+	/**
+	 * 写Div用于动态
+	 * @param userid
+	 * @param username
+	 * @return
+	 */
+	public static String WriteDiv(int userid,String username) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("<li class=\"item-content\">");
+		builder.append("<div class=\"item-inner\">");
+		builder.append("<div class=\"item-title\" id=\""+userid+"\">"+username+"</div>");
+		builder.append("</div></li>");
+		return builder.toString();
+	}
+	
+	
 }

@@ -154,7 +154,7 @@ public class UserJDBCAction {
 				User mUser = new User();
 				mUser.setAccess_taken(rs.getString("access_taken"));
 				mUser.setId(rs.getInt("id")+"");
-				mUser.setName(name);
+				mUser.setName(rs.getString("name"));
 				userSet.add(mUser);
 			}
 

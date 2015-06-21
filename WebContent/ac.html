@@ -19,64 +19,48 @@
 
 
         <div class="cui-tab">
-             <input checked="checked" type="radio" name="radio" id="name">
-             <input type="radio" name="radio" id="name2">
+            <input checked="checked" type="radio" name="radio" id="name">
+            <input type="radio" name="radio" id="name2">
             <input type="radio" name="radio" id="name3">
-            <label for="name">会签人</label>
-            <label for="name2">审批人</label>
-            <label for="name3">待分配人员</label>
+            <label for="name" id="hq">会签人</label>
+            <label for="name2" id="sp">审批人</label>
+            <label for="name3" id="qd">签订人</label>
         </div>          
 
-        <div id="parentview"></div>
+        <div id="container">
+          <div id="left-col">
+            <div class="content-block-title">待分配</div>
+            <div class="list-block">
+              <ul>
+              $rs
+              </ul>
+            </div> 
+          </div>
+          
+          <div id="right-col">
+            <div class="content-block-title">已分配</div>
+            <div class="list-block">
+              <ul>
+              </ul>
+            </div> 
+          </div>
+        </div>
 
-            <div class="leftview">
-            <div class="content-block-title">待分配</div>
-            <div class="list-block">
-              <ul>
-                <li class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">Item title</div>
-                  </div>
-                </li>
-                <li class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">Item with badge</div>
-                  </div>
-                </li>
-                <li class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">Another item</div>
-                  </div>
-                </li>
-              </ul>
-            </div> 
-            </div>
-            <div class="rightview">
-            <div class="content-block-title">待分配</div>
-            <div class="list-block">
-              <ul>
-                <li class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">Item title</div>
-                  </div>
-                </li>
-                <li class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">Item with badge</div>
-                  </div>
-                </li>
-                <li class="item-content">
-                  <div class="item-inner">
-                    <div class="item-title">Another item</div>
-                  </div>
-                </li>
-              </ul>
-            </div> 
-            </div>
+        <label style="padding-top:10px">
+            <input type="button" id="ac" class="buttonGreen" value="分配" />           
+        </label> 
+
+        <label style="padding-top:10px">
+            <input type="button" id="draft" class="buttonGreen leftBtn" value="提交" style="left:-90px" />
+            <input type="button" id="clear" class="buttonRed rightBtn" value="重置" />                 
+        </label> 
+
+
     </form>
 
     <script type="text/javascript" src="js/framework7.min.js"></script>
     <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/ac.js"></script>
     <script type="text/javascript">
 
         var $$ = Dom7;

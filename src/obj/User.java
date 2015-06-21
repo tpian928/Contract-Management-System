@@ -71,4 +71,23 @@ public class User {
 		mAction.resetUsersRole(userid, roleidSet);
 	}
 	
+	/**
+	 * 得到具有某项功能的所有用户
+	 * @param funcid 功能ID
+	 * @return
+	 */
+	public Set<User> getAllUserWithFunc(int funcid) {
+		Set<User> userSet = new HashSet<User>();
+		
+		Set<User> allUserSet = UserJDBCAction.getUserByName("");
+		
+		for(User tmp:allUserSet){
+			if (Role.hasThisFunc(tmp.getId(), funcid)) {
+				userSet.add(tmp);
+			}
+		}
+		
+		return userSet;
+	}
+	
 }

@@ -3,6 +3,7 @@ package sever;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
@@ -12,22 +13,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jdbc.Contract;
+import org.apache.commons.io.FileUtils;
+
 import obj.Func;
 import obj.Hwriter;
 import obj.User;
+import jdbc.Role;
+import jdbc.UserJDBCAction;
 
-import org.apache.commons.io.FileUtils;
 
-@WebServlet("/needac")
-public class NeedAcServlet extends HttpServlet {
+@WebServlet("/ac")
+public class AcServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public NeedAcServlet() {
+
+    public AcServlet() {
         super();
+
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("UTF-8");
 		if (request.getSession().getAttribute("access_taken")!=null) {
 			
@@ -35,19 +41,46 @@ public class NeedAcServlet extends HttpServlet {
 			String id = request.getSession().getAttribute("id").toString();
 			
 			ServletContext context = getServletContext();
-			String fullPath = context.getRealPath("/needac.html");
+			String fullPath = context.getRealPath("/ac.html");
 			File htmlTemplateFile = new File(fullPath);
 			String htmlString = FileUtils.readFileToString(htmlTemplateFile);
 			
-			String result = "";
-			
+			String htmlContext="";
 			User mUser = new User(id, access_taken);
-			if (mUser.hasFunc(3)) {
-				Contract mContract = new Contract();
-				Set<Contract> contractSet = mContract.getContractsByState(1);
+			if (mUser.hasFunc(8)) {
 				
-				for(Contract tmp:contractSet){
-					result=result+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">分配</a>");
+				int page = 0;
+				
+				if (request.getParameter("page")!=null) {
+					page = Integer.parseInt(request.getParameter("page"));
+				}
+				
+				Set<User> userSet = new HashSet<User>();
+				
+				switch (page) {
+				case 0:
+					System.out.println("page 0 ");
+					userSet = mUser.getAllUserWithFunc(5);
+					for(User tmp:userSet){
+						htmlContext=htmlContext+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
+					}
+					break;
+				case 1:
+					System.out.println("page 1 ");
+					userSet = mUser.getAllUserWithFunc(6);
+					for(User tmp:userSet){
+						htmlContext=htmlContext+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
+					}
+					break;
+				case 2:
+					System.out.println("page 2 ");
+					userSet = mUser.getAllUserWithFunc(7);
+					for(User tmp:userSet){
+						htmlContext=htmlContext+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
+					}
+					break;
+				default:
+					break;
 				}
 				
 			}
@@ -55,7 +88,7 @@ public class NeedAcServlet extends HttpServlet {
 				Func.log("没有权限");
 			}
 			
-			htmlString = htmlString.replace("$rs",result);		
+			htmlString = htmlString.replace("$rs",htmlContext);		
 			response.setContentType("text/html");
 			response.setCharacterEncoding("UTF-8");
 		    PrintWriter out = response.getWriter();
@@ -64,12 +97,12 @@ public class NeedAcServlet extends HttpServlet {
 		}
 		else{
 			response.sendRedirect("login.html");
-		}		
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
 	}
 
 }

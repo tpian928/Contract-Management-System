@@ -16,7 +16,6 @@
 <%
 Contract mContract = new Contract(10000);
 System.out.println(mContract.getEtime());
-
 %>
 </body>
 </html>
