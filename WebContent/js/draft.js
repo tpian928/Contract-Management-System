@@ -18,8 +18,8 @@ function initHtml () {
     })
 
     $$('#draft').on('click', function () {
-        var bdate = $input1.pickadate( 'picker' );
-        var edate = $input2.pickadate( 'picker' );
+        var bdate = $input1.pickadate( 'picker' ).get('select', 'yyyy-mm-dd');
+        var edate = $input2.pickadate( 'picker' ).get('select', 'yyyy-mm-dd');
         o("bdate is "+bdate)
         var cname = $$('#cname').val();
         var customer = $$('#customer').val();
