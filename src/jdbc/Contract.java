@@ -8,10 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
-
-import com.sun.swing.internal.plaf.basic.resources.basic;
 
 public class Contract {
 	
@@ -119,6 +118,7 @@ public class Contract {
 		
 	}
 	
+	
 	/**
 	 * 设置进程
 	 * @param p 进程对象
@@ -179,6 +179,70 @@ public class Contract {
 		}
 		return theresult;
 		
+	}
+	
+	public Set<Contract> getContractsByState(int state) {
+		Set<Contract> contractSet = new HashSet<Contract>();
+		
+		//必须是要提及的user
+		Connection conn = getConnection(); 
+		try {
+			String sql = "select contract_state where type = '"+state+"'";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				Contract mContract = new Contract(-1);
+				mContract.cid=rs.getInt("id");
+				mContract.cname=rs.getString("name");
+				mContract.customer=rs.getString("customer");
+				mContract.content=rs.getString("content");
+				Timestamp beginTime = rs.getTimestamp("beginTime");
+				mContract.btime= new SimpleDateFormat("yyyy-MM-dd").format(beginTime);
+				Timestamp endTime = rs.getTimestamp("endTime");
+				mContract.etime= new SimpleDateFormat("yyyy-MM-dd").format(endTime);
+				mContract.draftmanname=rs.getString("username");
+				contractSet.add(mContract);
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("查询制定状态的合同失败");
+			System.err.println(e);
+		}
+		
+		return contractSet;
+	}
+	
+	/**
+	 * 
+	 * @param type 操作类型
+	 * @param state 操作状态
+	 * @return
+	 */
+	public Set<Process> getProcess(int type,int state) {
+		Set<Process> processSet = new HashSet<Process>();
+		
+		Connection conn = getConnection(); 
+		try {
+			String sql = "select contract_process where type = '"+type+"' AND state='"+state+"'";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				Process mProcess = new Process();
+				mProcess.setCid(cid);
+				mProcess.setContent(rs.getString("content"));
+				mProcess.setState(state);
+				Timestamp theTime = rs.getTimestamp("time");
+				mProcess.setTime(new SimpleDateFormat("yyyy-MM-dd").format(theTime));
+				mProcess.setType(type);
+				mProcess.setUsername(rs.getString("username"));
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("查询制定状态的合同失败");
+			System.err.println(e);
+		}		
+		
+		return processSet;
 	}
 	
 	//以下是get和set
