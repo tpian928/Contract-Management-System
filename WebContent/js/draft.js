@@ -27,8 +27,16 @@ function initHtml () {
         
         if (isEmpty(cname)==false&&isEmpty(message)==false){
             $$.post('cAction', {cname:cname,customer:customer,message:message,bdate:bdate,edate:edate,action:'draft'}, function (data) {
-
-                //var obj=eval('('+data+')');
+                var obj=eval('('+data+')');
+                var myApp = new Framework7();
+                if (obj.result) {
+                    myApp.alert('添加成功', '', function () {
+                        location.herf="/CM/home";
+                    });
+                }
+                else{
+                    myApp.alert('添加失败','');
+                }
             }); 
         }
         else{
