@@ -9,6 +9,10 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+
+import com.sun.swing.internal.plaf.basic.resources.basic;
+
 public class Contract {
 	
 	static Statement st;
@@ -117,7 +121,7 @@ public class Contract {
 	
 	/**
 	 * 设置进程
-	 * @param p
+	 * @param p 进程对象
 	 * @return
 	 */
 	public boolean setProcess(Process p) {
@@ -143,6 +147,38 @@ public class Contract {
 			System.err.println(e);
 		}
 		return theresult;
+	}
+	
+	/**
+	 * 设置状态
+	 * @param type
+	 * @return
+	 */
+	public boolean setState(int type) {
+		
+		boolean theresult = false;		
+		Connection conn = getConnection(); 
+		try {
+			String sql = "insert into contract_state (cid,type) values('"+cid+"','"+type+"')";
+			st = (Statement) conn.createStatement();
+			int resultnum = st.executeUpdate(sql);
+			System.out.println(resultnum);
+			if(resultnum==1){
+				theresult=true;
+			}
+			else{
+				theresult=false;
+			}
+			
+			conn.close(); 
+
+		} catch (SQLException e) {
+			System.out.println("插入合同进程失败");
+			theresult=false;
+			System.err.println(e);
+		}
+		return theresult;
+		
 	}
 	
 	//以下是get和set
