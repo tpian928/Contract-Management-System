@@ -115,6 +115,10 @@ public class Contract {
 		
 	}
 	
+	public void setProcess() {
+		
+	}
+	
 	//以下是get和set
 	public int getCid() {
 		return cid;
