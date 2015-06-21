@@ -2,6 +2,8 @@ package jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -42,37 +44,43 @@ public class Contract {
 	 * @param content
 	 * @param draftmanname
 	 */
-	public Contract(int cid, String cname, String customer, String btime,
+	public Contract(String cname, String customer, String btime,
 			String etime, String content, String draftmanname) {
-		this.cid = cid;
+
 		this.cname = cname;
 		this.customer = customer;
 		this.btime = btime;
 		this.etime = etime;
 		this.content = content;
 		this.draftmanname = draftmanname;
+		int auto_id = 0;
 		
 		//进行合同插入操作，只有这里可以插入合同
 		Connection conn = getConnection(); 
 		try {
-			String sql = "insert into ";
-			st = (Statement) conn.createStatement();
-			int resultnum = st.executeUpdate(sql);
-			System.out.println(resultnum);
-			if(resultnum==1){
-				theresult=true;
-			}
-			else{
-				theresult=false;
+			String sql = "insert into contract (name,customer,content,beginTime,endTime,username) values('"+cname+"','"+customer+"','"+content+"','"+btime+"','"+etime+"','"+draftmanname+"')";
+			
+			PreparedStatement stmt;
+			try {
+				stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				stmt.executeUpdate();
+				ResultSet rs = stmt.getGeneratedKeys();
+				while (rs.next()) { 
+				    auto_id = rs.getInt(1);
+					System.out.println("auto_id is "+auto_id);
+				}
+			} catch (SQLException e) {
+				auto_id=-1;
+				e.printStackTrace();
 			}
 
-			conn.close(); // 关闭数据库连接
+			conn.close(); 
 
 		} catch (SQLException e) {
-			theresult=false;
-			System.out.println("查询数据失败");
+			System.out.println("插入合同失败");
 			System.err.println(e);
 		}
+		
 	}
 	
 	/**
@@ -81,6 +89,10 @@ public class Contract {
 	 */
 	public Contract(int cid) {
 		this.cid = cid;
+		
+		
+		
+		
 	}
 	
 	//以下是get和set
