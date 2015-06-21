@@ -115,8 +115,34 @@ public class Contract {
 		
 	}
 	
-	public void setProcess() {
-		
+	/**
+	 * 设置进程
+	 * @param p
+	 * @return
+	 */
+	public boolean setProcess(Process p) {
+		boolean theresult = false;
+		Connection conn = getConnection(); 
+		try {
+			String sql = "insert into contract_process (cid,type,state,username,content,username) values('"+cid+"','"+p.getType()+"','"+p.getState()+"','"+p.getUsername()+"','"+p.getContent()+"','"+p.getUsername()+"')";
+			st = (Statement) conn.createStatement();
+			int resultnum = st.executeUpdate(sql);
+			System.out.println(resultnum);
+			if(resultnum==1){
+				theresult=true;
+			}
+			else{
+				theresult=false;
+			}
+			
+			conn.close(); 
+
+		} catch (SQLException e) {
+			System.out.println("插入合同进程失败");
+			theresult=false;
+			System.err.println(e);
+		}
+		return theresult;
 	}
 	
 	//以下是get和set

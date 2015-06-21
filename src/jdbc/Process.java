@@ -5,8 +5,6 @@ public class Process {
 	private int cid,type,state;
 	private String username,content,time;
 	
-	
-	
 	//以下是get，set
 	public int getCid() {
 		return cid;
