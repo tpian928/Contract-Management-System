@@ -132,7 +132,8 @@ public class Contract {
 		boolean theresult = false;
 		Connection conn = getConnection(); 
 		try {
-			String sql = "insert into contract_process (cid,type,state,username,content,username) values('"+cid+"','"+p.getType()+"','"+p.getState()+"','"+p.getUsername()+"','"+p.getContent()+"','"+p.getUsername()+"')";
+			String sql = "insert into contract_process (cid,type,state,username,content) values('"+cid+"','"+p.getType()+"','"+p.getState()+"','"+p.getUsername()+"','"+p.getContent()+"')";
+			//System.out.println(sql);
 			st = (Statement) conn.createStatement();
 			int resultnum = st.executeUpdate(sql);
 			System.out.println(resultnum);

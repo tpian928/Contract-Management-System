@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>分配合同</title>
 <link rel="stylesheet" href="css/cm.css">
-<link rel="stylesheet" href="css/framework7.min.css">
+
 
 </head>
 <body>
@@ -14,14 +14,14 @@
         <h1>分配合同</h1>
 
         <label>
-            <h2>合同名称：Apple合同</h2>
+            <h2>合同名称：$cname</h2>
         </label>
 
         <div id="container">
           <div id="left-col">
             <div class="content-block-title">待分配会签</div>
             <div class="list-block">
-              <ul>
+              <ul id="hq">
               $rs1
               </ul>
             </div> 
@@ -34,7 +34,7 @@
           <div id="right-col">
             <div class="content-block-title">已分配会签</div>
             <div class="list-block">
-              <ul>
+              <ul id="willhq">
               </ul>
             </div> 
           </div>
@@ -44,7 +44,7 @@
           <div id="left-col">
             <div class="content-block-title">待分配审批</div>
             <div class="list-block">
-              <ul>
+              <ul id="sp">
               $rs2
               </ul>
             </div> 
@@ -57,7 +57,7 @@
           <div id="right-col">
             <div class="content-block-title">已分配审批</div>
             <div class="list-block">
-              <ul>
+              <ul id="willsp">
               </ul>
             </div> 
           </div>
@@ -67,7 +67,7 @@
           <div id="left-col">
             <div class="content-block-title">待分配签订</div>
             <div class="list-block">
-              <ul>
+              <ul id="qd">
               $rs3
               </ul>
             </div> 
@@ -80,20 +80,21 @@
           <div id="right-col">
             <div class="content-block-title">已分配签订</div>
             <div class="list-block">
-              <ul>
+              <ul id="willqd">
               </ul>
             </div> 
           </div>
         </div>
 
         <label style="padding-top:10px">
-            <input type="button" id="draft" class="buttonGreen leftBtn" value="提交" style="left:-90px" />
+            <input type="button" id="acsubmit" class="buttonGreen leftBtn" value="提交" style="left:-90px" />
             <input type="button" id="clear" class="buttonRed rightBtn" value="重置" />                 
         </label> 
 
 
     </form>
 
+    <link rel="stylesheet" href="css/framework7.min.css">
     <script type="text/javascript" src="js/framework7.min.js"></script>
     <script type="text/javascript" src="js/functions.js"></script>
     <script type="text/javascript" src="js/ac.js"></script>

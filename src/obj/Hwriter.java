@@ -36,5 +36,31 @@ public class Hwriter {
 		return builder.toString();
 	}
 	
+	public static String WriteHQ(int userid,String username) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("<li class=\"item-content\">");
+		builder.append("<div class=\"item-inner\">");
+		builder.append("<div class=\"item-title hq\" id=\""+userid+"\">"+username+"</div>");
+		builder.append("</div></li>");
+		return builder.toString();
+	}
+	public static String WriteSP(int userid,String username) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("<li class=\"item-content\">");
+		builder.append("<div class=\"item-inner\">");
+		builder.append("<div class=\"item-title sp\" id=\""+userid+"\">"+username+"</div>");
+		builder.append("</div></li>");
+		return builder.toString();
+	}
+	public static String WriteQD(int userid,String username) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("<li class=\"item-content\">");
+		builder.append("<div class=\"item-inner\">");
+		builder.append("<div class=\"item-title qd\" id=\""+userid+"\">"+username+"</div>");
+		builder.append("</div></li>");
+		return builder.toString();
+	}
+	
+	
 	
 }

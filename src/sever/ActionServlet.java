@@ -2,12 +2,16 @@ package sever;
 
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import obj.Admin;
 import obj.User;
 
 import org.json.JSONException;
@@ -38,10 +42,10 @@ public class ActionServlet extends HttpServlet {
 			System.out.println("if");
 			String access_taken = request.getSession().getAttribute("access_taken").toString();
 			String id = request.getSession().getAttribute("id").toString();
-			
 			String action = request.getParameter("action");
+			User mUser = new User(id, access_taken);
+			
 			if (action.equals("draft")) {//起草合同
-				User mUser = new User(id, access_taken);
 				if (mUser.hasFunc(1)) {
 					System.out.println("draft");
 					String cname = request.getParameter("cname");
@@ -56,6 +60,39 @@ public class ActionServlet extends HttpServlet {
 				else {
 					exeres=false;
 				}
+			}
+			else if (action.equals("ac")) {
+				System.out.println("ac");
+				
+				String hqUserStr = request.getParameter("hqUserStr");
+				String spUserStr = request.getParameter("spUserStr");
+				String qdUserStr = request.getParameter("qdUserStr");
+				
+				hqUserStr = hqUserStr.substring(1);
+				String[] hqArr = hqUserStr.split("-");
+				
+				for(String tmp:hqArr){
+					int cid = Integer.parseInt(request.getSession().getAttribute("cid").toString());
+					Admin admin = new Admin(id, access_taken);
+					admin.arrange(cid, 0, tmp);
+				}
+				
+				spUserStr = spUserStr.substring(1);
+				String[] spArr = spUserStr.split("-");
+				for(String tmp:spArr){
+					int cid = Integer.parseInt(request.getSession().getAttribute("cid").toString());
+					Admin admin = new Admin(id, access_taken);
+					admin.arrange(cid, 1, tmp);
+				}
+				
+				qdUserStr = qdUserStr.substring(1);
+				String[] qdArr = qdUserStr.split("-");
+				for(String tmp:qdArr){
+					int cid = Integer.parseInt(request.getSession().getAttribute("cid").toString());
+					Admin admin = new Admin(id, access_taken);
+					admin.arrange(cid, 2, tmp);
+				}
+				
 			}
 			
 			JSONObject object = new JSONObject();

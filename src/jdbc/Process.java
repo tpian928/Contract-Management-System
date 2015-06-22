@@ -1,9 +1,24 @@
 package jdbc;
 
 public class Process {
-
+	
 	private int cid,type,state;
 	private String username,content,time;
+	
+	public Process(int cid, int type, int state, String username,
+			String content) {
+		
+		this.cid = cid;
+		this.type = type;
+		this.state = state;
+		this.username = username;
+		this.content = content;
+
+	}
+		
+	public Process(){
+		
+	}
 	
 	//以下是get，set
 	public int getCid() {

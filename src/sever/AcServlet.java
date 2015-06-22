@@ -21,11 +21,11 @@ import obj.User;
 import jdbc.Role;
 import jdbc.UserJDBCAction;
 
-
 @WebServlet("/ac")
 public class AcServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private String cid = "";
 
     public AcServlet() {
         super();
@@ -35,15 +35,22 @@ public class AcServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-		if (request.getSession().getAttribute("access_taken")!=null) {
+		if (request.getSession().getAttribute("access_taken")!=null&&request.getParameter("cname")!=null) {
 			
 			String access_taken = request.getSession().getAttribute("access_taken").toString();
 			String id = request.getSession().getAttribute("id").toString();
+			
+			String cname = request.getParameter("cname");
+			cid = request.getParameter("cid");
+			request.getSession().setAttribute("cid", cid);
 			
 			ServletContext context = getServletContext();
 			String fullPath = context.getRealPath("/ac.html");
 			File htmlTemplateFile = new File(fullPath);
 			String htmlString = FileUtils.readFileToString(htmlTemplateFile);
+			
+			//设置合同名字
+			htmlString = htmlString.replace("$cname",cname);
 			
 			String htmlContext1="";
 			String htmlContext2="";
@@ -56,17 +63,17 @@ public class AcServlet extends HttpServlet {
 				
 				userSet = mUser.getAllUserWithFunc(5);
 				for(User tmp:userSet){
-					htmlContext1=htmlContext1+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
+					htmlContext1=htmlContext1+Hwriter.WriteHQ(Integer.parseInt(tmp.getId()), tmp.getName());
 				}
 				
 				userSet = mUser.getAllUserWithFunc(6);
 				for(User tmp:userSet){
-					htmlContext2=htmlContext2+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
+					htmlContext2=htmlContext2+Hwriter.WriteSP(Integer.parseInt(tmp.getId()), tmp.getName());
 				}
 
 				userSet = mUser.getAllUserWithFunc(7);
 				for(User tmp:userSet){
-					htmlContext3=htmlContext3+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
+					htmlContext3=htmlContext3+Hwriter.WriteQD(Integer.parseInt(tmp.getId()), tmp.getName());
 				}
 
 				
