@@ -52,7 +52,22 @@ public class ActionServlet extends HttpServlet {
 					String bdate = request.getParameter("bdate");
 					System.out.println("bdate is "+bdate);
 					String edate = request.getParameter("edate");
+					@SuppressWarnings("unused")
 					Contract mContract = new Contract(cname, customer, bdate, edate, message, UserJDBCAction.getUserById(id).getName());
+					exeres=true;
+				}
+				else {
+					exeres=false;
+				}
+			}
+			else if (action.equals("csaction")) {
+				if (mUser.hasFunc(5)) {
+					System.out.println("draft");
+					
+					//加入Contact_process
+					Admin admin = new Admin(id, access_taken);
+					admin.arrange(Integer.parseInt(request.getSession().getAttribute("cid").toString()), type, username,request.getParameter("hqs"));
+					
 					exeres=true;
 				}
 				else {
