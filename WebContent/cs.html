@@ -15,7 +15,7 @@
         <h1>会签合同</h1>
 
         <label>
-            <h2>合同名称：Apple合同</h2>
+            <h2>合同名称：$cname</h2>
         </label>
 
         <label>
@@ -37,43 +37,7 @@
 
     <script type="text/javascript" src="js/framework7.min.js"></script>
     <script type="text/javascript" src="js/functions.js"></script>
-    <script src="http://libs.useso.com/js/jquery/2.1.0/jquery.js"></script>
-    <script src="js/picker.js"></script>
-    <script src="js/picker.date.js"></script>
-    <script src="js/legacy.js"></script>
-
-    <script type="text/javascript">
-
-        var $$ = Dom7;
-
-        var $input1 = $( '#input_01' ).pickadate({
-            formatSubmit: 'yyyy/mm/dd',
-            container: '#container',
-            closeOnSelect: false,
-            closeOnClear: false,
-        })
-        var $input2 = $( '#input_02' ).pickadate({
-            formatSubmit: 'yyyy/mm/dd',
-            container: '#container',
-            closeOnSelect: false,
-            closeOnClear: false,
-        })
-
-
-
-        $$('#draft').on('click', function () {
-
-            var picker1 = $input1.pickadate( 'picker' );
-            var picker2 = $input2.pickadate( 'picker' );
-
-            o("date is "+picker1.get('select', 'yyyy-mm-dd'));
-
-        });
-
-        
-        
-
-    </script>
+    <script type="text/javascript" src="js/cs.js"></script>
 
 </div>
 

@@ -22,11 +22,11 @@ import org.apache.commons.io.FileUtils;
 
 
 @WebServlet("/index")
-public class HomeServlet extends HttpServlet {
+public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public HomeServlet() {
+    public IndexServlet() {
         super();
     }
 
@@ -59,7 +59,7 @@ public class HomeServlet extends HttpServlet {
 				htmlString=htmlString.replace("$ht", "待会签合同");
 				for(Contract tmp:contractSet){
 					if (tmp.getState()==1) {
-						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">会签</a>");
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&cname="+tmp.getCname()+"&action=cs\">会签</a>");
 					}
 				}
 				break;
@@ -68,7 +68,7 @@ public class HomeServlet extends HttpServlet {
 				htmlString=htmlString.replace("$title", "已会签合同");
 				htmlString=htmlString.replace("$ht", "已会签合同");
 				for(Contract tmp:contractSet2){
-					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">查看</a>");
+					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&action=look\">查看</a>");
 				}
 				break;
 			case 2:
@@ -77,7 +77,7 @@ public class HomeServlet extends HttpServlet {
 				htmlString=htmlString.replace("$ht", "待审批合同");
 				for(Contract tmp:contractSet3){
 					if (tmp.getState()==2) {
-						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">审批</a>");
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&cname="+tmp.getCname()+"&action=sp\">审批</a>");
 					}
 				}				
 				break;
@@ -86,7 +86,7 @@ public class HomeServlet extends HttpServlet {
 				htmlString=htmlString.replace("$title", "已审批合同");
 				htmlString=htmlString.replace("$ht", "已审批合同");
 				for(Contract tmp:contractSet4){
-					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">查看</a>");
+					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&action=look\">查看</a>");
 				}				
 				break;
 			case 4:
@@ -95,7 +95,7 @@ public class HomeServlet extends HttpServlet {
 				htmlString=htmlString.replace("$ht", "待签订合同");
 				for(Contract tmp:contractSet5){
 					if (tmp.getState()==3) {
-						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">签订</a>");
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&cname="+tmp.getCname()+"&action=qd\">签订</a>");
 					}
 				}				
 				break;
@@ -104,7 +104,7 @@ public class HomeServlet extends HttpServlet {
 				htmlString=htmlString.replace("$title", "已签订合同");
 				htmlString=htmlString.replace("$ht", "已签订合同");
 				for(Contract tmp:contractSet6){
-					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">查看</a>");
+					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&action=look\">查看</a>");
 				}				
 				break;
 			default:
