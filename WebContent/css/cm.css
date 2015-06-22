@@ -34,11 +34,20 @@ p
   overflow: hidden;
   width: 100%;
 }
+
 #left-col {
   float: left;
   width: 45%;
   padding-bottom: 500em;
   margin-bottom: -500em;
+}
+
+#center-col {
+  float: left;
+  width: 10%;
+  padding-bottom: 500em;
+  margin-bottom: -500em;
+  padding-top: 100px;
 }
 
 #right-col {
@@ -47,7 +56,6 @@ p
   margin-right: -1px; /* Thank you IE */
   padding-bottom: 500em;
   margin-bottom: -500em;
-  padding-left: 50px;
 }
 
 .notTop

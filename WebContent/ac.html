@@ -17,28 +17,22 @@
             <h2>合同名称：Apple合同</h2>
         </label>
 
-
-        <div class="cui-tab">
-            <input $a1 type="radio" name="radio" id="name">
-            <input $a2 type="radio" name="radio" id="name2">
-            <input $a3 type="radio" name="radio" id="name3">
-            <label for="name" id="hq">会签人</label>
-            <label for="name2" id="sp">审批人</label>
-            <label for="name3" id="qd">签订人</label>
-        </div>          
-
         <div id="container">
           <div id="left-col">
-            <div class="content-block-title">待分配</div>
+            <div class="content-block-title">待分配会签</div>
             <div class="list-block">
               <ul>
-              $rs
+              $rs1
               </ul>
             </div> 
           </div>
+
+          <div id="center-col">
+              <input type="button" id="ac1" value="分配" />           
+          </div>
           
           <div id="right-col">
-            <div class="content-block-title">已分配</div>
+            <div class="content-block-title">已分配会签</div>
             <div class="list-block">
               <ul>
               </ul>
@@ -46,9 +40,51 @@
           </div>
         </div>
 
-        <label style="padding-top:10px">
-            <input type="button" id="ac" class="buttonGreen" value="分配" />           
-        </label> 
+        <div id="container">
+          <div id="left-col">
+            <div class="content-block-title">待分配审批</div>
+            <div class="list-block">
+              <ul>
+              $rs2
+              </ul>
+            </div> 
+          </div>
+          
+          <div id="center-col">
+              <input type="button" id="ac2" value="分配" />           
+          </div>
+
+          <div id="right-col">
+            <div class="content-block-title">已分配审批</div>
+            <div class="list-block">
+              <ul>
+              </ul>
+            </div> 
+          </div>
+        </div>
+
+        <div id="container">
+          <div id="left-col">
+            <div class="content-block-title">待分配签订</div>
+            <div class="list-block">
+              <ul>
+              $rs3
+              </ul>
+            </div> 
+          </div>
+          
+          <div id="center-col">
+              <input type="button" id="ac3" value="分配" />           
+          </div>
+
+          <div id="right-col">
+            <div class="content-block-title">已分配签订</div>
+            <div class="list-block">
+              <ul>
+              </ul>
+            </div> 
+          </div>
+        </div>
 
         <label style="padding-top:10px">
             <input type="button" id="draft" class="buttonGreen leftBtn" value="提交" style="left:-90px" />

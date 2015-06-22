@@ -45,61 +45,39 @@ public class AcServlet extends HttpServlet {
 			File htmlTemplateFile = new File(fullPath);
 			String htmlString = FileUtils.readFileToString(htmlTemplateFile);
 			
-			String htmlContext="";
+			String htmlContext1="";
+			String htmlContext2="";
+			String htmlContext3="";
+			
 			User mUser = new User(id, access_taken);
 			if (mUser.hasFunc(8)) {
-				
-				int page = 0;
-				
-				if (request.getParameter("page")!=null) {
-					page = Integer.parseInt(request.getParameter("page"));
-				}
-				
+								
 				Set<User> userSet = new HashSet<User>();
 				
-				switch (page) {
-				case 0:
-					System.out.println("page 0 ");
-					userSet = mUser.getAllUserWithFunc(5);
-					for(User tmp:userSet){
-						htmlContext=htmlContext+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
-					}
-					//
-					htmlString = htmlString.replace("$a1","checked=\"checked\"");
-					htmlString = htmlString.replace("$a2","");
-					htmlString = htmlString.replace("$a3","");
-					
-					break;
-				case 1:
-					System.out.println("page 1 ");
-					userSet = mUser.getAllUserWithFunc(6);
-					for(User tmp:userSet){
-						htmlContext=htmlContext+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
-					}
-					htmlString = htmlString.replace("$a1","");
-					htmlString = htmlString.replace("$a2","checked=\"checked\"");
-					htmlString = htmlString.replace("$a3","");
-					break;
-				case 2:
-					System.out.println("page 2 ");
-					userSet = mUser.getAllUserWithFunc(7);
-					for(User tmp:userSet){
-						htmlContext=htmlContext+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
-					}
-					htmlString = htmlString.replace("$a1","");
-					htmlString = htmlString.replace("$a2","");
-					htmlString = htmlString.replace("$a3","checked=\"checked\"");
-					break;
-				default:
-					break;
+				userSet = mUser.getAllUserWithFunc(5);
+				for(User tmp:userSet){
+					htmlContext1=htmlContext1+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
 				}
+				
+				userSet = mUser.getAllUserWithFunc(6);
+				for(User tmp:userSet){
+					htmlContext2=htmlContext2+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
+				}
+
+				userSet = mUser.getAllUserWithFunc(7);
+				for(User tmp:userSet){
+					htmlContext3=htmlContext3+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
+				}
+
 				
 			}
 			else{
 				Func.log("没有权限");
 			}
 			
-			htmlString = htmlString.replace("$rs",htmlContext);		
+			htmlString = htmlString.replace("$rs1",htmlContext1);		
+			htmlString = htmlString.replace("$rs2",htmlContext2);		
+			htmlString = htmlString.replace("$rs3",htmlContext3);		
 			response.setContentType("text/html");
 			response.setCharacterEncoding("UTF-8");
 		    PrintWriter out = response.getWriter();
