@@ -14,8 +14,11 @@
 </head>
 <body>
 <%
-Contract mContract = new Contract(10000);
-System.out.println(mContract.getEtime());
+out.println("<a href=\"test.jsp?name=wyf\">link</a>");
+%>
+
+<%
+System.out.println(request.getParameter("name"));
 %>
 </body>
 </html>
