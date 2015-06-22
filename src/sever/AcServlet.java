@@ -64,6 +64,11 @@ public class AcServlet extends HttpServlet {
 					for(User tmp:userSet){
 						htmlContext=htmlContext+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
 					}
+					//
+					htmlString = htmlString.replace("$a1","checked=\"checked\"");
+					htmlString = htmlString.replace("$a2","");
+					htmlString = htmlString.replace("$a3","");
+					
 					break;
 				case 1:
 					System.out.println("page 1 ");
@@ -71,6 +76,9 @@ public class AcServlet extends HttpServlet {
 					for(User tmp:userSet){
 						htmlContext=htmlContext+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
 					}
+					htmlString = htmlString.replace("$a1","");
+					htmlString = htmlString.replace("$a2","checked=\"checked\"");
+					htmlString = htmlString.replace("$a3","");
 					break;
 				case 2:
 					System.out.println("page 2 ");
@@ -78,6 +86,9 @@ public class AcServlet extends HttpServlet {
 					for(User tmp:userSet){
 						htmlContext=htmlContext+Hwriter.WriteDiv(Integer.parseInt(tmp.getId()), tmp.getName());
 					}
+					htmlString = htmlString.replace("$a1","");
+					htmlString = htmlString.replace("$a2","");
+					htmlString = htmlString.replace("$a3","checked=\"checked\"");
 					break;
 				default:
 					break;

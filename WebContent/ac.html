@@ -19,9 +19,9 @@
 
 
         <div class="cui-tab">
-            <input checked="checked" type="radio" name="radio" id="name">
-            <input type="radio" name="radio" id="name2">
-            <input type="radio" name="radio" id="name3">
+            <input $a1 type="radio" name="radio" id="name">
+            <input $a2 type="radio" name="radio" id="name2">
+            <input $a3 type="radio" name="radio" id="name3">
             <label for="name" id="hq">会签人</label>
             <label for="name2" id="sp">审批人</label>
             <label for="name3" id="qd">签订人</label>
@@ -61,21 +61,6 @@
     <script type="text/javascript" src="js/framework7.min.js"></script>
     <script type="text/javascript" src="js/functions.js"></script>
     <script type="text/javascript" src="js/ac.js"></script>
-    <script type="text/javascript">
-
-        var $$ = Dom7;
-
-        $$('#draft').on('click', function () {
-
-            var picker1 = $input1.pickadate( 'picker' );
-            var picker2 = $input2.pickadate( 'picker' );
-
-            o("date is "+picker1.get('select', 'yyyy-mm-dd'));
-
-        });
-
-        
-    </script>
 
 </div>
 
