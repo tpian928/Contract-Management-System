@@ -67,12 +67,13 @@ public class ActionServlet extends HttpServlet {
 				String hqUserStr = request.getParameter("hqUserStr");
 				String spUserStr = request.getParameter("spUserStr");
 				String qdUserStr = request.getParameter("qdUserStr");
+				int cid = Integer.parseInt(request.getSession().getAttribute("cid").toString());
 				
 				hqUserStr = hqUserStr.substring(1);
 				String[] hqArr = hqUserStr.split("-");
 				
 				for(String tmp:hqArr){
-					int cid = Integer.parseInt(request.getSession().getAttribute("cid").toString());
+					
 					Admin admin = new Admin(id, access_taken);
 					admin.arrange(cid, 0, tmp);
 				}
@@ -80,7 +81,6 @@ public class ActionServlet extends HttpServlet {
 				spUserStr = spUserStr.substring(1);
 				String[] spArr = spUserStr.split("-");
 				for(String tmp:spArr){
-					int cid = Integer.parseInt(request.getSession().getAttribute("cid").toString());
 					Admin admin = new Admin(id, access_taken);
 					admin.arrange(cid, 1, tmp);
 				}
@@ -88,10 +88,15 @@ public class ActionServlet extends HttpServlet {
 				qdUserStr = qdUserStr.substring(1);
 				String[] qdArr = qdUserStr.split("-");
 				for(String tmp:qdArr){
-					int cid = Integer.parseInt(request.getSession().getAttribute("cid").toString());
 					Admin admin = new Admin(id, access_taken);
 					admin.arrange(cid, 2, tmp);
 				}
+				
+				Contract contract = new Contract(cid);
+				
+				contract.setState(1);
+				
+				exeres=true;
 				
 			}
 			
