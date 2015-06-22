@@ -20,10 +20,5 @@ public class Admin extends User {
 		mContract.setProcess(mProcess);
 	}
 	
-	public void arrange(Integer cid,int type,String username,String content) {
-		Process mProcess = new Process(cid, type, 0, username, content);
-		Contract mContract = new Contract(cid);
-		mContract.setProcess(mProcess);
-	}
 	
 }

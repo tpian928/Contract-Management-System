@@ -65,8 +65,8 @@ public class ActionServlet extends HttpServlet {
 					System.out.println("draft");
 					
 					//加入Contact_process
-					Admin admin = new Admin(id, access_taken);
-					admin.arrange(Integer.parseInt(request.getSession().getAttribute("cid").toString()), type, username,request.getParameter("hqs"));
+
+					mUser.completeQH(Integer.parseInt(request.getSession().getAttribute("cid").toString()),request.getParameter("hqs"));
 					
 					exeres=true;
 				}

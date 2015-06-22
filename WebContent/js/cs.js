@@ -7,6 +7,9 @@ function initHtml () {
 	$$(document).on('click','#hqsubmit', function () {
 
 		var hqs = $$('#hqs').val();
+		o("hqs");
+
+		var myApp = new Framework7();
 
         if (isEmpty(hqs)==false){
             $$.post('cAction', {hqs:hqs,action:'csaction'}, function (data) {
