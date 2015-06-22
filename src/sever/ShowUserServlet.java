@@ -32,9 +32,8 @@ public class ShowUserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
 		if (request.getSession().getAttribute("access_taken")!=null) {
-			
+			request.setCharacterEncoding("UTF-8");
 			String access_taken = request.getSession().getAttribute("access_taken").toString();
 			String id = request.getSession().getAttribute("id").toString();
 			

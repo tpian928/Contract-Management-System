@@ -44,7 +44,7 @@ public class NeedAcServlet extends HttpServlet {
 			User mUser = new User(id, access_taken);
 			if (mUser.hasFunc(3)) {
 				Contract mContract = new Contract();
-				Set<Contract> contractSet = mContract.getContractsByState(1);
+				Set<Contract> contractSet = mContract.getContractsByState(0);
 				
 				for(Contract tmp:contractSet){
 					result=result+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">分配</a>");

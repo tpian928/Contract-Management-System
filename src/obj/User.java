@@ -3,6 +3,8 @@ package obj;
 import java.util.HashSet;
 import java.util.Set;
 
+import jdbc.Contract;
+import jdbc.Process;
 import jdbc.Role;
 import jdbc.UserJDBCAction;
 
@@ -17,6 +19,7 @@ public class User {
 	public User(String id,String access_taken) {
 		this.id=id;
 		this.access_taken=access_taken;
+		this.name=UserJDBCAction.getUserById(id).getName();
 	}
 	
 	public User() {
@@ -88,6 +91,22 @@ public class User {
 		}
 		
 		return userSet;
+	}
+	
+	/**
+	 * 
+	 * @param type 类型 0-会签 1-审批 2-签订
+	 * @param state 状态 0-未完成 1-已完成 2-已否决
+	 * @return
+	 */
+	public Set<Contract> getContracts(int type,int state) {
+		System.out.println("getContracts");
+		Set<Contract> cSet = new HashSet<Contract>();
+		Contract mContract = new Contract();
+		
+		cSet = mContract.getContractSetWithTSU(type, state, this.name);
+		
+		return cSet;
 	}
 		
 }

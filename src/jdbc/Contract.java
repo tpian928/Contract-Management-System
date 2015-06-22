@@ -220,7 +220,7 @@ public class Contract {
 	}
 	
 	/**
-	 * 
+	 * 得到制定类型，制定状态的合同
 	 * @param type 操作类型
 	 * @param state 操作状态
 	 * @return
@@ -251,6 +251,81 @@ public class Contract {
 		
 		return processSet;
 	}
+	
+	/**
+	 * 得到某个进度下的进度
+	 * @param type
+	 * @param state
+	 * @param username
+	 * @return
+	 */
+	public Set<Process> getProcess(int type,int state,String username) {
+		Set<Process> processSet = new HashSet<Process>();
+		
+		Connection conn = getConnection(); 
+		try {
+			String sql = "select contract_process where type = '"+type+"' AND state='"+state+"' AND username='"+username+"'";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				Process mProcess = new Process();
+				mProcess.setCid(cid);
+				mProcess.setContent(rs.getString("content"));
+				mProcess.setState(state);
+				Timestamp theTime = rs.getTimestamp("time");
+				mProcess.setTime(new SimpleDateFormat("yyyy-MM-dd").format(theTime));
+				mProcess.setType(type);
+				mProcess.setUsername(rs.getString("username"));
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("查询制定状态的合同失败");
+			System.err.println(e);
+		}		
+		
+		return processSet;
+	}
+	
+	
+	/**
+	 * 得到制定type,state,username下的合同
+	 * @param type
+	 * @param state
+	 * @param username
+	 * @return
+	 */
+	public Set<Contract> getContractSetWithTSU(int type,int state,String username) {
+		
+		Set<Contract> cSet = new HashSet<Contract>();
+
+		Connection conn = getConnection(); 
+		try {
+			String sql = "select *from contract where id = (select cid from contract_process where type='"+type+"' AND state='"+state+"' AND username='"+username+"')";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				this.cname=rs.getString("name");
+				this.customer=rs.getString("customer");
+				this.content=rs.getString("content");
+				Timestamp beginTime = rs.getTimestamp("beginTime");
+				this.btime= new SimpleDateFormat("yyyy-MM-dd").format(beginTime);
+				Timestamp endTime = rs.getTimestamp("endTime");
+				this.etime= new SimpleDateFormat("yyyy-MM-dd").format(endTime);
+				this.draftmanname=rs.getString("username");
+				Timestamp dTime = rs.getTimestamp("drafttime");
+				this.drafttime= new SimpleDateFormat("yyyy-MM-dd").format(dTime);				
+				cSet.add(this);
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("查询role_id失败");
+			System.err.println(e);
+		}
+		
+		
+		return cSet;
+	}
+	
 	
 	//以下是get和set
 	public int getCid() {

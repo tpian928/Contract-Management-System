@@ -73,21 +73,24 @@ public class ActionServlet extends HttpServlet {
 				for(String tmp:hqArr){
 					
 					Admin admin = new Admin(id, access_taken);
-					admin.arrange(cid, 0, tmp);
+					String username = UserJDBCAction.getUserById(tmp).getName();
+					admin.arrange(cid, 0, username);
 				}
 				
 				spUserStr = spUserStr.substring(1);
 				String[] spArr = spUserStr.split("-");
 				for(String tmp:spArr){
 					Admin admin = new Admin(id, access_taken);
-					admin.arrange(cid, 1, tmp);
+					String username = UserJDBCAction.getUserById(tmp).getName();
+					admin.arrange(cid, 1, username);
 				}
 				
 				qdUserStr = qdUserStr.substring(1);
 				String[] qdArr = qdUserStr.split("-");
 				for(String tmp:qdArr){
 					Admin admin = new Admin(id, access_taken);
-					admin.arrange(cid, 2, tmp);
+					String username = UserJDBCAction.getUserById(tmp).getName();
+					admin.arrange(cid, 2, username);
 				}
 				
 				Contract contract = new Contract(cid);
