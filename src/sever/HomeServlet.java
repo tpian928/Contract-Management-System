@@ -53,12 +53,14 @@ public class HomeServlet extends HttpServlet {
 			
 			switch (page) {
 			case 0://待会签合同
+				
 				Set<Contract> contractSet = mUser.getContracts(0, 0);
-				System.out.println("size is "+contractSet.size());
 				htmlString=htmlString.replace("$title", "待会签合同");
 				htmlString=htmlString.replace("$ht", "待会签合同");
 				for(Contract tmp:contractSet){
-					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">会签</a>");
+					if (tmp.getState()==1) {
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">会签</a>");
+					}
 				}
 				break;
 			case 1:
@@ -74,7 +76,9 @@ public class HomeServlet extends HttpServlet {
 				htmlString=htmlString.replace("$title", "待审批合同");
 				htmlString=htmlString.replace("$ht", "待审批合同");
 				for(Contract tmp:contractSet3){
-					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">审批</a>");
+					if (tmp.getState()==2) {
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">审批</a>");
+					}
 				}				
 				break;
 			case 3:
@@ -90,7 +94,9 @@ public class HomeServlet extends HttpServlet {
 				htmlString=htmlString.replace("$title", "待签订合同");
 				htmlString=htmlString.replace("$ht", "待签订合同");
 				for(Contract tmp:contractSet5){
-					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">签订</a>");
+					if (tmp.getState()==3) {
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">签订</a>");
+					}
 				}				
 				break;
 			case 5:

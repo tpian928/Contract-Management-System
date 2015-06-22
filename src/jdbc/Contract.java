@@ -39,6 +39,7 @@ public class Contract {
 	private String content;
 	private String draftmanname;
 	private String drafttime;
+	private int state;
 	
 	/**
 	 * 初始构造方法
@@ -52,7 +53,7 @@ public class Contract {
 	 */
 	public Contract(String cname, String customer, String btime,
 			String etime, String content, String draftmanname) {
-		System.out.println(btime);
+		//System.out.println(btime);
 		this.cname = cname;
 		this.customer = customer;
 		this.btime = btime;
@@ -136,7 +137,7 @@ public class Contract {
 			//System.out.println(sql);
 			st = (Statement) conn.createStatement();
 			int resultnum = st.executeUpdate(sql);
-			System.out.println(resultnum);
+			//System.out.println(resultnum);
 			if(resultnum==1){
 				theresult=true;
 			}
@@ -185,6 +186,8 @@ public class Contract {
 		return theresult;
 		
 	}
+	
+	
 	
 	public Set<Contract> getContractsByState(int state) {
 		Set<Contract> contractSet = new HashSet<Contract>();
@@ -313,7 +316,8 @@ public class Contract {
 				this.etime= new SimpleDateFormat("yyyy-MM-dd").format(endTime);
 				this.draftmanname=rs.getString("username");
 				Timestamp dTime = rs.getTimestamp("drafttime");
-				this.drafttime= new SimpleDateFormat("yyyy-MM-dd").format(dTime);				
+				this.drafttime= new SimpleDateFormat("yyyy-MM-dd").format(dTime);	
+				this.cid=rs.getInt("id");
 				cSet.add(this);
 			}
 			conn.close(); 
@@ -377,6 +381,29 @@ public class Contract {
 
 	public void setDrafttime(String drafttime) {
 		this.drafttime = drafttime;
+	}
+
+	public int getState() {
+		
+		int state=0;
+		Connection conn = getConnection(); 
+		try {
+			String sql = "select type from contract_state where cid = '"+cid+"'";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				if (rs.getInt("type")>state) {
+					state=rs.getInt("type");
+				}
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("查询制定状态的合同失败");
+			System.err.println(e);
+		}
+		
+		this.state=state;
+		return state;
 	}
 	
 	
