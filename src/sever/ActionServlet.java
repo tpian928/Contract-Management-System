@@ -65,7 +65,6 @@ public class ActionServlet extends HttpServlet {
 					System.out.println("draft");
 					
 					//加入Contact_process
-
 					mUser.completeQH(Integer.parseInt(request.getSession().getAttribute("cid").toString()),request.getParameter("hqs"));
 					
 					exeres=true;

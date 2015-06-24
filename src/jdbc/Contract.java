@@ -175,9 +175,7 @@ public class Contract {
 			else{
 				theresult=false;
 			}
-			
 			conn.close(); 
-
 		} catch (SQLException e) {
 			System.out.println("插入合同进程失败");
 			theresult=false;
