@@ -31,7 +31,7 @@ public class ActionShowServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("cAShow");
 		request.setCharacterEncoding("UTF-8");
 		if (request.getSession().getAttribute("access_taken")!=null&&request.getParameter("cname")!=null) {
 			

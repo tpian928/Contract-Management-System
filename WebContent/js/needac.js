@@ -9,7 +9,7 @@ function initHtml () {
         var cid = $$(this).prop('id');
         var cname = $$('strong').html();
 
-        location.href="/CM/ac?cid="+cid+"&cname="+cname+"action=ac";
+        location.href="/CM/cAShow?cid="+cid+"&cname="+cname+"&action=ac";
 
     });
 

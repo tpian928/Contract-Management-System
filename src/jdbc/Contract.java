@@ -162,30 +162,77 @@ public class Contract {
 	 */
 	public boolean setState(int type) {
 		
-		boolean theresult = false;		
-		Connection conn = getConnection(); 
-		try {
-			String sql = "insert into contract_state (cid,type) values('"+cid+"','"+type+"')";
-			st = (Statement) conn.createStatement();
-			int resultnum = st.executeUpdate(sql);
-			System.out.println(resultnum);
-			if(resultnum==1){
-				theresult=true;
-			}
-			else{
+		boolean theresult = false;	
+		
+		if (hasThisContractInState(cid+"")==false) {
+			Connection conn = getConnection(); 
+			try {
+				String sql = "insert into contract_state (cid,type) values('"+cid+"','"+type+"')";
+				st = (Statement) conn.createStatement();
+				int resultnum = st.executeUpdate(sql);
+				System.out.println(resultnum);
+				if(resultnum==1){
+					theresult=true;
+				}
+				else{
+					theresult=false;
+				}
+				conn.close(); 
+			} catch (SQLException e) {
+				System.out.println("插入合同进程失败");
 				theresult=false;
-			}
-			conn.close(); 
-		} catch (SQLException e) {
-			System.out.println("插入合同进程失败");
-			theresult=false;
-			System.err.println(e);
+				System.err.println(e);
+			}			
 		}
+		else{
+			Connection conn = getConnection(); 
+			try {
+				String sql = "update contract_state set type='"+type+"'";
+				st = (Statement) conn.createStatement();
+				int resultnum = st.executeUpdate(sql);
+				System.out.println(resultnum);
+				if(resultnum==1){
+					theresult=true;
+				}
+				else{
+					theresult=false;
+				}
+				conn.close(); 
+			} catch (SQLException e) {
+				System.out.println("更新合同进程失败");
+				theresult=false;
+				System.err.println(e);
+			}
+		}
+		
 		return theresult;
 		
 	}
 	
-	
+	/**
+	 * 判断在State表里面是否有这个记录
+	 * @return
+	 */
+	public boolean hasThisContractInState(String cid) {
+		boolean result = false;
+		Connection conn = getConnection(); 
+		try {
+			String sql = "select cid from contract_state where cid = '"+cid+"'";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) { 
+				result = true;
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			result = false;
+			System.out.println("查询制定状态的合同失败");
+			System.err.println(e);
+		}
+		
+		return result;
+
+	}
 	
 	public Set<Contract> getContractsByState(int state) {
 		Set<Contract> contractSet = new HashSet<Contract>();
@@ -193,9 +240,10 @@ public class Contract {
 		//必须是要提及的user
 		Connection conn = getConnection(); 
 		try {
-			String sql = "select * from contract where id = (select cid from contract_state where type='"+state+"')";
+			String sql = "select * from contract where id in (select cid from contract_state where type='"+state+"')";
 			st = (Statement) conn.createStatement(); 
-			ResultSet rs = st.executeQuery(sql); 
+			ResultSet rs = st.executeQuery(sql);
+			
 			while (rs.next()) { 
 				Contract mContract = new Contract(-1);
 				mContract.cid=rs.getInt("id");
@@ -301,7 +349,7 @@ public class Contract {
 
 		Connection conn = getConnection(); 
 		try {
-			String sql = "select *from contract where id = (select cid from contract_process where type='"+type+"' AND state='"+state+"' AND username='"+username+"')";
+			String sql = "select *from contract where id in (select cid from contract_process where type='"+type+"' AND state='"+state+"' AND username='"+username+"')";
 			st = (Statement) conn.createStatement(); 
 			ResultSet rs = st.executeQuery(sql); 
 			while (rs.next()) { 
@@ -320,7 +368,7 @@ public class Contract {
 			}
 			conn.close(); 
 		} catch (SQLException e) {
-			System.out.println("查询role_id失败");
+			System.out.println("getContractSetWithTSU失败");
 			System.err.println(e);
 		}
 		
