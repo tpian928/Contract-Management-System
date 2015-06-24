@@ -353,18 +353,19 @@ public class Contract {
 			st = (Statement) conn.createStatement(); 
 			ResultSet rs = st.executeQuery(sql); 
 			while (rs.next()) { 
-				this.cname=rs.getString("name");
-				this.customer=rs.getString("customer");
-				this.content=rs.getString("content");
+				Contract mContract = new Contract();
+				mContract.setCname(rs.getString("name"));
+				mContract.setCustomer(rs.getString("customer"));
+				mContract.setContent(rs.getString("content"));
 				Timestamp beginTime = rs.getTimestamp("beginTime");
-				this.btime= new SimpleDateFormat("yyyy-MM-dd").format(beginTime);
+				mContract.btime= new SimpleDateFormat("yyyy-MM-dd").format(beginTime);
 				Timestamp endTime = rs.getTimestamp("endTime");
-				this.etime= new SimpleDateFormat("yyyy-MM-dd").format(endTime);
-				this.draftmanname=rs.getString("username");
+				mContract.etime= new SimpleDateFormat("yyyy-MM-dd").format(endTime);
+				mContract.draftmanname=rs.getString("username");
 				Timestamp dTime = rs.getTimestamp("drafttime");
-				this.drafttime= new SimpleDateFormat("yyyy-MM-dd").format(dTime);	
-				this.cid=rs.getInt("id");
-				cSet.add(this);
+				mContract.drafttime= new SimpleDateFormat("yyyy-MM-dd").format(dTime);	
+				mContract.cid=rs.getInt("id");
+				cSet.add(mContract);
 			}
 			conn.close(); 
 		} catch (SQLException e) {

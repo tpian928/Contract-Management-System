@@ -104,8 +104,7 @@ public class User {
 		Set<Contract> cSet = new HashSet<Contract>();
 		Contract mContract = new Contract();
 		
-		cSet = mContract.getContractSetWithTSU(type, state, this.name);
-		
+		cSet = mContract.getContractSetWithTSU(type, state, this.name);		
 		return cSet;
 	}
 	
