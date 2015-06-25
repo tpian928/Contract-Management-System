@@ -17,7 +17,7 @@ public class Admin extends User {
 	public void arrange(Integer cid,int type,String username) {
 		Process mProcess = new Process(cid, type, 0, username, "");
 		Contract mContract = new Contract(cid);
-		mContract.setProcess(mProcess);
+		mContract.insertProcess(mProcess);
 	}
 	
 	

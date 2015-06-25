@@ -108,21 +108,12 @@ public class User {
 		return cSet;
 	}
 	
-	
-	/**
-	 * 管理员分配合同
-	 * @param type
-	 */
-	public void arrange(Integer cid,int type,String username) {
-		Process mProcess = new Process(cid, type, 0, username, "");
-		Contract mContract = new Contract(cid);
-		mContract.setProcess(mProcess);
-	}
-	
+		
 	public void completeQH(Integer cid,String content) {
 		Process mProcess = new Process(cid, 1, 1, this.getName(), content);
 		Contract mContract = new Contract(cid);
-		mContract.setProcess(mProcess);
+		
+		mContract.updateProcess(mProcess);
 	}
 
 		

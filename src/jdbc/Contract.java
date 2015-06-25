@@ -46,7 +46,7 @@ public class Contract {
 	 * @param type
 	 * @return
 	 */
-	private boolean setState(int type) {
+	public boolean setState(int type) {
 		
 		boolean theresult = false;	
 		
@@ -179,13 +179,14 @@ public class Contract {
 	}
 	
 	/**
-	 * 设置进程
+	 * 设置进程，如果Process表中已经有username,cid,type则更新，否则插入
 	 * @param p 进程对象
 	 * @return
 	 */
-	public boolean setProcess(Process p) {
+	public boolean insertProcess(Process p) {
 		boolean theresult = false;
 		Connection conn = getConnection(); 
+		
 		try {
 			String sql = "insert into contract_process (cid,type,state,username,content) values('"+cid+"','"+p.getType()+"','"+p.getState()+"','"+p.getUsername()+"','"+p.getContent()+"')";
 			//System.out.println(sql);
@@ -206,22 +207,36 @@ public class Contract {
 			theresult=false;
 			System.err.println(e);
 		}
+		
 		return theresult;
 	}
 	
-	/**
-	 * 检测并更新状态
-	 * @param thecid 合同的ID
-	 * @return 是否有异常
-	 */
-	public boolean detectAndSetState(int thecid) {
-		boolean result = false;
+	public boolean updateProcess(Process p) {
+		boolean theresult = false;
+		Connection conn = getConnection(); 
 		
-		//所有会签人员都会签完了
+		try {
+			String sql = "update contract_process set state='"+p.getState()+"' where cid='"+p.getCid()+"' AND type='"+p.getType()+"' AND username = '"+p.getUsername()+"'";
+			st = (Statement) conn.createStatement();
+			int resultnum = st.executeUpdate(sql);
+			if(resultnum==1){
+				theresult=true;
+			}
+			else{
+				theresult=false;
+			}
+			
+			conn.close(); 
+
+		} catch (SQLException e) {
+			System.out.println("插入合同进程失败");
+			theresult=false;
+			System.err.println(e);
+		}
 		
-		
-		return result;
+		return theresult;
 	}
+	
 	
 	/**
 	 * 判断在State表里面是否有这个记录
