@@ -42,60 +42,6 @@ public class Contract {
 	private int state;
 	
 	/**
-	 * 设置状态
-	 * @param type
-	 * @return
-	 */
-	public boolean setState(int type) {
-		
-		boolean theresult = false;	
-		
-		if (hasThisContractInState(cid+"")==false) {
-			Connection conn = getConnection(); 
-			try {
-				String sql = "insert into contract_state (cid,type) values('"+cid+"','"+type+"')";
-				st = (Statement) conn.createStatement();
-				int resultnum = st.executeUpdate(sql);
-				System.out.println(resultnum);
-				if(resultnum==1){
-					theresult=true;
-				}
-				else{
-					theresult=false;
-				}
-				conn.close(); 
-			} catch (SQLException e) {
-				System.out.println("插入合同进程失败");
-				theresult=false;
-				System.err.println(e);
-			}			
-		}
-		else{
-			Connection conn = getConnection(); 
-			try {
-				String sql = "update contract_state set type='"+type+"'";
-				st = (Statement) conn.createStatement();
-				int resultnum = st.executeUpdate(sql);
-				System.out.println(resultnum);
-				if(resultnum==1){
-					theresult=true;
-				}
-				else{
-					theresult=false;
-				}
-				conn.close(); 
-			} catch (SQLException e) {
-				System.out.println("更新合同进程失败");
-				theresult=false;
-				System.err.println(e);
-			}
-		}
-		
-		return theresult;
-		
-	}
-
-	/**
 	 * 初始构造方法
 	 * @param cid
 	 * @param cname
@@ -179,6 +125,60 @@ public class Contract {
 	}
 	
 	/**
+	 * 设置状态
+	 * @param type
+	 * @return
+	 */
+	public boolean setState(int type) {
+		
+		boolean theresult = false;	
+		
+		if (hasThisContractInState(cid+"")==false) {
+			Connection conn = getConnection(); 
+			try {
+				String sql = "insert into contract_state (cid,type) values('"+cid+"','"+type+"')";
+				st = (Statement) conn.createStatement();
+				int resultnum = st.executeUpdate(sql);
+				System.out.println(resultnum);
+				if(resultnum==1){
+					theresult=true;
+				}
+				else{
+					theresult=false;
+				}
+				conn.close(); 
+			} catch (SQLException e) {
+				System.out.println("插入合同进程失败");
+				theresult=false;
+				System.err.println(e);
+			}			
+		}
+		else{
+			Connection conn = getConnection(); 
+			try {
+				String sql = "update contract_state set type='"+type+"'";
+				st = (Statement) conn.createStatement();
+				int resultnum = st.executeUpdate(sql);
+				System.out.println(resultnum);
+				if(resultnum==1){
+					theresult=true;
+				}
+				else{
+					theresult=false;
+				}
+				conn.close(); 
+			} catch (SQLException e) {
+				System.out.println("更新合同进程失败");
+				theresult=false;
+				System.err.println(e);
+			}
+		}
+		
+		return theresult;
+		
+	}
+
+	/**
 	 * 设置进程，如果Process表中已经有username,cid,type则更新，否则插入
 	 * @param p 进程对象
 	 * @return
@@ -216,7 +216,8 @@ public class Contract {
 		Connection conn = getConnection(); 
 		
 		try {
-			String sql = "update contract_process set state='"+p.getState()+"' where cid='"+p.getCid()+"' AND type='"+p.getType()+"' AND username = '"+p.getUsername()+"'";
+			String sql = "update contract_process set state='"+p.getState()+"',content='"+p.getContent()+"' where cid='"+p.getCid()+"' AND type='"+p.getType()+"' AND username = '"+p.getUsername()+"'";
+			System.out.println(sql);
 			st = (Statement) conn.createStatement();
 			int resultnum = st.executeUpdate(sql);
 			if(resultnum==1){
@@ -235,6 +236,44 @@ public class Contract {
 		}
 		
 		return theresult;
+	}
+	
+	/**
+	 * 判断某一种进程是否完成
+	 * @param thecid 合同ID
+	 * @param type 状态名称
+	 * @return 已经完成返回1，如果小于1则未完成，平均值大于1表示有拒绝的
+	 */
+	private float havaCompleteType(int type) {
+		float result = 0;
+		Connection conn = getConnection(); 
+		try {
+			String sql = "select avg(state) from contract_process where cid='"+cid+"' and type='"+type+"'";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql);
+			
+			while (rs.next()) { 
+				result = rs.getFloat("avg(state)");
+			}
+			System.out.println("avg is "+result);
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("查询制定状态的合同失败");
+			System.err.println(e);
+		}
+		
+		return result;
+	}
+	
+	public boolean havaCompleteHQ() {
+		float rNum = havaCompleteType(0);
+		System.out.println("rnum is "+rNum);
+		if (rNum==1) {
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 	
 	

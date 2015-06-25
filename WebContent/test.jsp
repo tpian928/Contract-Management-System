@@ -14,11 +14,9 @@
 </head>
 <body>
 <%
-out.println("<a href=\"test.jsp?name=wyf\">link</a>");
+Contract mContract = new Contract(10007);
+System.out.println(mContract.havaCompleteHQ());
 %>
 
-<%
-System.out.println(request.getParameter("name"));
-%>
 </body>
 </html>

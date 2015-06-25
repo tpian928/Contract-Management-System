@@ -110,7 +110,7 @@ public class User {
 	
 		
 	public void completeQH(Integer cid,String content) {
-		Process mProcess = new Process(cid, 1, 1, this.getName(), content);
+		Process mProcess = new Process(cid, 0, 1, this.getName(), content);
 		Contract mContract = new Contract(cid);
 		
 		mContract.updateProcess(mProcess);

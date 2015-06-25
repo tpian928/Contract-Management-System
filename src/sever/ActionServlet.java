@@ -109,7 +109,9 @@ public class ActionServlet extends HttpServlet {
 				
 				Contract contract = new Contract(cid);
 				
-				contract.setState(1);
+				if (contract.havaCompleteHQ()) {
+					contract.setState(1);
+				}
 				
 				exeres=true;
 				

@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jdbc.Contract;
-import jdbc.Role;
-import obj.Func;
 import obj.Hwriter;
 import obj.User;
 
@@ -55,6 +53,7 @@ public class IndexServlet extends HttpServlet {
 			case 0://待会签合同
 				
 				Set<Contract> contractSet = mUser.getContracts(0, 0);
+				
 				htmlString=htmlString.replace("$title", "待会签合同");
 				htmlString=htmlString.replace("$ht", "待会签合同");
 				for(Contract tmp:contractSet){
@@ -73,7 +72,6 @@ public class IndexServlet extends HttpServlet {
 				break;
 			case 2:
 				Set<Contract> contractSet3 = mUser.getContracts(1, 0);
-				System.out.println("contractSet3 size is "+contractSet3.size());
 				htmlString=htmlString.replace("$title", "待审批合同");
 				htmlString=htmlString.replace("$ht", "待审批合同");
 				for(Contract tmp:contractSet3){
@@ -113,7 +111,6 @@ public class IndexServlet extends HttpServlet {
 				break;
 			}
 			
-			System.out.println("htmlContent is "+htmlContent);
 			htmlString = htmlString.replace("$rs",htmlContent);		
 			response.setContentType("text/html");
 			response.setCharacterEncoding("UTF-8");
