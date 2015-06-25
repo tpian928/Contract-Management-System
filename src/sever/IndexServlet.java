@@ -93,8 +93,8 @@ public class IndexServlet extends HttpServlet {
 				htmlString=htmlString.replace("$title", "待签订合同");
 				htmlString=htmlString.replace("$ht", "待签订合同");
 				for(Contract tmp:contractSet5){
-					if (tmp.getState()==3) {
-						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&cname="+tmp.getCname()+"&action=qd\">签订</a>");
+					if (tmp.getState()==4) {
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&cname="+tmp.getCname()+"&action=qdshow\">签订</a>");
 					}
 				}				
 				break;

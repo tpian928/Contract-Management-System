@@ -311,6 +311,20 @@ public class Contract {
 		}
 	}
 	
+	/**
+	 * 判断是否完成了签订
+	 * @return
+	 */
+	public boolean havaCompleteQD() {
+		float rNum = havaCompleteType(2);
+		System.out.println("rnum is "+rNum);
+		if (rNum==1) {
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	
 	/**
 	 * 判断在State表里面是否有这个记录

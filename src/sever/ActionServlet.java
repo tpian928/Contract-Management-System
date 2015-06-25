@@ -126,6 +126,7 @@ public class ActionServlet extends HttpServlet {
 					mContract.setState(3);
 				}
 			}
+						
 			else if (action.equals("spaction")) {
 				System.out.println("用户要审批");
 				
@@ -133,6 +134,20 @@ public class ActionServlet extends HttpServlet {
 					
 					exeres = mUser.completeSP(Integer.parseInt(request.getSession().getAttribute("cid").toString()), request.getParameter("sps"), Boolean.valueOf(request.getParameter("agree")));
 
+				}
+				else {
+					exeres=false;
+				}
+				
+			}
+			
+			else if (action.equals("qdaction")) {
+				System.out.println("用户要签订");
+				
+				if (mUser.hasFunc(7)) {
+					
+					exeres = mUser.completeQD(Integer.parseInt(request.getSession().getAttribute("cid").toString()), request.getParameter("message"));
+					
 				}
 				else {
 					exeres=false;

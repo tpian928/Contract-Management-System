@@ -156,6 +156,13 @@ public class User {
 		
 	}
 	
+	/**
+	 * 完成审批
+	 * @param cid 合同ID
+	 * @param content 内容
+	 * @param agree 同意与否
+	 * @return
+	 */
 	public boolean completeSP(Integer cid,String content,boolean agree) {
 
 		boolean result = false;
@@ -178,7 +185,23 @@ public class User {
 		return result;
 	}
 	
-
+	/**
+	 * 完成签订
+	 * @param cid 合同id
+	 * @param content 内容
+	 * @return
+	 */
+	public boolean completeQD(Integer cid,String content) {
+		boolean result = false;
+		Process mProcess = new Process(cid, 2, 1, this.getName(), content);
+		Contract mContract = new Contract(cid);
+		result = mContract.updateProcess(mProcess);
+		
+		if (mContract.havaCompleteQD()) {
+			mContract.setState(5);
+		}
+		return result;
+	}
 
 		
 }

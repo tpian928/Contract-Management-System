@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>签订合同</title>
+<link rel="stylesheet" type="text/css" href="css/cm.css">
+<link rel="stylesheet" href="css/default.css">
+
+</head>
+<body>
+
+<div class="notTop">
+    <form method="post" class="basic-grey">
+        <h1>签订合同</h1>
+
+        <label>
+            <span>合同名称</span>
+            <input id="cname" type="text" name="cname" placeholder="必填" value="$javaname" />
+        </label>
+        <label>
+            <span>客户</span>
+            <input id="customer" type="text" name="customer" placeholder="选填" value="$javacustomer" />
+        </label>        
+       <label>
+            <span>签订信息</span>
+            <textarea id="message" name="message"></textarea>
+        </label> 
+
+        <label>
+            <input type="button" id="qdBtn" class="buttonGreen leftBtn" value="提交" />
+            <input type="button" id="clear" class="buttonRed rightBtn" value="重置" />                 
+        </label> 
+
+    </form>
+
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script src="js/qd.js"></script>
+
+
+</div>
+
+<link rel="stylesheet" type="text/css" href="css/framework7.min.css">
+
+
+</body>
+</html>

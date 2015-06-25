@@ -137,6 +137,18 @@ public class ActionShowServlet extends HttpServlet {
 				htmlString = htmlString.replace("$cname",request.getParameter("cname"));
 				
 			}
+			else if (request.getParameter("action").equals("qdshow")) {
+				String fullPath = context.getRealPath("/qd.html");
+				File htmlTemplateFile = new File(fullPath);
+				htmlString = FileUtils.readFileToString(htmlTemplateFile);
+				
+				Contract mContract = new Contract(Integer.parseInt(request.getParameter("cid")));
+				
+				//设置合同名字
+				htmlString = htmlString.replace("$javaname",mContract.getCname());
+				htmlString = htmlString.replace("$javacustomer",mContract.getCustomer());
+				
+			}
 
 			response.setContentType("text/html");
 			response.setCharacterEncoding("UTF-8");
