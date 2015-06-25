@@ -42,6 +42,60 @@ public class Contract {
 	private int state;
 	
 	/**
+	 * 设置状态
+	 * @param type
+	 * @return
+	 */
+	private boolean setState(int type) {
+		
+		boolean theresult = false;	
+		
+		if (hasThisContractInState(cid+"")==false) {
+			Connection conn = getConnection(); 
+			try {
+				String sql = "insert into contract_state (cid,type) values('"+cid+"','"+type+"')";
+				st = (Statement) conn.createStatement();
+				int resultnum = st.executeUpdate(sql);
+				System.out.println(resultnum);
+				if(resultnum==1){
+					theresult=true;
+				}
+				else{
+					theresult=false;
+				}
+				conn.close(); 
+			} catch (SQLException e) {
+				System.out.println("插入合同进程失败");
+				theresult=false;
+				System.err.println(e);
+			}			
+		}
+		else{
+			Connection conn = getConnection(); 
+			try {
+				String sql = "update contract_state set type='"+type+"'";
+				st = (Statement) conn.createStatement();
+				int resultnum = st.executeUpdate(sql);
+				System.out.println(resultnum);
+				if(resultnum==1){
+					theresult=true;
+				}
+				else{
+					theresult=false;
+				}
+				conn.close(); 
+			} catch (SQLException e) {
+				System.out.println("更新合同进程失败");
+				theresult=false;
+				System.err.println(e);
+			}
+		}
+		
+		return theresult;
+		
+	}
+
+	/**
 	 * 初始构造方法
 	 * @param cid
 	 * @param cname
@@ -156,57 +210,17 @@ public class Contract {
 	}
 	
 	/**
-	 * 设置状态
-	 * @param type
-	 * @return
+	 * 检测并更新状态
+	 * @param thecid 合同的ID
+	 * @return 是否有异常
 	 */
-	public boolean setState(int type) {
+	public boolean detectAndSetState(int thecid) {
+		boolean result = false;
 		
-		boolean theresult = false;	
+		//所有会签人员都会签完了
 		
-		if (hasThisContractInState(cid+"")==false) {
-			Connection conn = getConnection(); 
-			try {
-				String sql = "insert into contract_state (cid,type) values('"+cid+"','"+type+"')";
-				st = (Statement) conn.createStatement();
-				int resultnum = st.executeUpdate(sql);
-				System.out.println(resultnum);
-				if(resultnum==1){
-					theresult=true;
-				}
-				else{
-					theresult=false;
-				}
-				conn.close(); 
-			} catch (SQLException e) {
-				System.out.println("插入合同进程失败");
-				theresult=false;
-				System.err.println(e);
-			}			
-		}
-		else{
-			Connection conn = getConnection(); 
-			try {
-				String sql = "update contract_state set type='"+type+"'";
-				st = (Statement) conn.createStatement();
-				int resultnum = st.executeUpdate(sql);
-				System.out.println(resultnum);
-				if(resultnum==1){
-					theresult=true;
-				}
-				else{
-					theresult=false;
-				}
-				conn.close(); 
-			} catch (SQLException e) {
-				System.out.println("更新合同进程失败");
-				theresult=false;
-				System.err.println(e);
-			}
-		}
 		
-		return theresult;
-		
+		return result;
 	}
 	
 	/**
