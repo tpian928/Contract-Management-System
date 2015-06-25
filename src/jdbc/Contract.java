@@ -175,9 +175,33 @@ public class Contract {
 		}
 		
 		return theresult;
-		
 	}
 
+	public boolean updateContract(Contract mContract) {
+		
+		boolean theresult = false;
+		
+		Connection conn = getConnection(); 
+		try {
+			String sql = "update contract set name='"+mContract.getCname()+"',customer='"+mContract.getCustomer()+"',content='"+mContract.getContent()+"',beginTime='"+mContract.getBtime()+"',endTime='"+mContract.getEtime()+"',username='"+mContract.getDraftmanname()+"' where id='"+mContract.getCid()+"'";
+			st = (Statement) conn.createStatement();
+			int resultnum = st.executeUpdate(sql);
+			if(resultnum==1){
+				theresult=true;
+			}
+			else{
+				theresult=false;
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("更新合同失败");
+			theresult=false;
+			System.err.println(e);
+		}			
+
+		return theresult;
+	}
+	
 	/**
 	 * 设置进程，如果Process表中已经有username,cid,type则更新，否则插入
 	 * @param p 进程对象

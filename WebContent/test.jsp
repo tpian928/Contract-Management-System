@@ -14,8 +14,9 @@
 </head>
 <body>
 <%
-Contract mContract = new Contract(10007);
-System.out.println(mContract.havaCompleteHQ());
+Contract mContract = new Contract(10010);
+mContract.setContent("fuck");
+mContract.updateContract(mContract);
 %>
 
 </body>
