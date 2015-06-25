@@ -75,7 +75,7 @@ public class IndexServlet extends HttpServlet {
 				htmlString=htmlString.replace("$title", "待审批合同");
 				htmlString=htmlString.replace("$ht", "待审批合同");
 				for(Contract tmp:contractSet3){
-					if (tmp.getState()==2) {
+					if (tmp.getState()==1) {
 						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&cname="+tmp.getCname()+"&action=sp\">审批</a>");
 					}
 				}				
@@ -105,6 +105,16 @@ public class IndexServlet extends HttpServlet {
 				for(Contract tmp:contractSet6){
 					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&action=look\">查看</a>");
 				}				
+				break;
+				
+			case 6:
+				
+				Set<Contract> contractSet7 = mUser.getDingGao();
+				htmlString=htmlString.replace("$title", "已签订合同");
+				htmlString=htmlString.replace("$ht", "已签订合同");
+				for(Contract tmp:contractSet7){
+					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&action=dg\">定稿</a>");
+				}	
 				break;
 			default:
 				

@@ -60,7 +60,7 @@ public class ActionServlet extends HttpServlet {
 					exeres=false;
 				}
 			}
-			else if (action.equals("csaction")) {
+			else if (action.equals("csaction")) {//会签
 				if (mUser.hasFunc(5)) {
 					System.out.println("draft");
 					
@@ -73,7 +73,7 @@ public class ActionServlet extends HttpServlet {
 					exeres=false;
 				}
 			}
-			else if (action.equals("ac")) {
+			else if (action.equals("ac")) {//分配
 				System.out.println("ac");
 				
 				String hqUserStr = request.getParameter("hqUserStr");
@@ -109,9 +109,7 @@ public class ActionServlet extends HttpServlet {
 				
 				Contract contract = new Contract(cid);
 				
-				if (contract.havaCompleteHQ()) {
-					contract.setState(1);
-				}
+				contract.setState(1);
 				
 				exeres=true;
 				
