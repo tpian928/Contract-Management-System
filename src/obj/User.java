@@ -156,6 +156,28 @@ public class User {
 		
 	}
 	
+	public boolean completeSP(Integer cid,String content,boolean agree) {
+
+		boolean result = false;
+		
+		int agreeInt = 0;
+		if (agree) {
+			agreeInt=1;
+		}
+		else {
+			agreeInt=2;
+		}
+		
+		Process mProcess = new Process(cid, 1, agreeInt, this.getName(), content);
+		Contract mContract = new Contract(cid);
+		result = mContract.updateProcess(mProcess);
+		
+		if (mContract.havaCompleteSP()) {
+			mContract.setState(4);
+		}
+		return result;
+	}
+	
 
 
 		

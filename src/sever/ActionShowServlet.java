@@ -138,7 +138,6 @@ public class ActionShowServlet extends HttpServlet {
 				
 			}
 
-			
 			response.setContentType("text/html");
 			response.setCharacterEncoding("UTF-8");
 		    PrintWriter out = response.getWriter();

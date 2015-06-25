@@ -126,6 +126,19 @@ public class ActionServlet extends HttpServlet {
 					mContract.setState(3);
 				}
 			}
+			else if (action.equals("spaction")) {
+				System.out.println("用户要审批");
+				
+				if (mUser.hasFunc(9)) {
+					
+					exeres = mUser.completeSP(Integer.parseInt(request.getSession().getAttribute("cid").toString()), request.getParameter("sps"), Boolean.valueOf(request.getParameter("agree")));
+
+				}
+				else {
+					exeres=false;
+				}
+				
+			}
 			
 			JSONObject object = new JSONObject();
 			try {
