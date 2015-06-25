@@ -110,17 +110,6 @@ public class User {
 		return cSet;
 	}
 	
-		
-	public void completeQH(Integer cid,String content) {
-		Process mProcess = new Process(cid, 0, 1, this.getName(), content);
-		Contract mContract = new Contract(cid);
-		mContract.updateProcess(mProcess);
-		
-		if (mContract.havaCompleteHQ()) {
-			mContract.setState(2);
-		}
-		
-	}
 	
 	/**
 	 * 得到需要定稿的合同
@@ -139,6 +128,35 @@ public class User {
 		}
 		return resultSet;
 	}
+	
+	public Set<Contract> getYiDingGao() {
+		//状态是2，即会签完成
+		Set<Contract> resultSet = new HashSet<Contract>();
+		Contract mContract = new Contract();
+		Set<Contract> orginalSet = mContract.getContractsByState(3);
+		
+		for(Contract tmp:orginalSet){
+			if (tmp.getDraftmanname().equals(this.getName())) {
+				resultSet.add(tmp);
+			}
+		}
+		return resultSet;
+	}
+	
+	
+		
+	public void completeQH(Integer cid,String content) {
+		Process mProcess = new Process(cid, 0, 1, this.getName(), content);
+		Contract mContract = new Contract(cid);
+		mContract.updateProcess(mProcess);
+		
+		if (mContract.havaCompleteHQ()) {
+			mContract.setState(2);
+		}
+		
+	}
+	
+
 
 		
 }

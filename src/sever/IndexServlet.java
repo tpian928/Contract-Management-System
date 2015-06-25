@@ -116,6 +116,16 @@ public class IndexServlet extends HttpServlet {
 					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&action=dgshow&cname="+tmp.getCname()+"\">定稿</a>");
 				}	
 				break;
+			case 7:
+				
+				Set<Contract> contractSet8 = mUser.getYiDingGao();
+				htmlString=htmlString.replace("$title", "已定稿合同");
+				htmlString=htmlString.replace("$ht", "已定稿合同");
+				for(Contract tmp:contractSet8){
+					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&action=look\">查看</a>");
+				}	
+				
+				break;
 			default:
 				
 				break;
