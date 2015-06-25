@@ -11,22 +11,19 @@ function initHtml () {
     $$('#input_02').prop('disabled', true);
     $$('#pick').prop('disabled', true);
 
-    $$('#draft').on('click', function () {
-        var bdate = $input1.pickadate( 'picker' ).get('select', 'yyyy-mm-dd');
-        var edate = $input2.pickadate( 'picker' ).get('select', 'yyyy-mm-dd');
-        
-        var cname = $$('#cname').val();
-        var customer = $$('#customer').val();
+    $$('#dgBtn').on('click', function () {
+
         var message = $$('#message').val();
         
         if (isEmpty(cname)==false&&isEmpty(message)==false){
-            $$.post('cAction', {cname:cname,customer:customer,message:message,bdate:bdate,edate:edate,action:'draft'}, function (data) {
+            $$.post('cAction', {message:message,action:'dg'}, function (data) {
                 o(data);
                 var obj=eval('('+data+')');
                 var myApp = new Framework7();
                 if (obj.result) {
                     myApp.alert('添加成功', '', function () {
-                        location.herf="/CM/home";
+                        o("cgggg");
+                        window.location.href="/CM/index";
                     });
                 }
                 else{

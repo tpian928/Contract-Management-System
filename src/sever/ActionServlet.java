@@ -73,6 +73,7 @@ public class ActionServlet extends HttpServlet {
 					exeres=false;
 				}
 			}
+			
 			else if (action.equals("ac")) {//分配
 				System.out.println("ac");
 				
@@ -113,6 +114,17 @@ public class ActionServlet extends HttpServlet {
 				
 				exeres=true;
 				
+			}
+			else if (action.equals("dg")) {//定稿确认
+				System.out.println("dgggg");
+				String message = request.getParameter("message");
+				int cid = Integer.parseInt(request.getSession().getAttribute("cid").toString());
+				Contract mContract = new Contract(cid);
+				mContract.setContent(message);
+				exeres = mContract.updateContract();
+				if (exeres) {
+					mContract.setState(3);
+				}
 			}
 			
 			JSONObject object = new JSONObject();

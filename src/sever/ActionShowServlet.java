@@ -111,7 +111,7 @@ public class ActionShowServlet extends HttpServlet {
 				htmlString = htmlString.replace("$cname",request.getParameter("cname"));
 				
 			}
-			else if (request.getParameter("action").equals("dg")) {
+			else if (request.getParameter("action").equals("dgshow")) {
 				String fullPath = context.getRealPath("/dg.html");
 				File htmlTemplateFile = new File(fullPath);
 				htmlString = FileUtils.readFileToString(htmlTemplateFile);

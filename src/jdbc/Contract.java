@@ -177,13 +177,13 @@ public class Contract {
 		return theresult;
 	}
 
-	public boolean updateContract(Contract mContract) {
+	public boolean updateContract() {
 		
 		boolean theresult = false;
 		
 		Connection conn = getConnection(); 
 		try {
-			String sql = "update contract set name='"+mContract.getCname()+"',customer='"+mContract.getCustomer()+"',content='"+mContract.getContent()+"',beginTime='"+mContract.getBtime()+"',endTime='"+mContract.getEtime()+"',username='"+mContract.getDraftmanname()+"' where id='"+mContract.getCid()+"'";
+			String sql = "update contract set name='"+this.getCname()+"',customer='"+this.getCustomer()+"',content='"+this.getContent()+"',beginTime='"+this.getBtime()+"',endTime='"+this.getEtime()+"',username='"+this.getDraftmanname()+"' where id='"+this.getCid()+"'";
 			st = (Statement) conn.createStatement();
 			int resultnum = st.executeUpdate(sql);
 			if(resultnum==1){
