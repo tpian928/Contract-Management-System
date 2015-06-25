@@ -126,6 +126,17 @@ public class ActionShowServlet extends HttpServlet {
 				htmlString = htmlString.replace("$content",mContract.getContent());
 				
 			}
+			else if (request.getParameter("action").equals("spshow")) {
+				System.out.println("显示要审批的合同");
+				
+				String fullPath = context.getRealPath("/sp.html");
+				File htmlTemplateFile = new File(fullPath);
+				htmlString = FileUtils.readFileToString(htmlTemplateFile);
+								
+				//设置合同名字
+				htmlString = htmlString.replace("$cname",request.getParameter("cname"));
+				
+			}
 
 			
 			response.setContentType("text/html");

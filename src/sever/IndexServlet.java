@@ -75,8 +75,8 @@ public class IndexServlet extends HttpServlet {
 				htmlString=htmlString.replace("$title", "待审批合同");
 				htmlString=htmlString.replace("$ht", "待审批合同");
 				for(Contract tmp:contractSet3){
-					if (tmp.getState()==1) {
-						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&cname="+tmp.getCname()+"&action=sp\">审批</a>");
+					if (tmp.getState()==3) {
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&cname="+tmp.getCname()+"&action=spshow\">审批</a>");
 					}
 				}				
 				break;
