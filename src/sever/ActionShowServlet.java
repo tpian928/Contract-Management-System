@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jdbc.Contract;
+
 import org.apache.commons.io.FileUtils;
 
 import obj.Func;
@@ -90,7 +92,7 @@ public class ActionShowServlet extends HttpServlet {
 				htmlString = htmlString.replace("$rs2",htmlContext2);		
 				htmlString = htmlString.replace("$rs3",htmlContext3);				
 			}
-			else if (request.getParameter("action").equals("cs")) {
+			else if (request.getParameter("action").equals("cs")) {//会签合同
 				
 				String fullPath = context.getRealPath("/cs.html");
 				File htmlTemplateFile = new File(fullPath);
@@ -98,11 +100,7 @@ public class ActionShowServlet extends HttpServlet {
 				
 				//设置合同名字
 				htmlString = htmlString.replace("$cname",cname);
-				
-				String htmlContext1="";
-				String htmlContext2="";
-				String htmlContext3="";
-				
+								
 				if (mUser.hasFunc(5)) {
 										
 				}
@@ -111,6 +109,21 @@ public class ActionShowServlet extends HttpServlet {
 				}
 				
 				htmlString = htmlString.replace("$cname",request.getParameter("cname"));
+				
+			}
+			else if (request.getParameter("action").equals("dg")) {
+				String fullPath = context.getRealPath("/dg.html");
+				File htmlTemplateFile = new File(fullPath);
+				htmlString = FileUtils.readFileToString(htmlTemplateFile);
+				
+				Contract mContract = new Contract(Integer.parseInt(request.getParameter("cid")));
+				
+				//设置合同名字
+				htmlString = htmlString.replace("$javaname",mContract.getCname());
+				htmlString = htmlString.replace("$javacustomer",mContract.getCustomer());
+				htmlString = htmlString.replace("$javabtime",mContract.getBtime());
+				htmlString = htmlString.replace("$javaetime",mContract.getEtime());
+				htmlString = htmlString.replace("$content",mContract.getContent());
 				
 			}
 
