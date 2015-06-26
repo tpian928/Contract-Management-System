@@ -12,13 +12,10 @@
 
 #right-col {
   float: left;
-  width: 70%;
-}
-
-#right-right-col
-{
-  float: left;
-  width: 15%;
+  width: 85%;
+  margin-right: -1px; /* Thank you IE */
+  padding-bottom: 500em;
+  margin-bottom: -500em;
 }
 
 @import url(http://fonts.useso.com/css?family=Raleway:400,200);
