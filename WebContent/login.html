@@ -31,6 +31,7 @@
     <script type="text/javascript">
 
         var $$ = Dom7;
+        var myApp = new Framework7();
 
         $$('#login').on('click', function () {
             o("login");
@@ -42,10 +43,12 @@
                 $$.post('login', {name: name,pw:pw}, function (data) {
                     var obj=eval('('+data+')');
                     if (obj.result==true) {
-                        a("登录成功");
+                        myApp.alert('登录成功', '', function () {
+                            window.location.href="/CM/index";
+                        });
                     }
                     else{
-                        a("登录失败");
+                        myApp.alert('请检查用户名和密码','登录失败');
                     }
                 });
             }
@@ -67,6 +70,8 @@
         }
 
     </script>
+
+    <link rel="stylesheet" type="text/css" href="css/framework7.min.css">
 
 </div>
 

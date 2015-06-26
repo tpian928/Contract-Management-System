@@ -57,6 +57,7 @@ public class ActionServlet extends HttpServlet {
 					exeres=true;
 				}
 				else {
+					response.sendRedirect("noscope.html");
 					exeres=false;
 				}
 			}
@@ -70,6 +71,7 @@ public class ActionServlet extends HttpServlet {
 					exeres=true;
 				}
 				else {
+					response.sendRedirect("noscope.html");
 					exeres=false;
 				}
 			}
@@ -116,15 +118,21 @@ public class ActionServlet extends HttpServlet {
 				
 			}
 			else if (action.equals("dg")) {//定稿确认
-				System.out.println("dgggg");
-				String message = request.getParameter("message");
-				int cid = Integer.parseInt(request.getSession().getAttribute("cid").toString());
-				Contract mContract = new Contract(cid);
-				mContract.setContent(message);
-				exeres = mContract.updateContract();
-				if (exeres) {
-					mContract.setState(3);
+				
+				if (mUser.hasFunc(2)) {
+					String message = request.getParameter("message");
+					int cid = Integer.parseInt(request.getSession().getAttribute("cid").toString());
+					Contract mContract = new Contract(cid);
+					mContract.setContent(message);
+					exeres = mContract.updateContract();
+					if (exeres) {
+						mContract.setState(3);
+					}						
 				}
+				else {
+					response.sendRedirect("noscope.html");
+				}
+
 			}
 						
 			else if (action.equals("spaction")) {
@@ -137,6 +145,7 @@ public class ActionServlet extends HttpServlet {
 				}
 				else {
 					exeres=false;
+					response.sendRedirect("noscope.html");
 				}
 				
 			}
@@ -151,6 +160,7 @@ public class ActionServlet extends HttpServlet {
 				}
 				else {
 					exeres=false;
+					response.sendRedirect("noscope.html");
 				}
 				
 			}
@@ -167,7 +177,6 @@ public class ActionServlet extends HttpServlet {
 			
 		}
 		else{
-			
 			response.sendRedirect("login.html");		
 		}
 

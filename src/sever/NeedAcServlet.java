@@ -52,6 +52,7 @@ public class NeedAcServlet extends HttpServlet {
 				
 			}
 			else{
+				response.sendRedirect("noscope.html");
 				Func.log("没有权限");
 			}
 			

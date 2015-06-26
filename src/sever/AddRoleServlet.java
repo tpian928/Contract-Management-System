@@ -15,31 +15,20 @@ import org.json.JSONObject;
 import jdbc.Role;
 import obj.User;
 
-/**
- * Servlet implementation class AddRoleServlet
- */
+
 @WebServlet("/addRole")
 public class AddRoleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public AddRoleServlet() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		//判断是否有这个权限
@@ -65,6 +54,9 @@ public class AddRoleServlet extends HttpServlet {
 			}
 			exeres = mRole.add(name, desc, intArr);
 			
+		}
+		else {
+			response.sendRedirect("noscope.html");
 		}
 		
 		JSONObject object = new JSONObject();

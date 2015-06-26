@@ -41,6 +41,7 @@
             var name = $$('#name').val();
             var pw = $$('#pw').val();
             var cpw = $$('#cpw').val();
+            var myApp = new Framework7();
             
             if (inputIsEmpty(name,pw,cpw)) {
                 //post到后端
@@ -48,10 +49,12 @@
                     o(data);
                     var obj=eval('('+data+')');
                     if (obj.result==true) {
-                        a("注册成功");
+                        myApp.alert('注册', '', function () {
+                            window.location.href="/CM/index";
+                        });
                     }
                     else{
-                        a("注册失败");
+                         myApp.alert('注册','');
                     }
                 });
             }

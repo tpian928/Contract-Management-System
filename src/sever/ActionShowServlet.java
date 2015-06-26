@@ -85,6 +85,7 @@ public class ActionShowServlet extends HttpServlet {
 					
 				}
 				else{
+					response.sendRedirect("noscope.html");
 					Func.log("没有权限");
 				}
 				
@@ -105,6 +106,7 @@ public class ActionShowServlet extends HttpServlet {
 										
 				}
 				else{
+					response.sendRedirect("noscope.html");
 					Func.log("没有权限");
 				}
 				

@@ -3,7 +3,8 @@ window.onload = initHtml;
 function initHtml () {
 	
 	var $$ = Dom7;
-
+    var myApp = new Framework7();
+    
     var $input1 = $( '#input_01' ).pickadate({
         formatSubmit: 'yyyy/mm/dd',
         container: '#container',
@@ -29,10 +30,11 @@ function initHtml () {
             $$.post('cAction', {cname:cname,customer:customer,message:message,bdate:bdate,edate:edate,action:'draft'}, function (data) {
                 o(data);
                 var obj=eval('('+data+')');
-                var myApp = new Framework7();
+                
                 if (obj.result) {
                     myApp.alert('添加成功', '', function () {
-                        location.herf="/CM/home";
+                    	o("thissss");
+                        window.location.href="/CM/index";
                     });
                 }
                 else{

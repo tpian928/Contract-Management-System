@@ -3,11 +3,11 @@ window.onload = initHtml;
 function initHtml () {
 	
 	var $$ = Dom7;
+    var myApp = new Framework7();
 
     //禁用input
     $$('#cname').prop('disabled', true);
     $$('#customer').prop('disabled', true);
-
 
     $$('#qdBtn').on('click', function () {
 
@@ -17,7 +17,7 @@ function initHtml () {
             $$.post('cAction', {message:message,action:'qdaction'}, function (data) {
                 o(data);
                 var obj=eval('('+data+')');
-                var myApp = new Framework7();
+                
                 if (obj.result) {
                     myApp.alert('添加成功', '', function () {
                         window.location.href="/CM/index";
