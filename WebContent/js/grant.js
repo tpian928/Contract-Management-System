@@ -4,7 +4,7 @@ function initHtml () {
 	
 	var $$ = Dom7;
 
-	$$('#grantBtn').on('click', function () {
+	$$(document).on('click','#grantBtn', function () {
 		o("there")
 		var roleStr = ""; 
 		var grantid = localStorage.grantid
@@ -19,12 +19,12 @@ function initHtml () {
 				var obj=eval('('+data+')');
                 var myApp = new Framework7();
                 if (obj.result) {
-                    myApp.alert('添加成功', '', function () {
-                        location.herf="/CM/showuser";
+                    myApp.alert('授权成功', '', function () {
+                        window.location.href="/CM/showuser";
                     });
                 }
                 else{
-                    myApp.alert('添加失败','');
+                    myApp.alert('授权失败','');
                 }
 			}); 
 		}
