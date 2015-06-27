@@ -11,7 +11,7 @@
 
 <div class="notTop">
     <form method="post" class="basic-grey">
-        <h1>登录<a id="loginBtn" href="register.html">注册</a></h1>
+        <h1>登录<a id="loginBtn">注册</a></h1>
 
         <label>
             <span>用户名：</span>
@@ -56,6 +56,10 @@
                 alert("您填写的登录信息不对");
             }
 
+        });
+
+        $$('a').on('click', function () {
+            window.location.href="register.html";
         });
 
         // 判断是否为空   
