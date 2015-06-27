@@ -49,12 +49,12 @@
                     o(data);
                     var obj=eval('('+data+')');
                     if (obj.result==true) {
-                        myApp.alert('注册成功', '', function () {
-                            window.location.href="noscope.html";
+                        myApp.alert('注册', '', function () {
+                            window.location.href="/CM/index";
                         });
                     }
                     else{
-                         myApp.alert('注册失败','');
+                         myApp.alert('注册','');
                     }
                 });
             }
@@ -80,7 +80,8 @@
 
 </div>
 
-<link rel="stylesheet" type="text/css" href="css/framework7.min.css">
+
+
 
 </body>
 </html>

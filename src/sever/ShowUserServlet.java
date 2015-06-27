@@ -57,18 +57,11 @@ public class ShowUserServlet extends HttpServlet {
 				userSet = Role.getUsers(username);
 				
 				for(User tmp:userSet){
-					
-					if (tmp.getName().equals("cmroot")) {
-						
+					String str2 = "";
+					for(String m:tmp.getRoleNameSet()){
+						str2=str2+" "+m;
 					}
-					else {
-						String str2 = "";
-						for(String m:tmp.getRoleNameSet()){
-							str2=str2+" "+m;
-						}
-						result=result+ Hwriter.writeTable(tmp.getName(), str2, "<a id=\""+tmp.getId()+"\">授权</a>");						
-					}
-
+					result=result+ Hwriter.writeTable(tmp.getName(), str2, "<a id=\""+tmp.getId()+"\">授权</a>");
 				}
 				
 			}

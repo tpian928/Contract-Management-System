@@ -202,7 +202,6 @@ public class Role {
 	 * @param role_id 角色ID
 	 * @return
 	 */
-	@SuppressWarnings("unused")
 	private ArrayList<Integer> getAllFunc(int role_id) {
 		ArrayList<Integer> funcArr = new ArrayList<Integer>();
 		Connection conn = getRoleConnection(); 
