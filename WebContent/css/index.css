@@ -135,3 +135,11 @@ table
 {
   width: 80%;
 }
+
+#usernamea
+{
+  float: right;
+  font-size: 16px;
+  vertical-align: bottom;
+  padding-right: 5px;
+}

@@ -49,6 +49,8 @@ public class IndexServlet extends HttpServlet {
 			
 			String htmlContent = "";
 			
+			htmlString=htmlString.replace("$username", mUser.getName());
+			
 			switch (page) {
 			case 0://待会签合同
 				

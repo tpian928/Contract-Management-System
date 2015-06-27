@@ -494,6 +494,45 @@ public class Contract {
 		return cSet;
 	}
 	
+	/**
+	 * 为合同添加附件
+	 * @param mAttachment 合同附件对象
+	 * @return 成功则返回附件的ID，失败则返回－1
+	 */
+	public int addAttachment(Attachment mAttachment){
+
+		int auto_id = -1;
+		mAttachment.setCon_id(this.cid);
+		
+		//进行合同插入操作，只有这里可以插入合同
+		Connection conn = getConnection(); 
+		try {
+			String sql = "insert into contract_attachment (fileName,path,type,con_id) values('"+mAttachment.getFilename()+"','"+mAttachment.getPath()+"','"+mAttachment.getType()+"','"+mAttachment.getCon_id()+"')";
+			
+			PreparedStatement stmt;
+			try {
+				stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+				stmt.executeUpdate();
+				ResultSet rs = stmt.getGeneratedKeys();
+				while (rs.next()) { 
+				    auto_id = rs.getInt(1);
+					System.out.println("auto_id is "+auto_id);
+				}
+			} catch (SQLException e) {
+				auto_id=-1;
+				e.printStackTrace();
+			}
+
+			conn.close(); 
+
+		} catch (SQLException e) {
+			System.out.println("插入合同失败");
+			System.err.println(e);
+		}
+
+		
+		return auto_id;
+	}
 	
 	//以下是get和set
 	public int getCid() {

@@ -1,3 +1,6 @@
+alter table contract_attachment modify uploadTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+
 insert into role_has_function (role_id,function_id) values(2,1);
 insert into role_has_function (role_id,function_id) values(2,2);
 insert into role_has_function (role_id,function_id) values(2,3);
