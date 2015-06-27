@@ -5,16 +5,14 @@
 <title>主页</title>
 <link rel="stylesheet" href="css/cm.css">
 <link rel="stylesheet" href="css/index.css">
-
-
 </head>
+
 <body>
 
 <div class="notTop">
-
   <div id="container">
-    <div id="left-col">
 
+    <div id="left-col">
       <div id='cssmenu'>
         <ul>
            <li class='active has-sub'><a href='#'>合同起草</a>
@@ -50,43 +48,33 @@
         </ul>
         </div>
     </div>
+
     <div id="right-col">
+        <form class="basic-grey">
+              <h1>$title</h1>
+              <input id="name" type="text" name="name" placeholder="查找$ht" />
+              <input type="button" class="buttonRed" value="搜索" /> 
+        </form>
 
-        <div>
-          <form class="basic-grey">
-                <h1>$title</h1>
-                <input id="name" type="text" name="name" placeholder="查找$ht" />
-                <input type="button" class="buttonRed" value="搜索" /> 
-          </form>
-        </div>
-
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th>合同名称</th>
-                <th>起草时间</th>
-                <th>操作</th>
-              </tr>
-            </thead>
-            <tbody>
-            $rs
-            </tbody>
-          </table>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>合同名称</th>
+              <th>起草时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          $rs
+          </tbody>
+        </table>
       </div>
-
-  </div>
-
-
+    </div>
+</div>
 
   <script type="text/javascript" src="js/framework7.min.js"></script>
   <script type="text/javascript" src="js/functions.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
-
-</div>
-
-
 
 
 </body>
