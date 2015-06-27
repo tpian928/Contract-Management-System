@@ -1,6 +1,7 @@
 body
 {
 	text-align: center;
+    overflow: auto;
 }
 
 h1 {
@@ -117,6 +118,7 @@ p
     color: #888;
     text-shadow: 1px 1px 1px #FFF;
     border:1px solid #E4E4E4;
+    overflow: auto;
 }
 
 
@@ -470,6 +472,12 @@ fieldset {
 .cui-tab input:nth-of-type(5):checked ~ label:nth-of-type(1)::after{
   -webkit-transform:translateX(400%);
 }
+
+#roleDiv
+{
+	overflow: auto;
+}
+
 
 
 

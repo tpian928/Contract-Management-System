@@ -55,7 +55,14 @@ public class IndexServlet extends HttpServlet {
 			String htmlContent = "";
 			
 			htmlString=htmlString.replace("$username", mUser.getName());
+
 			
+			if (mUser.hasFunc(14)) {
+				htmlString=htmlString.replace("$admina", "<a href=\"/CM/showuser\" id=\"admina\">管理员</a>");
+			}
+			else {
+				htmlString=htmlString.replace("$admina", "");
+			}
 			
 			
 			switch (page) {
