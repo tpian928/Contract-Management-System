@@ -5,13 +5,26 @@
 <title>起草合同</title>
 <link rel="stylesheet" type="text/css" href="css/cm.css">
 <link rel="stylesheet" href="css/default.css">
+<link href="http://hayageek.github.io/jQuery-Upload-File/uploadfile.min.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://hayageek.github.io/jQuery-Upload-File/jquery.uploadfile.min.js"></script>
 
+
+<style type="text/css">
+    iframe
+    {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+</style>
 
 </head>
 <body>
 
 <div class="notTop">
-    <form method="post" class="basic-grey">
+    <form method="post" class="basic-grey" enctype="multipart/form-data">
         <h1>起草合同</h1>
 
         <label>
@@ -56,15 +69,19 @@
             <textarea id="message" name="message" placeholder="必填"></textarea>
         </label> 
 
-        <label class="line">
-            <span>附件</span>
-            <input type="file" name="fileName" value="选择附件">
+        <label class="line" style="height: 150px;">
+        <iframe src="uploadframe.html"></iframe>
         </label>
 
-        <label>
+        <br>
+        <br>
+        <br>
+        <div style="padding-top:5px">
             <input type="button" id="draft" class="buttonGreen leftBtn" value="提交" />
-            <input type="button" id="clear" class="buttonRed rightBtn" value="重置" />                 
-        </label> 
+            <input type="button" id="clear" class="buttonRed rightBtn" value="重置" />                
+        </div>
+             
+
 
     </form>
 
