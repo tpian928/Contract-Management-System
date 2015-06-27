@@ -48,9 +48,5 @@ function initHtml () {
 
     });
 
-    $$('#clear').on('click', function () {
-        location.reload();
-    });
-
 }
 

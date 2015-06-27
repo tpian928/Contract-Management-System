@@ -4,20 +4,14 @@ function initHtml () {
 	
 	var $$ = Dom7;
 
-    var nowurl = window.location.href;
-	var query = $$.parseUrlQuery(nowurl);
-	var pageStr = $$.serializeObject(query.page);
-	if (pageStr==""||pageStr=="undefined") {
-		pageStr="0";
-	}
-	$$('#page').val(pageStr);
+    // //定稿
+    // $$(document).on('click','＃dga', function () {
+    //     var cid = $$(this).prop('id');
+    //     var cname = $$('strong').html();
+  		// o("fuck cname");
+    //     location.href="/CM/cAShow?cid="+cid+"&cname="+cname+"&action=dg";
 
-	var q = $$('#q').val();
-
-    //主界面搜索
-    $$(document).on('click','#searchBtn', function () {
-        window.location.href="/CM/index?page="+pageStr+"&q="+q;
-    });
+    // });
 
 }
 

@@ -61,19 +61,6 @@ public class Hwriter {
 		return builder.toString();
 	}
 	
-	/**
-	 * 在look界面写一些东西
-	 * @param title
-	 * @param content
-	 * @return
-	 */
-	public static String WirteMoreInLook(String title,String content) {
-		StringBuilder builder = new StringBuilder();
-		builder.append("<span>"+title+"</span>");
-		builder.append("<textarea id=\"message2\" name=\"message2\">"+content+"</textarea>");
-		return builder.toString();
-	}
-	
 	
 	
 }
