@@ -14,9 +14,7 @@
 </head>
 <body>
 <%
-Contract mContract = new Contract(10010);
-mContract.setContent("fuck");
-mContract.updateContract(mContract);
+
 %>
 
 </body>

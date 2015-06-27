@@ -41,6 +41,11 @@ public class IndexServlet extends HttpServlet {
 			if (request.getParameter("page")!=null) {
 				page = Integer.parseInt(request.getParameter("page"));
 			}
+			
+			String q = "";
+			if (request.getParameter("q")!=null) {
+				q=request.getParameter("q");
+			}
 
 			ServletContext context = getServletContext();
 			String fullPath = context.getRealPath("/index.html");
@@ -51,10 +56,12 @@ public class IndexServlet extends HttpServlet {
 			
 			htmlString=htmlString.replace("$username", mUser.getName());
 			
+			
+			
 			switch (page) {
 			case 0://待会签合同
 				
-				Set<Contract> contractSet = mUser.getContracts(0, 0);
+				Set<Contract> contractSet = mUser.getContracts(0, 0,q);
 				
 				htmlString=htmlString.replace("$title", "待会签合同");
 				htmlString=htmlString.replace("$ht", "待会签合同");
@@ -65,7 +72,7 @@ public class IndexServlet extends HttpServlet {
 				}
 				break;
 			case 1:
-				Set<Contract> contractSet2 = mUser.getContracts(0, 1);
+				Set<Contract> contractSet2 = mUser.getContracts(0, 1,q);
 				htmlString=htmlString.replace("$title", "已会签合同");
 				htmlString=htmlString.replace("$ht", "已会签合同");
 				for(Contract tmp:contractSet2){
@@ -73,7 +80,7 @@ public class IndexServlet extends HttpServlet {
 				}
 				break;
 			case 2:
-				Set<Contract> contractSet3 = mUser.getContracts(1, 0);
+				Set<Contract> contractSet3 = mUser.getContracts(1, 0,q);
 				htmlString=htmlString.replace("$title", "待审批合同");
 				htmlString=htmlString.replace("$ht", "待审批合同");
 				for(Contract tmp:contractSet3){
@@ -83,7 +90,7 @@ public class IndexServlet extends HttpServlet {
 				}				
 				break;
 			case 3:
-				Set<Contract> contractSet4 = mUser.getContracts(1, 1);
+				Set<Contract> contractSet4 = mUser.getContracts(1, 1,q);
 				htmlString=htmlString.replace("$title", "已审批合同");
 				htmlString=htmlString.replace("$ht", "已审批合同");
 				for(Contract tmp:contractSet4){
@@ -91,7 +98,7 @@ public class IndexServlet extends HttpServlet {
 				}				
 				break;
 			case 4:
-				Set<Contract> contractSet5 = mUser.getContracts(2, 0);
+				Set<Contract> contractSet5 = mUser.getContracts(2, 0,q);
 				htmlString=htmlString.replace("$title", "待签订合同");
 				htmlString=htmlString.replace("$ht", "待签订合同");
 				for(Contract tmp:contractSet5){
@@ -101,7 +108,7 @@ public class IndexServlet extends HttpServlet {
 				}				
 				break;
 			case 5:
-				Set<Contract> contractSet6 = mUser.getContracts(2, 1);
+				Set<Contract> contractSet6 = mUser.getContracts(2, 1,q);
 				htmlString=htmlString.replace("$title", "已签订合同");
 				htmlString=htmlString.replace("$ht", "已签订合同");
 				for(Contract tmp:contractSet6){

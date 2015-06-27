@@ -461,13 +461,13 @@ public class Contract {
 	 * @param username
 	 * @return
 	 */
-	public Set<Contract> getContractSetWithTSU(int type,int state,String username) {
+	public Set<Contract> getContractSetWithTSU(int type,int state,String username,String q) {
 		
 		Set<Contract> cSet = new HashSet<Contract>();
 
 		Connection conn = getConnection(); 
 		try {
-			String sql = "select *from contract where id in (select cid from contract_process where type='"+type+"' AND state='"+state+"' AND username='"+username+"')";
+			String sql = "select *from contract where (id in (select cid from contract_process where type='"+type+"' AND state='"+state+"' AND username='"+username+"')) AND name like '%"+q+"%'";
 			st = (Statement) conn.createStatement(); 
 			ResultSet rs = st.executeQuery(sql); 
 			while (rs.next()) { 
@@ -490,8 +490,6 @@ public class Contract {
 			System.out.println("getContractSetWithTSU失败");
 			System.err.println(e);
 		}
-		
-		
 		return cSet;
 	}
 	
