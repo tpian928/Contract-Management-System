@@ -16,9 +16,7 @@ function initHtml () {
 
     //主界面搜索
     $$(document).on('click','#searchBtn', function () {
-        
         window.location.href="/CM/index?page="+pageStr+"&q="+q;
-
     });
 
 }
