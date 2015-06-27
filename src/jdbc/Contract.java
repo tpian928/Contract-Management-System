@@ -490,6 +490,7 @@ public class Contract {
 			System.out.println("getContractSetWithTSU失败");
 			System.err.println(e);
 		}
+		
 		return cSet;
 	}
 	
@@ -531,6 +532,68 @@ public class Contract {
 
 		
 		return auto_id;
+	}
+	
+	/**
+	 * 得到会签意见
+	 * @return String结果集
+	 */
+	public Set<String> getHQAdvice() {
+
+		Set<String> strSet = new HashSet<String>();
+		
+		Connection conn = getConnection(); 
+		try {
+			String sql = "select *from contract_process where type='0' and cid='"+this.cid+"' and state=1";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				strSet.add(rs.getString("username")+":"+rs.getString("content"));
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("getAdvice失败");
+			System.err.println(e);
+		}
+		
+		return strSet;
+		
+	}
+	
+	/**
+	 * 得到审批意见
+	 * @return
+	 */
+	public Set<String> getSPAdvice() {
+		
+		Set<String> strSet = new HashSet<String>();
+		
+		Connection conn = getConnection(); 
+		try {
+			String sql = "select *from contract_process where type='1' and cid='"+this.cid+"' and state>0";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				String aStr = "";
+				aStr=aStr+rs.getString("username")+":";
+				String agree = "";
+				if (rs.getInt("type")==1) {
+					agree="同意";
+				}
+				else {
+					agree="不同意";
+				}
+				aStr=aStr+agree+".  "+rs.getString("content");
+				strSet.add(aStr);
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("getSPAdvice失败");
+			System.err.println(e);
+		}
+		
+		return strSet;
+		
 	}
 	
 	//以下是get和set

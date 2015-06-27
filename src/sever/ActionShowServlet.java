@@ -164,6 +164,31 @@ public class ActionShowServlet extends HttpServlet {
 				htmlString = htmlString.replace("$javabtime",mContract.getBtime());
 				htmlString = htmlString.replace("$javaetime",mContract.getEtime());
 				htmlString = htmlString.replace("$content",mContract.getContent());
+				
+				htmlString = htmlString.replace("$more","");
+				
+			}
+			
+			else if (request.getParameter("action").equals("lookhq")) {
+				String fullPath = context.getRealPath("/look.html");
+				File htmlTemplateFile = new File(fullPath);
+				htmlString = FileUtils.readFileToString(htmlTemplateFile);
+				
+				Contract mContract = new Contract(Integer.parseInt(request.getParameter("cid")));
+				
+				//设置合同名字
+				htmlString = htmlString.replace("$javaname",mContract.getCname());
+				htmlString = htmlString.replace("$javacustomer",mContract.getCustomer());
+				htmlString = htmlString.replace("$javabtime",mContract.getBtime());
+				htmlString = htmlString.replace("$javaetime",mContract.getEtime());
+				htmlString = htmlString.replace("$content",mContract.getContent());
+				Set<String> adviceSet = new HashSet<String>();
+				adviceSet=mContract.getHQAdvice();
+				String adviceStr = "";
+				for(String tmp:adviceSet){
+					adviceStr=adviceStr+tmp+"\n";
+				}
+				htmlString = htmlString.replace("$more",Hwriter.WirteMoreInLook("会签意见", adviceStr));
 			}
 
 			response.setContentType("text/html");

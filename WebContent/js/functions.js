@@ -29,12 +29,6 @@ function a (str) {
 	alert(str);
 }
 
-//这是为这个项目添加的
-
-//回到主页
-function fhome () {
-	 window.location.href="/CM/index";
-}
 
 
 

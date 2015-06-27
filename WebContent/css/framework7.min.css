@@ -6114,3 +6114,8 @@ html.ios-gt-6.pixel-ratio-3 .picker-calendar.picker-modal-inline .picker-calenda
 .border-red {
 	border-color:#ff3b30
 }
+
+body
+{
+	overflow: auto;
+}

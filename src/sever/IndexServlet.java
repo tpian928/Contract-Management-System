@@ -129,7 +129,7 @@ public class IndexServlet extends HttpServlet {
 				htmlString=htmlString.replace("$title", "待定稿合同");
 				htmlString=htmlString.replace("$ht", "待定稿合同");
 				for(Contract tmp:contractSet7){
-					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&action=dgshow&cname="+tmp.getCname()+"\">定稿</a> <a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&action=dgshow&cname="+tmp.getCname()+"\">查看会签</a>");
+					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&action=dgshow&cname="+tmp.getCname()+"\">定稿</a> <a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&action=lookhq&cname="+tmp.getCname()+"\">查看会签</a>");
 				}	
 				break;
 			case 7:
