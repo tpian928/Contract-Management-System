@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>主页</title>
-<link rel="stylesheet" href="css/cm.css">
+<link rel="stylesheet" href="css/newcm.css">
 <link rel="stylesheet" href="css/index.css">
 </head>
 
@@ -50,10 +50,11 @@
     </div>
 
     <div id="right-col">
-        <form class="basic-grey">
+        <form class="basic-grey ajax-submit" id="form1">
               <h1>$title<a id="usernamea" href="login.html">$username</a></h1>
-              <input id="name" type="text" name="name" placeholder="查找$ht" />
-              <input type="button" class="buttonRed" value="搜索" /> 
+              <input id="q" type="text" name="q" placeholder="查找$ht" />
+              <input id="page" type="hidden" name="page" placeholder="查找$ht" />
+              <input type="button" class="buttonRed" value="搜索" id="searchBtn" /> 
         </form>
 
         <table>
