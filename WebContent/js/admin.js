@@ -8,23 +8,19 @@ function initHtml () {
 		location.href="addRole.html"
 	});
 
-	$$('#searchBtn').on('click', function () {
-		submit();
+	$$(document).on('click','#searchBtn', function () {
+		o("searchBtn Click");
+		
+		var name = $$('#name').val();
+
+		window.location.href="/CM/showuser?name="+name
+
 	});	
 
 	$$('a').on('click', function () {
 		var grantid = $$(this).attr('id');
 		localStorage.grantid=grantid;
-		location.href="/CM/grant"		
+		window.location.href="/CM/grant"		
 	});	
 
-}
-
-function submit () {
-	o("searchBtn Click");
-	var $$ = Dom7;
-	var name = $$('#name').val();
-	$$.get('showuser', {name:name}, function (data) {
-		x(data);
-	});  
 }

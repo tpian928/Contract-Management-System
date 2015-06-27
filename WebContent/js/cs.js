@@ -18,7 +18,7 @@ function initHtml () {
                 var myApp = new Framework7();
                 if (obj.result) {
                     myApp.alert('添加成功', '', function () {
-                        location.herf="/CM/home";
+                        window.location.href="/CM/index";
                     });
                 }
                 else{

@@ -3,8 +3,6 @@ package obj;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
-
 import jdbc.Contract;
 import jdbc.Process;
 import jdbc.Role;
@@ -101,12 +99,12 @@ public class User {
 	 * @param state 状态 0-未完成 1-已完成 2-已否决
 	 * @return
 	 */
-	public Set<Contract> getContracts(int type,int state) {
+	public Set<Contract> getContracts(int type,int state,String q) {
 		System.out.println("getContracts");
 		Set<Contract> cSet = new HashSet<Contract>();
 		Contract mContract = new Contract();
 		
-		cSet = mContract.getContractSetWithTSU(type, state, this.name);		
+		cSet = mContract.getContractSetWithTSU(type, state, this.name,q);		
 		return cSet;
 	}
 	
