@@ -143,3 +143,10 @@ table
   vertical-align: bottom;
   padding-right: 5px;
 }
+#admina
+{
+  float: left;
+  font-size: 16px;
+  vertical-align: bottom;
+  padding-left: 5px;
+}

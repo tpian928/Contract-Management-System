@@ -2,25 +2,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>起草合同</title>
+<title>查看合同</title>
 <link rel="stylesheet" type="text/css" href="css/cm.css">
 <link rel="stylesheet" href="css/default.css">
-
 
 </head>
 <body>
 
 <div class="notTop">
     <form method="post" class="basic-grey">
-        <h1>起草合同</h1>
+        <h1>查看合同</h1>
 
         <label>
             <span>合同名称</span>
-            <input id="cname" type="text" name="cname" placeholder="必填"/>
+            <input id="cname" type="text" name="cname" placeholder="必填" value="$javaname" />
         </label>
         <label>
             <span>客户</span>
-            <input id="customer" type="text" name="customer" placeholder="选填"/>
+            <input id="customer" type="text" name="customer" placeholder="选填" value="$javacustomer" />
         </label>        
        <label>
             <span>开始时间</span>
@@ -31,6 +30,7 @@
                     class="datepicker"
                     name="date"
                     placeholder="必填"
+                    value="$javabtime"
                     type="text">
             </fieldset>
             <div id="container"></div>
@@ -45,6 +45,7 @@
                     class="datepicker"
                     name="date"
                     placeholder="必填"
+                    value="$javaetime"
                     type="text">
             </fieldset>
             <div id="container"></div>
@@ -53,39 +54,30 @@
 
         <label>
             <span>合同内容</span>
-            <textarea id="message" name="message" placeholder="必填"></textarea>
+            <textarea id="message" name="message">$content</textarea>
         </label> 
 
         <label class="line">
-            <span>附件</span>
-            <input type="file" name="fileName" value="选择附件">
+            <span >附件</span>
+            <span id="fjname"></span>
+            <input type="button" id="pick" class="pickBtn" value="下载查看" />
         </label>
 
-        <label>
-            <input type="button" id="draft" class="buttonGreen leftBtn" value="提交" />
-            <input type="button" id="clear" class="buttonRed rightBtn" value="重置" />                 
+         <label>
+            $more
         </label> 
+       
 
     </form>
 
     <script type="text/javascript" src="js/framework7.min.js"></script>
     <script type="text/javascript" src="js/functions.js"></script>
-    <script src="http://libs.useso.com/js/jquery/2.1.0/jquery.js"></script>
-    <script src="js/picker.js"></script>
-    <script src="js/picker.date.js"></script>
-    <script src="js/legacy.js"></script>
-    <script src="js/draft.js"></script>
-
+    <script src="js/look.js"></script>
 
 </div>
 
 <link rel="stylesheet" type="text/css" href="css/framework7.min.css">
-<style type="text/css">
-    body
-    {
-        overflow: auto;
-    }
-</style>
+
 
 </body>
 </html>

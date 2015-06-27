@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>主页</title>
-<link rel="stylesheet" href="css/cm.css">
+<link rel="stylesheet" href="css/newcm.css">
 <link rel="stylesheet" href="css/index.css">
 </head>
 
@@ -18,6 +18,7 @@
            <li class='active has-sub'><a href='#'>合同起草</a>
               <ul>
                  <li class='has-sub'><a href='draft.html'>起草合同</a></li>
+                 <li class='has-sub'><a href='/CM/needac'>待分配合同</a></li>
                  <li class='has-sub'><a href='/CM/index?page=6'>待定稿合同</a></li>
                  <li class='has-sub'><a href='/CM/index?page=7'>已定稿合同</a></li>
                  <li class='has-sub'><a href='#'>流程查询</a></li>
@@ -50,10 +51,11 @@
     </div>
 
     <div id="right-col">
-        <form class="basic-grey">
-              <h1>$title<a id="usernamea" href="login.html">$username</a></h1>
-              <input id="name" type="text" name="name" placeholder="查找$ht" />
-              <input type="button" class="buttonRed" value="搜索" /> 
+        <form class="basic-grey ajax-submit" id="form1">
+              <h1>$title<a id="usernamea" href="login.html">$username</a>$admina</h1>
+              <input id="q" type="text" name="q" placeholder="查找$ht" />
+              <input id="page" type="hidden" name="page" placeholder="查找$ht" />
+              <input type="button" class="buttonRed" value="搜索" id="searchBtn" /> 
         </form>
 
         <table>
