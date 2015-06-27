@@ -39,6 +39,7 @@ public class Contract {
 	private String content;
 	private String draftmanname;
 	private String drafttime;
+	@SuppressWarnings("unused")
 	private int state;
 	
 	/**

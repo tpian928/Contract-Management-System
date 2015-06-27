@@ -3,8 +3,6 @@ package obj;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.jdt.internal.compiler.ast.ThisReference;
-
 import jdbc.Contract;
 import jdbc.Process;
 import jdbc.Role;
