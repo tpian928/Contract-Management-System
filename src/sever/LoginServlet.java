@@ -32,20 +32,10 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
-		response.sendRedirect("noscope.html");
 		String name = request.getParameter("name");
 		String password = request.getParameter("pw");
 		
 		User m = UserJDBCAction.isMyUser(name, password);
-		
-		if (m==null) {
-			
-		}
-		else {
-			
-		}
-		
 		JSONObject jsonObject = new JSONObject();
 		if (Func.isEmpty(m.getId())==false) {
 			request.getSession().setAttribute("access_taken", m.getAccess_taken());

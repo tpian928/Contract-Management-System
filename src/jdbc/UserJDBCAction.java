@@ -82,7 +82,7 @@ public class UserJDBCAction {
 		Connection conn2 = getUserConnection(); // 同样先要获取连接，即连接到数据库
 		try {
 			
-			String sql = "select * from user where name='"+name+"'";
+			String sql = "select id,access_taken,password from user where name='"+name+"'";
 			
 			st = (Statement) conn2.createStatement();
 			ResultSet rs = st.executeQuery(sql);
@@ -96,15 +96,12 @@ public class UserJDBCAction {
 			conn2.close(); // 关闭数据库连接
 
 		} catch (SQLException e) {
-			
+
 			System.out.println("查询数据失败");
 			System.err.println(e);
-			
 		}
 		
-		User mUser = new User(id, access_taken);
-		
-		return mUser;
+		return new User(id, access_taken);
 	}
 	
 	private void deleteAllRole(int userid) {
