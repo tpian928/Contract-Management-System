@@ -4,4 +4,6 @@ public class Global {
 
 	public static String contractPath = "";
 	
+	public static String logStr = "";
+	
 }
