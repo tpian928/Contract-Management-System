@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import obj.User;
+import func.EncryptUtils;
 import func.Security;
 
 
@@ -42,6 +43,9 @@ public class UserJDBCAction {
 	public static User addUser(String name,String password) {
 		
 		String idstr = "";
+		
+		password=EncryptUtils.base64encode(password);
+		
 		Connection conn = getUserConnection(); // 同样先要获取连接，即连接到数据库
 		String access_taken = Security.RandomString(15);
 		String sql = "INSERT INTO user (name, password,access_taken) values('"+name+"', '"+password+"','"+access_taken+"')";
@@ -78,16 +82,17 @@ public class UserJDBCAction {
 		Connection conn2 = getUserConnection(); // 同样先要获取连接，即连接到数据库
 		try {
 			
-			String sql = "select id,access_taken from user where name='"+name+"' AND password='"+password+"'";
+			String sql = "select id,access_taken,password from user where name='"+name+"'";
 			
 			st = (Statement) conn2.createStatement();
 			ResultSet rs = st.executeQuery(sql);
 			
 			while (rs.next()) { 
-				id=rs.getString("id");
-				access_taken = rs.getString("access_taken");
+				if (EncryptUtils.base64decode(rs.getString("password")).equals(password)) {
+					id=rs.getString("id");
+					access_taken = rs.getString("access_taken");
+				}
 			}
-
 			conn2.close(); // 关闭数据库连接
 
 		} catch (SQLException e) {

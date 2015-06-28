@@ -1,3 +1,4 @@
+<%@page import="func.EncryptUtils"%>
 <%@page import="jdbc.Customer"%>
 <%@page import="jdbc.Contract"%>
 <%@page import="java.util.Set"%>
@@ -15,11 +16,7 @@
 </head>
 <body>
 <%
-Customer mCustomer = new Customer(-1);
-
-for(Customer tmp:mCustomer.getCustomerSet("")){
-	System.out.println(tmp.getName());
-}
+EncryptUtils.test();
 
 %>
 
