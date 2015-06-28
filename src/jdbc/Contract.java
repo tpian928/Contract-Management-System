@@ -158,7 +158,7 @@ public class Contract {
 		else{
 			Connection conn = getConnection(); 
 			try {
-				String sql = "update contract_state set type='"+type+"'";
+				String sql = "update contract_state set type='"+type+"' where cid='"+this.getCid()+"'";
 				st = (Statement) conn.createStatement();
 				int resultnum = st.executeUpdate(sql);
 				System.out.println(resultnum);
@@ -353,6 +353,11 @@ public class Contract {
 
 	}
 	
+	/**
+	 * 得到制定状态的合同状态
+	 * @param state
+	 * @return
+	 */
 	public Set<Contract> getContractsByState(int state) {
 		Set<Contract> contractSet = new HashSet<Contract>();
 		

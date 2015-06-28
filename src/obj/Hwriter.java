@@ -103,7 +103,17 @@ public class Hwriter {
 		builder.append("$$('#account').val('"+mCustomer.getBankAccount()+"');");
 		builder.append("$$('#more').val('"+mCustomer.getMore()+"');");
 		builder.append("$$('h1').html('查看客户')");
-		
+		return builder.toString();
+	}
+	
+	public static String modifyTableTitle(String str1,String str2,String str3) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("<script type=\"text/javascript\">");
+		builder.append("var $$ = Dom7;");
+		builder.append("$$('#title1').html('"+str1+"');");
+		builder.append("$$('#title2').html('"+str2+"');");
+		builder.append("$$('#title3').html('"+str3+"');");	 
+		builder.append("</script>");		
 		return builder.toString();
 	}
 

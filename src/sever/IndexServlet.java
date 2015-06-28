@@ -158,7 +158,45 @@ public class IndexServlet extends HttpServlet {
 				else {
 					response.sendRedirect("noscope.html");
 				}
+				break;
+			case 9:
+				if (mUser.hasFunc(27)) {
+					htmlString=htmlString.replace("$title", "流程查询");
+					htmlString=htmlString.replace("$ht", "合同名称");
+					
+					Contract mContract = new Contract();
+					Set<Contract> set0=mContract.getContractsByState(0);
+					Set<Contract> set1=mContract.getContractsByState(1);
+					Set<Contract> set2=mContract.getContractsByState(2);
+					Set<Contract> set3=mContract.getContractsByState(3);
+					Set<Contract> set4=mContract.getContractsByState(4);
+					Set<Contract> set5=mContract.getContractsByState(5);
+					
+					for(Contract tmp:set0){
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "起草完成");
+					}
+					for(Contract tmp:set1){
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "分配完成");
+					}
+					for(Contract tmp:set2){
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "会签完成");
+					}
+					for(Contract tmp:set3){
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "定稿完成");
+					}
+					for(Contract tmp:set4){
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "审批完成");
+					}
+					for(Contract tmp:set5){
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "签订完成")+Hwriter.modifyTableTitle("名称", "起草时间", "状态");
+					}
+					
+				}
+				else {
+					response.sendRedirect("noscope.html");
+				}
 				
+				break;
 			default:
 				
 				break;
