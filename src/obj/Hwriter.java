@@ -112,7 +112,8 @@ public class Hwriter {
 		builder.append("var $$ = Dom7;");
 		builder.append("$$('#title1').html('"+str1+"');");
 		builder.append("$$('#title2').html('"+str2+"');");
-		builder.append("$$('#title3').html('"+str3+"');");	 
+		builder.append("$$('#title3').html('"+str3+"');");	
+		builder.append("$$('.basic-grey').remove();");
 		builder.append("</script>");		
 		return builder.toString();
 	}
