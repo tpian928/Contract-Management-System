@@ -78,10 +78,12 @@ public class Hwriter {
 	
 	public static String writeIndexJs() {
 		StringBuilder builder = new StringBuilder();
+		builder.append("<script type=\"text/javascript\">");
 		builder.append("var $$ = Dom7;");
 		builder.append("$$('#title1').html('客户名字');");
 		builder.append("$$('#title2').html('电话号码');");
-		builder.append("$$('#title3').html('操作');");	  
+		builder.append("$$('#title3').html('操作');");	 
+		builder.append("</script>");		
 		return builder.toString();
 	}
 	

@@ -12,10 +12,9 @@ function initHtml () {
 	}
 	$$('#page').val(pageStr);
 
-	var q = $$('#q').val();
-
     //主界面搜索
     $$(document).on('click','#searchBtn', function () {
+    	var q = $$('#q').val();
         window.location.href="/CM/index?page="+pageStr+"&q="+q;
     });
 

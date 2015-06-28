@@ -150,10 +150,10 @@ public class IndexServlet extends HttpServlet {
 					htmlString=htmlString.replace("$title", "客户");
 					htmlString=htmlString.replace("$ht", "客户");
 					Customer mCustomer = new Customer(-1);
-					for(Customer tmp:mCustomer.getCustomerSet("")){
-						htmlContent=htmlContent+Hwriter.writeTable(tmp.getName(), tmp.getPhone(), "<a id=\""+tmp.getId()+"\" href=\"/CM/cAShow?cid="+tmp.getId()+"&action=lookc\">查看</a>");
+					for(Customer tmp:mCustomer.getCustomerSet(q)){
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getName(), tmp.getPhone(), "<a id=\""+tmp.getId()+"\" href=\"/CM/cAShow?cid="+tmp.getId()+"&action=lookc\">查看</a>")+Hwriter.writeIndexJs();
 					}			
-					htmlString=htmlString.replace("indexjs", Hwriter.writeIndexJs());
+					
 				}
 				else {
 					response.sendRedirect("noscope.html");
