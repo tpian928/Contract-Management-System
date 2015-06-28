@@ -19,6 +19,7 @@ function initHtml () {
     })
 
     $$('#draft').on('click', function () {
+        o("click");
         var bdate = $input1.pickadate( 'picker' ).get('select', 'yyyy-mm-dd');
         var edate = $input2.pickadate( 'picker' ).get('select', 'yyyy-mm-dd');
         

@@ -3,9 +3,7 @@ package sever;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Iterator;
-import java.util.List;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,15 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import obj.Admin;
+import obj.Global;
 import obj.User;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import jdbc.Attachment;
 import jdbc.Contract;
 import jdbc.UserJDBCAction;
 
@@ -30,20 +26,14 @@ import jdbc.UserJDBCAction;
 @WebServlet("/cAction")
 public class ActionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ServletFileUpload uploader = null;   
+
 
     public ActionServlet() {
         super();
         
     }
 
-	@Override
-	public void init() throws ServletException{
-		DiskFileItemFactory fileFactory = new DiskFileItemFactory();
-		File filesDir = (File) getServletContext().getAttribute("FILES_DIR_FILE");
-		fileFactory.setRepository(filesDir);
-		this.uploader = new ServletFileUpload(fileFactory);
-	}
+
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -69,12 +59,15 @@ public class ActionServlet extends HttpServlet {
 					String bdate = request.getParameter("bdate");
 					System.out.println("bdate is "+bdate);
 					String edate = request.getParameter("edate");
-					@SuppressWarnings("unused")
 					Contract mContract = new Contract(cname, customer, bdate, edate, message, UserJDBCAction.getUserById(id).getName());
+					int thecid = mContract.getCid();
 					exeres=true;
 					
 					//路径加入数据库
 					
+					
+					Attachment mAttachment = new Attachment("attach"+mContract.getCname(), Global.contractPath, 1,thecid);
+					mContract.addAttachment(mAttachment);
 					
 				}
 				else {

@@ -91,7 +91,7 @@ public class UploadDownloadFileServlet extends HttpServlet {
 				File file = new File(request.getServletContext().getAttribute("FILES_DIR")+File.separator+fileItem.getName());
 				System.out.println("Absolute Path at server="+file.getAbsolutePath());
 				
-				Global.contractPathString=file.getAbsolutePath();
+				Global.contractPath=file.getAbsolutePath();
 				
 				theXmlString=file.getAbsolutePath();
 				fileItem.write(file);

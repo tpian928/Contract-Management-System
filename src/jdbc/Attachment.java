@@ -2,6 +2,14 @@ package jdbc;
 
 public class Attachment {
 
+	public Attachment(String filename, String path, int type, int con_id) {
+		super();
+		this.filename = filename;
+		this.path = path;
+		this.type = type;
+		this.con_id = con_id;
+	}
+	
 	private String filename,path;
 	private int type,con_id;
 	
