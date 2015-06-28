@@ -64,15 +64,16 @@ public class Customer {
 				while (rs.next()) { 
 				    auto_id = rs.getInt(1);
 				}
-				this.setId(auto_id);
+				
 			} catch (SQLException e) {
 				auto_id=-1;
 				e.printStackTrace();
 			}
-
+			this.setId(auto_id);
 			conn.close(); 
 			
 		} catch (SQLException e) {
+			this.setId(auto_id);
 			System.out.println("插入合同失败");
 			System.err.println(e);
 		}

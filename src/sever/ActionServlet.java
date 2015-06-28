@@ -3,7 +3,6 @@ package sever;
 
 import java.io.IOException;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +18,7 @@ import org.json.JSONObject;
 
 import jdbc.Attachment;
 import jdbc.Contract;
+import jdbc.Customer;
 import jdbc.UserJDBCAction;
 
 
@@ -172,6 +172,29 @@ public class ActionServlet extends HttpServlet {
 					
 					exeres = mUser.completeQD(Integer.parseInt(request.getSession().getAttribute("cid").toString()), request.getParameter("message"));
 					
+				}
+				else {
+					exeres=false;
+					response.sendRedirect("noscope.html");
+				}
+				
+			}
+			else if (action.equals("addc")) {
+				
+				if (mUser.hasFunc(25)) {
+					String name = request.getParameter("name");
+					String phone = request.getParameter("phone");
+					String address = request.getParameter("address");
+					String fax = request.getParameter("fax");
+					String email = request.getParameter("email");
+					String bank = request.getParameter("bank");
+					String account = request.getParameter("account");
+					String more = request.getParameter("more");
+					
+					Customer mCustomer = new Customer(name, phone, address, fax, email, bank, account, more);
+					if (mCustomer.getId()!=-1) {
+						exeres=true;
+					}					
 				}
 				else {
 					exeres=false;
