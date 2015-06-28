@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
 
+import obj.Global;
+
 
 public class Contract {
 	
@@ -23,7 +25,7 @@ public class Contract {
 			con = DriverManager
 					.getConnection(
 							"jdbc:mysql://localhost/cm?useUnicode=true&characterEncoding=UTF-8",
-							"contracter", "tana2amnus6ekes");// 创建数据连接
+							"root", "wangyifei928");// 创建数据连接
 		} catch (Exception e) {
 			System.out.println("数据库连接失败" + e.getMessage());
 		}
@@ -365,6 +367,7 @@ public class Contract {
 		Connection conn = getConnection(); 
 		try {
 			String sql = "select * from contract where id in (select cid from contract_state where type='"+state+"')";
+			
 			st = (Statement) conn.createStatement(); 
 			ResultSet rs = st.executeQuery(sql);
 			
@@ -386,6 +389,9 @@ public class Contract {
 			conn.close(); 
 		} catch (SQLException e) {
 			System.out.println("查询制定状态的合同失败");
+			Contract mContract = new Contract(-1);
+			mContract.setContent(e+"");
+			contractSet.add(mContract);
 			System.err.println(e);
 		}
 		

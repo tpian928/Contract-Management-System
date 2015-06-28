@@ -1,3 +1,4 @@
+<%@page import="obj.Global"%>
 <%@page import="func.EncryptUtils"%>
 <%@page import="jdbc.Customer"%>
 <%@page import="jdbc.Contract"%>
@@ -16,7 +17,13 @@
 </head>
 <body>
 <%
-EncryptUtils.test();
+Contract mContract = new Contract();
+Set<Contract> contractSet = mContract.getContractsByState(0);
+
+for(Contract tmp:contractSet){
+	out.println(tmp.getContent());
+}
+
 
 %>
 
