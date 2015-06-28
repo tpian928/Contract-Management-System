@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>起草合同</title>
+<link rel="stylesheet" type="text/css" href="css/cm.css">
+<link rel="stylesheet" href="css/default.css">
+<link href="http://hayageek.github.io/jQuery-Upload-File/uploadfile.min.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://hayageek.github.io/jQuery-Upload-File/jquery.uploadfile.min.js"></script>
+
+
+<style type="text/css">
+    iframe
+    {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+</style>
+
+</head>
+<body>
+
+<div class="notTop">
+    <form method="post" class="basic-grey" enctype="multipart/form-data">
+        <h1>添加客户</h1>
+
+        <label>
+            <span>客户名称</span>
+            <input id="name" type="text" name="name" placeholder="必填"/>
+        </label>
+
+        <label>
+            <span>电话</span>
+            <input id="phone" type="text" name="phone" placeholder="必填"/>
+        </label> 
+
+        <label>
+            <span>地址</span>
+            <input id="address" type="text" name="address" placeholder="必填"/>
+        </label>        
+        <label>
+            <span>传真</span>
+            <input id="fax" type="text" name="fax" placeholder="必填"/>
+        </label>        
+        <label>
+            <span>邮箱</span>
+            <input id="email" type="text" name="email" placeholder="必填"/>
+        </label>               
+        <label>
+            <span>银行名称</span>
+            <input id="bank" type="text" name="bank" placeholder="必填"/>
+        </label>        
+        <label>
+            <span>银行账号</span>
+            <input id="account" type="text" name="account" placeholder="必填"/>
+        </label>        
+
+        <label>
+            <span>备注</span>
+            <textarea id="more" name="more" placeholder="选填"></textarea>
+        </label> 
+
+
+        <div style="padding-top:5px">
+            <input type="button" id="draft" class="buttonGreen leftBtn" value="提交" />
+            <input type="button" id="clear" class="buttonRed rightBtn" value="重置" />                
+        </div>
+             
+
+
+    </form>
+
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script src="js/addc.js"></script>
+
+
+</div>
+
+<link rel="stylesheet" type="text/css" href="css/framework7.min.css">
+<style type="text/css">
+    body
+    {
+        overflow: auto;
+    }
+</style>
+
+</body>
+</html>

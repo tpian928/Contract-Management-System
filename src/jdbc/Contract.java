@@ -77,13 +77,14 @@ public class Contract {
 				    auto_id = rs.getInt(1);
 					System.out.println("auto_id is "+auto_id);
 				}
+				this.setCid(auto_id);
 			} catch (SQLException e) {
 				auto_id=-1;
 				e.printStackTrace();
 			}
 
 			conn.close(); 
-
+			
 		} catch (SQLException e) {
 			System.out.println("插入合同失败");
 			System.err.println(e);
@@ -532,6 +533,27 @@ public class Contract {
 
 		
 		return auto_id;
+	}
+	
+	public Set<Attachment> getAttachments() {
+		Set<Attachment> attachmentSet = new HashSet<Attachment>();
+		
+		Connection conn = getConnection(); 
+		try {
+			String sql = "select *from contract_attachment where con_id='"+this.getCid()+"'";
+			st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				Attachment mAttachment = new Attachment(rs.getString("fileName"), rs.getString("path"), rs.getInt("type"), this.getCid());
+				attachmentSet.add(mAttachment);
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("getAdvice失败");
+			System.err.println(e);
+		}
+		
+		return attachmentSet;
 	}
 	
 	/**

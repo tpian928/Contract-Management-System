@@ -1,7 +1,6 @@
 package sever;
 
 
-import java.io.File;
 import java.io.IOException;
 
 
@@ -62,11 +61,13 @@ public class ActionServlet extends HttpServlet {
 					Contract mContract = new Contract(cname, customer, bdate, edate, message, UserJDBCAction.getUserById(id).getName());
 					int thecid = mContract.getCid();
 					exeres=true;
-					
+					String fileNameString = "";
 					//路径加入数据库
+					if (request.getSession().getAttribute("fileName")!=null) {
+						fileNameString=request.getSession().getAttribute("fileName").toString();
+					}
 					
-					
-					Attachment mAttachment = new Attachment("attach"+mContract.getCname(), Global.contractPath, 1,thecid);
+					Attachment mAttachment = new Attachment(fileNameString, Global.contractPath, 1,thecid);
 					mContract.addAttachment(mAttachment);
 					
 				}

@@ -10,6 +10,10 @@ public class Attachment {
 		this.con_id = con_id;
 	}
 	
+	public Attachment(){
+		
+	}
+	
 	private String filename,path;
 	private int type,con_id;
 	

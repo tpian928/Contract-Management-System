@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import jdbc.Attachment;
 import jdbc.Contract;
 
 import org.apache.commons.io.FileUtils;
@@ -167,6 +168,18 @@ public class ActionShowServlet extends HttpServlet {
 				
 				htmlString = htmlString.replace("$more","");
 				
+				Attachment attachment = new Attachment();
+				for (Attachment tmp:mContract.getAttachments()) {
+					attachment=tmp;
+				}
+				if (mContract.getAttachments().size()>0) {
+					htmlString=htmlString.replace("$js","window.location.href=\"/CM/uploadFiles?fileName="+attachment.getFilename()+"\"");
+					
+				}
+				else {
+					htmlString=htmlString.replace("$js","");
+				}
+				
 			}
 			
 			else if (request.getParameter("action").equals("lookhq")) {
@@ -189,6 +202,19 @@ public class ActionShowServlet extends HttpServlet {
 					adviceStr=adviceStr+tmp+"\n";
 				}
 				htmlString = htmlString.replace("$more",Hwriter.WirteMoreInLook("会签意见", adviceStr));
+				
+				Attachment attachment = new Attachment();
+				for (Attachment tmp:mContract.getAttachments()) {
+					attachment=tmp;
+				}
+				if (mContract.getAttachments().size()>0) {
+					htmlString=htmlString.replace("$js","window.location.href=\"/CM/uploadFiles?fileName="+attachment.getFilename()+"\"");
+					
+				}
+				else {
+					htmlString=htmlString.replace("$js","");
+				}
+				
 			}
 
 			response.setContentType("text/html");

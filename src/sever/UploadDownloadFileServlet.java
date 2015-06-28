@@ -99,6 +99,9 @@ public class UploadDownloadFileServlet extends HttpServlet {
 				out.write("File "+fileItem.getName()+ " uploaded successfully.");
 				out.write("<br>");
 				out.write("<a href=\"UploadDownloadFileServlet?fileName="+fileItem.getName()+"\">Download "+fileItem.getName()+"</a>");
+				
+				request.getSession().setAttribute("fileName", fileItem.getName());
+				
 			}
 		} catch (FileUploadException e) {
 			out.write("Exception in uploading file.");
