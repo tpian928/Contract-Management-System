@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Customer {
 
@@ -92,14 +94,14 @@ public class Customer {
 			Statement st = (Statement) conn.createStatement(); 
 			ResultSet rs = st.executeQuery(sql); 
 			while (rs.next()) { 
-				this.setName(rs.getString(1));
-				this.setAddress(rs.getString(2));
-				this.setPhone(rs.getString(3));
-				this.setFax(rs.getString(4));
-				this.setBankName(rs.getString(5));
-				this.setBankAccount(rs.getString(6));
-				this.setEmail(rs.getString(7));
-				this.setMore(rs.getString(8));
+				this.setName(rs.getString("name"));
+				this.setAddress(rs.getString("address"));
+				this.setPhone(rs.getString("tel"));
+				this.setFax(rs.getString("fax"));
+				this.setBankName(rs.getString("bank"));
+				this.setBankAccount(rs.getString("account"));
+				this.setEmail(rs.getString("email"));
+				this.setMore(rs.getString("more"));
 			}
 			conn.close(); 
 		} catch (SQLException e) {
@@ -107,6 +109,41 @@ public class Customer {
 			System.err.println(e);
 		}
 		
+	}
+	
+	/**
+	 * 通过搜索得到Customer
+	 * @param q 为""搜索出全部
+	 * @return
+	 */
+	public Set<Customer> getCustomerSet(String q) {
+		Set<Customer> customers = new HashSet<Customer>();
+		
+		Connection conn = getConnection(); 
+		try {
+			String sql = "select *from customer where name like '%"+q+"%'";
+			Statement st = (Statement) conn.createStatement(); 
+			ResultSet rs = st.executeQuery(sql); 
+			while (rs.next()) { 
+				Customer mCustomer = new Customer(-1);
+				mCustomer.setId(rs.getInt("id"));
+				mCustomer.setName(rs.getString("name"));
+				mCustomer.setAddress(rs.getString("address"));
+				mCustomer.setPhone(rs.getString("tel"));
+				mCustomer.setFax(rs.getString("fax"));
+				mCustomer.setBankName(rs.getString("bank"));
+				mCustomer.setBankAccount(rs.getString("account"));
+				mCustomer.setEmail(rs.getString("email"));
+				mCustomer.setMore(rs.getString("more"));
+				customers.add(mCustomer);
+			}
+			conn.close(); 
+		} catch (SQLException e) {
+			System.out.println("查询Customer失败");
+			System.err.println(e);
+		}
+
+		return customers;
 	}
 	
 	//以下自动生成

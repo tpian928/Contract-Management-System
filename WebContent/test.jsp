@@ -1,3 +1,4 @@
+<%@page import="jdbc.Customer"%>
 <%@page import="jdbc.Contract"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.ArrayList"%>
@@ -14,6 +15,11 @@
 </head>
 <body>
 <%
+Customer mCustomer = new Customer(-1);
+
+for(Customer tmp:mCustomer.getCustomerSet("")){
+	System.out.println(tmp.getName());
+}
 
 %>
 

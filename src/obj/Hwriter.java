@@ -74,6 +74,14 @@ public class Hwriter {
 		return builder.toString();
 	}
 	
+	public static String writeIndexJs() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("var $$ = Dom7;");
+		builder.append("$$('#title1').html('客户名字');");
+		builder.append("$$('#title2').html('电话号码');");
+		builder.append("$$('#title3').html('操作');");	  
+		return builder.toString();
+	}
 
 	
 }

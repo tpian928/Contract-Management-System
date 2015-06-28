@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jdbc.Contract;
+import jdbc.Customer;
 import obj.Hwriter;
 import obj.User;
 
@@ -63,7 +64,6 @@ public class IndexServlet extends HttpServlet {
 			else {
 				htmlString=htmlString.replace("$admina", "");
 			}
-			
 			
 			switch (page) {
 			case 0://待会签合同
@@ -137,11 +137,28 @@ public class IndexServlet extends HttpServlet {
 				Set<Contract> contractSet8 = mUser.getYiDingGao();
 				htmlString=htmlString.replace("$title", "已定稿合同");
 				htmlString=htmlString.replace("$ht", "已定稿合同");
+				
 				for(Contract tmp:contractSet8){
 					htmlContent=htmlContent+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\" href=\"/CM/cAShow?cid="+tmp.getCid()+"&action=look\">查看</a>");
 				}	
 				
 				break;
+			
+			case 8://这里显示客户
+				
+				if (mUser.hasFunc(27)) {
+					htmlString=htmlString.replace("$title", "客户");
+					htmlString=htmlString.replace("$ht", "客户");
+					Customer mCustomer = new Customer(-1);
+					for(Customer tmp:mCustomer.getCustomerSet("")){
+						htmlContent=htmlContent+Hwriter.writeTable(tmp.getName(), tmp.getPhone(), "<a id=\""+tmp.getId()+"\" href=\"/CM/cAShow?cid="+tmp.getId()+"&action=lookc\">查看</a>");
+					}			
+					htmlString=htmlString.replace("indexjs", Hwriter.writeIndexJs());
+				}
+				else {
+					response.sendRedirect("noscope.html");
+				}
+				
 			default:
 				
 				break;
