@@ -1,5 +1,7 @@
 package obj;
 
+import jdbc.Customer;
+
 public class Hwriter {
 
 	public static String writeTable(String str1,String str2,String str3) {
@@ -80,6 +82,26 @@ public class Hwriter {
 		builder.append("$$('#title1').html('客户名字');");
 		builder.append("$$('#title2').html('电话号码');");
 		builder.append("$$('#title3').html('操作');");	  
+		return builder.toString();
+	}
+	
+	/**
+	 * 返回在AddCustomer.html上的js
+	 * @return
+	 */
+	public static String writeAddCJs(Customer mCustomer) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("var $$ = Dom7;");
+		builder.append("$$('#name').val('"+mCustomer.getName()+"');");
+		builder.append("$$('#phone').val('"+mCustomer.getPhone()+"');");
+		builder.append("$$('#address').val('"+mCustomer.getAddress()+"');");
+		builder.append("$$('#fax').val('"+mCustomer.getFax()+"');");
+		builder.append("$$('#email').val('"+mCustomer.getEmail()+"');");
+		builder.append("$$('#bank').val('"+mCustomer.getBankName()+"');");
+		builder.append("$$('#account').val('"+mCustomer.getBankAccount()+"');");
+		builder.append("$$('#more').val('"+mCustomer.getMore()+"');");
+		builder.append("$$('h1').html('查看客户')");
+		
 		return builder.toString();
 	}
 

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import jdbc.Attachment;
 import jdbc.Contract;
+import jdbc.Customer;
 
 import org.apache.commons.io.FileUtils;
 
@@ -214,6 +215,16 @@ public class ActionShowServlet extends HttpServlet {
 				else {
 					htmlString=htmlString.replace("$js","");
 				}
+				
+			}
+			else if (request.getParameter("action").equals("lookc")) {
+				String fullPath = context.getRealPath("/addCustomer.html");
+				File htmlTemplateFile = new File(fullPath);
+				htmlString = FileUtils.readFileToString(htmlTemplateFile);				
+				
+				Customer mCustomer = new Customer(Integer.parseInt(request.getParameter("cid")));
+				System.out.println("result is "+Hwriter.writeAddCJs(mCustomer));
+				htmlString = htmlString.replace("addcjs",Hwriter.writeAddCJs(mCustomer));
 				
 			}
 
