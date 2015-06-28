@@ -27,7 +27,7 @@ public class Role {
 			con = DriverManager
 					.getConnection(
 							"jdbc:mysql://localhost/cm?useUnicode=true&characterEncoding=UTF-8",
-							"root", "wangyifei928");// 创建数据连接
+							"other", "ffebh2jij4zinus");// 创建数据连接
 		} catch (Exception e) {
 			System.out.println("数据库连接失败" + e.getMessage());
 		}

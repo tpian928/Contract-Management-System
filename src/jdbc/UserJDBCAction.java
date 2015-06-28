@@ -26,7 +26,7 @@ public class UserJDBCAction {
 			con = DriverManager
 					.getConnection(
 							"jdbc:mysql://localhost/cm?useUnicode=true&characterEncoding=UTF-8",
-							"root", "wangyifei928");// 创建数据连接,这里需要改成cm
+							"other", "ffebh2jij4zinus");// 创建数据连接,这里需要改成cm
 		} catch (Exception e) {
 			System.out.println("数据库连接失败" + e.getMessage());
 		}

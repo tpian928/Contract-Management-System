@@ -23,7 +23,7 @@ public class Contract {
 			con = DriverManager
 					.getConnection(
 							"jdbc:mysql://localhost/cm?useUnicode=true&characterEncoding=UTF-8",
-							"root", "wangyifei928");// 创建数据连接
+							"contracter", "tana2amnus6ekes");// 创建数据连接
 		} catch (Exception e) {
 			System.out.println("数据库连接失败" + e.getMessage());
 		}
@@ -697,6 +697,5 @@ public class Contract {
 		this.state=state;
 		return state;
 	}
-	
 	
 }

@@ -22,7 +22,7 @@ public class Customer {
 			con = DriverManager
 					.getConnection(
 							"jdbc:mysql://localhost/cm?useUnicode=true&characterEncoding=UTF-8",
-							"root", "wangyifei928");
+							"customer", "weze3agha9aki6k");
 		} catch (Exception e) {
 			System.out.println("数据库连接失败" + e.getMessage());
 		}
