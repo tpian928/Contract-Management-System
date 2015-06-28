@@ -47,7 +47,7 @@ public class NeedAcServlet extends HttpServlet {
 				Set<Contract> contractSet = mContract.getContractsByState(0);
 				
 				for(Contract tmp:contractSet){
-					result=result+Hwriter.writeTable(contractSet.size()+"", tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">分配</a>");
+					result=result+Hwriter.writeTable(tmp.getCname(), tmp.getDrafttime(), "<a id=\""+tmp.getCid()+"\">分配</a>");
 				}
 				
 			}
